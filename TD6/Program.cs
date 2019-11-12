@@ -10,6 +10,7 @@ namespace TD6
     {
         static void Main(string[] args)
         {
+            Console.ReadKey(); //pour empecher la console de se fermer seule
         }
     }
 }
