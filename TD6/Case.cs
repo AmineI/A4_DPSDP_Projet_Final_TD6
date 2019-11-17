@@ -10,7 +10,7 @@ namespace TD6
     {
         //TODO classe Case
 
-        private int identifiant;
+        private string identifiant;
         private string nom;
     }
 }
