@@ -9,5 +9,8 @@ namespace TD6
     public class Case
     {
         //TODO classe Case
+
+        private int identifiant;
+        private string nom;
     }
 }
