@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TD6
 {
-    public static class Case
+    public class Case
     {
         //TODO classe Case
     }
