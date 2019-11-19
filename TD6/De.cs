@@ -9,7 +9,7 @@ namespace TD6
     public static class De
     {
         // We initialize the random generator
-        private Random rnd = new Random();
+        private static Random rnd = new Random();
         
         public static int RollDice()
         {
