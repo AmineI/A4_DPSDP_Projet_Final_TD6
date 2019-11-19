@@ -9,33 +9,35 @@ namespace TD6
     public class Plateau
     {
         /// <summary>
-        /// On stocke l'unique instance du plateau dans une variable statique.
+        /// We store the only instance of a Board in a static variable.
         /// </summary>
-        static private Plateau plateau;
+        static private Plateau board;
+
         /// <summary>
-        /// On permet à l'utilisateur l'accès à notre plateau unique
+        /// We provide access to our unique Board
         /// </summary>
-        static public Plateau GetPlateau
+        static public Plateau Board
         {
-            get => plateau;
-        }
-        /// <summary>
-        /// Le constructeur de Plateau est privé pour que personne ne puisse créer de nouveau plateau : cela garantit l'unicité de notre plateau.
-        /// </summary>
-        private Plateau()
-        {
-            //Initialiser la liste de cases vides
+            get => board;
         }
 
         /// <summary>
-        /// Initialise ou réinitialise le plateau et ses cases
+        /// The Board constructor is private so that we can't create a new Board : It ensures the uniqueness of our Board.
         /// </summary>
-        public static void Initialiser()
+        private Plateau()
         {
-            plateau = new Plateau();
-            //TODO : créer et ajouter toutes les cases du plateau à la liste de cases.
+            boardSpaces = new List<Case>();
         }
-        //TODO implémenter une List<Case> (private ?)
+
+        /// <summary>
+        /// Initialize or reinitialize the board and its spaces
+        /// </summary>
+        public static void Initialize()
+        {
+            board = new Plateau();
+            //TODO : créer et ajouter toutes les cases du plateau à la liste de cases.
+            //TODO : Builder pattern maybe ?
+        }
         //TODO implémenter un indexer pour acceder aux cases du plateau
         //TODO ? Implémenter un enumerator/iterator pour iterer sur le plateau sans avoir accès à la liste de cases ?
 
