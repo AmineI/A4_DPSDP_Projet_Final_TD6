@@ -10,7 +10,7 @@ namespace TD6
     {
         private Joueur owner;
         public int BuyPrice { get; }
-        private int[] rentPrice;
+        protected int[] rentPrice;
 
         public abstract int RentPrice
         {
