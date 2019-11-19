@@ -13,6 +13,12 @@ namespace TD6
         /// </summary>
         static private Plateau board;
 
+        private List<Case> boardSpaces;
+        public Case this[int key]
+        {
+            get => boardSpaces[key];
+        }
+
         /// <summary>
         /// We provide access to our unique Board
         /// </summary>
