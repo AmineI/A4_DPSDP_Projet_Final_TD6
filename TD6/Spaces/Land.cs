@@ -10,8 +10,10 @@ namespace TD6
 
     class Land : Property
     {
-        public Color color;
-        public int numberHouses = 0;
+        private Color color;
+        public Color Color { get => color; }
+        private int numberOfHouses = 0;
+        public int NumberOfHouses { get => numberOfHouses; }
 
         public Land(string id, string name, int buyPrice, int[] rentPrice, Color color) : base(id, name, buyPrice, rentPrice)
         {
@@ -22,5 +24,7 @@ namespace TD6
         {
             get => rentPrices[numberOfHouses];
         }
+
+        //TODO : function to "build a house" on the land
     }
 }
