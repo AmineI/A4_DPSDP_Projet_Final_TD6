@@ -10,7 +10,13 @@ namespace TD6
     {
         //TODO classe Case
 
-        private string identifiant;
-        private string nom;
+        private string id;
+        private string name;
+
+        public Case(string id, string name)
+        {
+            this.id = id;
+            this.name = name;
+        }
     }
 }
