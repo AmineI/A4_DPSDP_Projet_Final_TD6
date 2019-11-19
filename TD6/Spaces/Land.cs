@@ -20,7 +20,7 @@ namespace TD6
 
         public override int RentPrice
         {
-            get => rentPrice[numberHouses];
+            get => rentPrices[numberOfHouses];
         }
     }
 }

@@ -10,7 +10,7 @@ namespace TD6
     {
         private Player owner;
         public int BuyPrice { get; }
-        protected int[] rentPrice;
+        protected int[] rentPrices;
 
         public abstract int RentPrice
         {
@@ -20,7 +20,7 @@ namespace TD6
         public Property(string id, string name, int buyPrice, int[] rentPrice) : base(id, name)
         {
             this.BuyPrice = buyPrice;
-            this.rentPrice = rentPrice;
+            this.rentPrices = rentPrice;
         }
         
     }
