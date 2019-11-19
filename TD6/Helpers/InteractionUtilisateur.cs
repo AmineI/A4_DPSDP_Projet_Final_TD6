@@ -3,37 +3,37 @@ using System.Collections.Generic;
 
 namespace TD6
 {
-    public static class InteractionUtilisateur
+    public static class UserInteraction
     {
         /// <summary>
-        /// Demande une confirmation à l'utilisateur
+        /// Asks the user for confirmation
         /// </summary>
-        /// <param name="message">Message à afficher à l'utilisateur</param>
-        /// <returns>true ou false selon la confirmation de l'utilisateur</returns>
-        public static bool ObtenirConfirmation(string message = "Vous confirmez ?")
+        /// <param name="message">Message to display to the user</param>
+        /// <returns>true or false depending on the user's confirmation</returns>
+        public static bool GetConfirmation(string message = "Do you want to continu ?")
         {
-            bool confirmation = DemanderChoixObjet<bool>(message, new bool[] { true, false }, new string[] { "Oui", "Non" });
+            bool confirmation = DemanderChoixObjet<bool>(message, new bool[] { true, false }, new string[] { "Yes", "No" });
             return confirmation;
         }
 
         /// <summary>
-        /// Affiche une liste sur la console
+        /// Print a list in the console
         /// </summary>
-        /// <param name="message">Message à afficher à l'utilisateur avant l'affichage</param>
-        /// <param name="listeChoix">Liste à afficher</param>
-        public static void ListerObjets<T>(string message, IList<T> listeChoix)
+        /// <param name="message">Message to display to the user before the list </param>
+        /// <param name="choiceList">List to print</param>
+        public static void ListerObjets<T>(string message, IList<T> choiceList)
         {
             Console.WriteLine(message);
-            for (int index = 0; index < listeChoix.Count; index++)
+            for (int index = 0; index < choiceList.Count; index++)
             {
-                Console.WriteLine($"{index + 1} - {listeChoix[index]}");
+                Console.WriteLine($"{index + 1} - {choiceList[index]}");
             }
         }
 
         /// <summary>
-        /// Affiche un message à l'utilisateur, et lui propose des choix parmi lesquels il doit en rentrer un. 
+        /// Print a message to the user and offer him choices. The user must choose one. 
         /// </summary>
-        /// <param name="message">Message à afficher pour expliquer le contexte à l'utilisateur</param>
+        /// <param name="message">Message to print to explain the context to the user</param>
         /// <param name="listeIntitulesChoix">Liste d'intitulés de choix possibles</param>
         /// <returns>entier entre 0 et le nombre de choix possibles -1, représentant l'index du choix dans la liste de strings.</returns>
         public static int DemanderChoixInt(string message, IList<string> listeIntitulesChoix)
