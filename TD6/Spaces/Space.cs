@@ -13,6 +13,9 @@ namespace TD6
         public string Name { get; }
 
 
+        //TODO : Certaines cases doivent notifier le propriétaire à l'arret (avec un IObserver)
+        //TODO : Certaines doivent déplacer le joueur et lui appliquer l'"état" Prison (case "Allez en prison")
+        //TODO : Eventuellement certaines cases bonus (chance, etc)
 
         public Space(string id, string name)
         {
