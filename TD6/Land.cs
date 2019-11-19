@@ -6,10 +6,15 @@ using System.Threading.Tasks;
 
 namespace TD6
 {
+    enum Color { Brown, Cyan, Purple, Orange, Red, Yellow, Green, Blue };
+
     class Land : Property
     {
-        public Land(string id, string name, int buyPrice, int[] rentPrice) : base(id, name, buyPrice, rentPrice)
+        public Color color;
+
+        public Land(string id, string name, int buyPrice, int[] rentPrice, Color color) : base(id, name, buyPrice, rentPrice)
         {
+            this.color = color;
         }
 
         // TODO : le RentPrice de Land
