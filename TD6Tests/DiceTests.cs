@@ -14,6 +14,13 @@ namespace TD6.Tests
         [TestMethod()]
         public void RollDiceTest()
         {
+            int diceResult;
+            for(int i = 0; i < 60; i++)
+            {
+                diceResult = Dice.RollDice();
+                Assert.IsTrue(diceResult>=1 && diceResult<=6);
+            }
+            //Todo change the test, random could be the same. Check the range maybe ?
             Assert.AreNotEqual(Dice.RollDice(),Dice.RollDice()) ;
         }
     }
