@@ -8,10 +8,11 @@ namespace TD6
 {
     public abstract class Space
     {
-        //TODO classe Case
+        //Auto-property : Can be publicly accessed but can only be set in the constructor. Id and name never changes so it is fine to use them.
+        public string Id { get; }
+        public string Name { get; }
 
-        private string id;
-        private string name;
+
 
         public Space(string id, string name)
         {
