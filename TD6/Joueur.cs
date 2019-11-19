@@ -15,7 +15,7 @@ namespace TD6
         private int money;
         private int dice1;
         private int dice2;
-        private int doublecount;
+        private int doubleCount;
         public Joueur(int id, string playerName, int money)
         {
             this.id = id;
