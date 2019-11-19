@@ -45,7 +45,8 @@
   <ItemGroup>
     <Compile Include="Case.cs" />
     <Compile Include="Event.cs" />
-    <Compile Include="Helpers\InteractionUtilisateur.cs" />
+    <Compile Include="Helpers\UserInteraction.cs" />
+    <Compile Include="De.cs" />
     <Compile Include="Joueur.cs" />
     <Compile Include="Land.cs" />
     <Compile Include="Plateau.cs" />
