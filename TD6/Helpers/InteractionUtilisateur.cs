@@ -10,9 +10,9 @@ namespace TD6
         /// </summary>
         /// <param name="message">Message to display to the user</param>
         /// <returns>true or false depending on the user's confirmation</returns>
-        public static bool GetConfirmation(string message = "Do you want to continu ?")
+        public static bool GetConfirmation(string message = "Do you want to continue ?")
         {
-            bool confirmation = DemanderChoixObjet<bool>(message, new bool[] { true, false }, new string[] { "Yes", "No" });
+            bool confirmation = GetObjectChoice<bool>(message, new bool[] { true, false }, new string[] { "Yes", "No" });
             return confirmation;
         }
 
@@ -21,7 +21,7 @@ namespace TD6
         /// </summary>
         /// <param name="message">Message to display to the user before the list </param>
         /// <param name="choiceList">List to print</param>
-        public static void ListerObjets<T>(string message, IList<T> choiceList)
+        public static void DisplayObjectList<T>(string message, IList<T> choiceList)
         {
             Console.WriteLine(message);
             for (int index = 0; index < choiceList.Count; index++)
@@ -36,7 +36,7 @@ namespace TD6
         /// <param name="message">Message to print to explain the context to the user</param>
         /// <param name="listeIntitulesChoix">List of choice titles</param>
         /// <returns>An integer between 0 and the number of choice -1. It's the index of the user's choice in the list.</returns>
-        public static int DemanderChoixInt(string message, IList<string> listeIntitulesChoix)
+        public static int GetChoosedInt(string message, IList<string> listeIntitulesChoix)
         {
             string response;
             bool valid = false;
@@ -77,7 +77,7 @@ namespace TD6
         /// </summary>
         /// <param name="message">Message to display to the user to tell him what to do</param>
         /// <returns>string entered by the user.</returns>
-        public static string DemanderString(string message)
+        public static string GetEnteredString(string message)
         {
             Console.WriteLine(message);
             return Console.ReadLine();
@@ -95,23 +95,23 @@ namespace TD6
         /// </summary>
         /// <typeparam name="T">Type of objects chosen to return</typeparam>
         /// <param name="message">Message to print to explain the context to the user</param>
-        /// <param name="listeChoix">Objets parmi lesquels l'utilisateur peut choisir </param>
-        /// <param name="listeIntitulesChoix">Optionnel : Une liste d'intitulé de choix. Si elle n'est pas renseignée, utilise les représentations textuelles des objets comme intitulés. (ie leur ToString)</param>
+        /// <param name="choicesList">Objets parmi lesquels l'utilisateur peut choisir </param>
+        /// <param name="choicesTitlesList">Optionnel : Une liste d'intitulé de choix. Si elle n'est pas renseignée, utilise les représentations textuelles des objets comme intitulés. (ie leur ToString)</param>
         /// <returns>L'objet choisi</returns>
-        public static T DemanderChoixObjet<T>(string message, IList<T> listeChoix, string[] listeIntitulesChoix = null)
+        public static T GetObjectChoice<T>(string message, IList<T> choicesList, IList<string> choicesTitlesList = null)
         {
-            T objetChoisi;
-            if (listeIntitulesChoix == null)
+            T choosedObject;
+            if (choicesTitlesList == null)
             {
-                listeIntitulesChoix = new string[listeChoix.Count];//Nouvelle liste de longueur identique au nombre de choix
-                for (int i = 0; i < listeChoix.Count; i++)
+                choicesTitlesList = new string[choicesList.Count];//Nouvelle liste de longueur identique au nombre de choix
+                for (int i = 0; i < choicesList.Count; i++)
                 {
-                    listeIntitulesChoix[i] = listeChoix[i].ToString();
+                    choicesTitlesList[i] = choicesList[i].ToString();
                 }
             }
-            int choix = DemanderChoixInt(message, listeIntitulesChoix);
-            objetChoisi = listeChoix[choix];//L'objet choisi est celui de la liste correspondant au numéro choisi par l'utilisateur. 
-            return objetChoisi;
+            int choice = GetChoosedInt(message, choicesTitlesList);
+            choosedObject = choicesList[choice];//L'objet choisi est celui de la liste correspondant au numéro choisi par l'utilisateur. 
+            return choosedObject;
         }
 
         /// <summary>
@@ -124,16 +124,16 @@ namespace TD6
         /// </code>
         /// </example>
         /// </summary>
-        /// <param name="parametresADemander">array des noms des parametres à demander. Seront utilisés comme clés du dico et affichés à l'utilisateur lors de la demande</param>
+        /// <param name="parametersToGet">array des noms des parametres à demander. Seront utilisés comme clés du dico et affichés à l'utilisateur lors de la demande</param>
         /// <returns>Dico de clés paramètres et valeurs les valeurs entrées par l'utilisateur</returns>
-        public static Dictionary<string, string> DemanderParametres(IList<string> parametresADemander)
+        public static Dictionary<string, string> GetEnteredParameters(IList<string> parametersToGet)
         {
-            Dictionary<string, string> choix = new Dictionary<string, string>();
-            foreach (string parametre in parametresADemander)
+            Dictionary<string, string> choice = new Dictionary<string, string>();
+            foreach (string parameter in parametersToGet)
             {
-                choix.Add(parametre, DemanderString($"Rentrer {parametre}"));
+                choice.Add(parameter, GetEnteredString($"Enter {parameter}"));
             }
-            return choix;
+            return choice;
         }
 
         /// <summary>
@@ -141,27 +141,27 @@ namespace TD6
         /// </summary>
         /// <param name="message">Message de contexte à afficher</param>
         /// <returns>double correspondant à l'entrée utilisateur</returns>
-        public static double DemanderDouble(string message = "Entrez un nombre")
+        public static double GetEnteredDouble(string message = "Enter a number")
         {
             Console.WriteLine($"{message}");
-            string lecture;
-            double nombre = 0;
+            string response;
+            double number = 0;
             bool valid;
             do
             {
-                lecture = Console.ReadLine();
+                response = Console.ReadLine();
                 try
                 {
-                    nombre = Convert.ToDouble(lecture);
+                    number = Convert.ToDouble(response);
                     valid = true;
                 }
                 catch
                 {
                     valid = false;
-                    Console.WriteLine("Nombre invalide. Réessayer");
+                    Console.WriteLine("Invalid number. Please retry");
                 }
             } while (!valid);
-            return nombre;
+            return number;
         }
     }
 }
