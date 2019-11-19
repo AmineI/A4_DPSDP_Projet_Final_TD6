@@ -15,31 +15,30 @@ namespace TD6
         
 
         /// <summary>
-        /// On stocke l'unique instance du Jeu dans une variable statique.
+        /// We store the unique instance of the Game in a static variable
         /// </summary>
-        static private Jeu jeu = new Jeu();
+        static private Jeu game = new Jeu();
         /// <summary>
-        /// On permet à l'utilisateur l'accès à notre plateau unique
+        /// We allow the user to access our unique Game instance
         /// </summary>
-        public static Jeu GetJeu
+        public static Jeu Instance
         {
-            get => jeu;
+            get => game;
         }
+        
+        
         /// <summary>
-        /// Le constructeur de Jeu est privé pour que personne ne puisse créer de nouveau Jeu : cela garantit l'unicité de notre jeu.
+        /// The constructor is private to ensure the uniqueness of the Game.
         /// </summary>
         private Jeu()
         {
         }
-        //TODO : stocker une liste de joueurs
 
         /// <summary>
-        ///Fonction lancant une partie de Monopoly. 
+        /// Launch the game
         /// </summary>
-        public static void LancerPartie()
-        {
-            
-            
+        public void LaunchGame()
+        {            
             //Todo : (Ré)Initialiser le plateau
             //Todo : Demander nombre de joueurs
             //Todo : (Ré)Initialiser chaque joueur : A l'aide d'une Factory de joueur ? Ils ont par défaut un certain montant d'argent notamment. 
