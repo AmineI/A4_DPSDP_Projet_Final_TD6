@@ -44,7 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Case.cs" />
-    <Compile Include="Helpers\InteractionUtilisateur.cs" />
+    <Compile Include="Helpers\UserInteraction.cs" />
     <Compile Include="Joueur.cs" />
     <Compile Include="Plateau.cs" />
     <Compile Include="Program.cs" />
