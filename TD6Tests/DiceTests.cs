@@ -12,7 +12,7 @@ namespace TD6.Tests
     public class DeTests
     {
         [TestMethod()]
-        public void RollDiceTest()
+        public void RollDiceTest_IsInRange()
         {
             int diceResult;
             for(int i = 0; i < 60; i++)
@@ -20,8 +20,6 @@ namespace TD6.Tests
                 diceResult = Dice.RollDice();
                 Assert.IsTrue(diceResult>=1 && diceResult<=6);
             }
-            //Todo change the test, random could be the same. Check the range maybe ?
-            Assert.AreNotEqual(Dice.RollDice(),Dice.RollDice()) ;
         }
     }
 }
