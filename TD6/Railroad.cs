@@ -12,7 +12,7 @@ namespace TD6
         {
         }
 
-        // TODO : le RentPrice
+        // TODO : le RentPrice de Railroad
         public override int RentPrice
         {
             get;
