@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TD6
 {
-    public class Joueur
+    public class Player
     {
         //TODO jailed decorator( design pattern ) 
         private int id;
@@ -16,7 +16,7 @@ namespace TD6
         private int dice1;
         private int dice2;
         private int doubleCount;
-        public Joueur(int id, string playerName, int money)
+        public Player(int id, string playerName, int money)
         {
             this.id = id;
             this.playerName = playerName;

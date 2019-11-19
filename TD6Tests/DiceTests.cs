@@ -14,7 +14,7 @@ namespace TD6.Tests
         [TestMethod()]
         public void RollDiceTest()
         {
-            Assert.AreNotEqual(De.RollDice(),De.RollDice()) ;
+            Assert.AreNotEqual(Dice.RollDice(),Dice.RollDice()) ;
         }
     }
 }

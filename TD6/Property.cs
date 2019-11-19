@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace TD6
 {
-    abstract class Property : Case
+    abstract class Property : Space
     {
-        private Joueur owner;
+        private Player owner;
         public int BuyPrice { get; }
         protected int[] rentPrice;
 

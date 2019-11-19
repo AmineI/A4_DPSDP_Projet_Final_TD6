@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TD6
 {
-    public static class De
+    public static class Dice
     {
         // We initialize the random generator
         private static Random rnd = new Random();

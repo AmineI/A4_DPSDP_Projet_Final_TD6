@@ -13,7 +13,7 @@ namespace TD6
         {
             Console.WriteLine("Bienvenue dans le Monopoly");
             do {
-                Jeu.LancerPartie();
+                Game.LancerPartie();
                 //Lorsque la partie se termine, l'utilisateur peut choisir s'il en lance une nouvelle ou pas
             } while (InteractionUtilisateur.ObtenirConfirmation("Voulez vous recommencer une nouvelle partie ?"));
         }

@@ -7,21 +7,21 @@ using System.Threading.Tasks;
 
 namespace TD6
 {
-    public class Jeu
+    public class Game
     {
-        private Plateau board;
-        private List<Joueur> players;
+        private Board board;
+        private List<Player> players;
         private int currentTurn;
         
 
         /// <summary>
         /// We store the unique instance of the Game in a static variable
         /// </summary>
-        static private Jeu game = new Jeu();
+        static private Game game = new Game();
         /// <summary>
         /// We allow the user to access our unique Game instance
         /// </summary>
-        public static Jeu Instance
+        public static Game Instance
         {
             get => game;
         }
@@ -30,7 +30,7 @@ namespace TD6
         /// <summary>
         /// The constructor is private to ensure the uniqueness of the Game.
         /// </summary>
-        private Jeu()
+        private Game()
         {
         }
 
