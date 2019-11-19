@@ -34,14 +34,14 @@ namespace TD6
         /// Print a message to the user and offer him choices. The user must choose one. 
         /// </summary>
         /// <param name="message">Message to print to explain the context to the user</param>
-        /// <param name="listeIntitulesChoix">List of choice titles</param>
+        /// <param name="choicesTitlesList">List of choice titles</param>
         /// <returns>An integer between 0 and the number of choice -1. It's the index of the user's choice in the list.</returns>
-        public static int GetChoosedInt(string message, IList<string> listeIntitulesChoix)
+        public static int GetChoosedInt(string message, IList<string> choicesTitlesList)
         {
             string response;
             bool valid = false;
             int choice = 0;
-            ListerObjets<string>(message, listeIntitulesChoix);
+            DisplayObjectList<string>(message, choicesTitlesList);
             Console.WriteLine("Make a choice >");
 
             do
@@ -51,7 +51,7 @@ namespace TD6
                 {
                     choice = Convert.ToInt32(response);
                     valid = true;
-                    if (choice <= 0 || choice > listeIntitulesChoix.Count)
+                    if (choice <= 0 || choice > choicesTitlesList.Count)
                     {
                         valid = false;
                         Console.WriteLine("Invalid choice, choose an existing option.>");
