@@ -11,7 +11,7 @@ namespace TD6
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcomte to the Monopoly");
+            Console.WriteLine("Welcome to the Monopoly");
             do {
                 Game.Instance.LaunchGame();
                 //Lorsque la partie se termine, l'utilisateur peut choisir s'il en lance une nouvelle ou pas
