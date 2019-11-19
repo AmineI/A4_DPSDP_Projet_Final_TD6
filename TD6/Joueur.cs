@@ -11,7 +11,7 @@ namespace TD6
         //TODO jailed decorator( design pattern ) 
         private int id;
         private string playerName;
-        
+        private int position;
         private int money;
         private int dice1;
         private int dice2;
@@ -46,5 +46,9 @@ namespace TD6
             }
         }
 
+        
+
     }
+
+
 }
