@@ -34,49 +34,49 @@ namespace TD6
         /// Print a message to the user and offer him choices. The user must choose one. 
         /// </summary>
         /// <param name="message">Message to print to explain the context to the user</param>
-        /// <param name="listeIntitulesChoix">Liste d'intitulés de choix possibles</param>
-        /// <returns>entier entre 0 et le nombre de choix possibles -1, représentant l'index du choix dans la liste de strings.</returns>
+        /// <param name="listeIntitulesChoix">List of choice titles</param>
+        /// <returns>An integer between 0 and the number of choice -1. It's the index of the user's choice in the list.</returns>
         public static int DemanderChoixInt(string message, IList<string> listeIntitulesChoix)
         {
-            string lecture;
+            string response;
             bool valid = false;
-            int choix = 0;
+            int choice = 0;
             ListerObjets<string>(message, listeIntitulesChoix);
-            Console.WriteLine("Entrer un choix >");
+            Console.WriteLine("Make a choice >");
 
             do
             {
-                lecture = Console.ReadLine();
+                response = Console.ReadLine();
                 try
                 {
-                    choix = Convert.ToInt32(lecture);
+                    choice = Convert.ToInt32(response);
                     valid = true;
-                    if (choix <= 0 || choix > listeIntitulesChoix.Count)
+                    if (choice <= 0 || choice > listeIntitulesChoix.Count)
                     {
                         valid = false;
-                        Console.WriteLine("Choix invalide, faites un choix parmi ceux présentés.>");
+                        Console.WriteLine("Invalid choice, choose an existing option.>");
                     }
                 }
                 catch
                 {
-                    Console.WriteLine("Entrée invalide - Rentrez un nombre");
+                    Console.WriteLine("Invalid input, enter an integer please.");
                 }
 
-            } while (!valid);//On redemande tant que l'entrée est invalide
+            } while (!valid);//We ask it while the input is invalid.
 
-            return choix - 1;//-1 pour rapporter le choix à un index entre 0 et length (exclu)
+            return choice - 1; //-1 to put the choice in an index between 0 and length-1
         }
 
         /// <summary>
-        /// Affiche un message à l'utilisateur, et lui demande une entrée.
-        /// <example> Par exemple:
+        /// Dispaly a message to the user and ask him for an input.
+        /// <example> For exemple:
         /// <code>
-        ///    string nomJoueur = DemanderString("Quel est le nom du joueur ?");
+        ///    string nomJoueur = DemanderString("What's the player's name ?");
         /// </code>
         /// </example>
         /// </summary>
-        /// <param name="message">Message à afficher pour expliquer à l'utilisateur ce qu'il doit écrire</param>
-        /// <returns>string rentré par l'utilisateur.</returns>
+        /// <param name="message">Message to display to the user to tell him what to do</param>
+        /// <returns>string entered by the user.</returns>
         public static string DemanderString(string message)
         {
             Console.WriteLine(message);
@@ -84,17 +84,17 @@ namespace TD6
         }
 
         /// <summary>
-        /// Affiche un message à l'utilisateur, et lui propose des choix parmi lesquels il doit en choisir un. 
-        /// <example> Par exemple:
+        /// Print a message to the user and offer him choices. The user must choose one.  
+        /// <example> For exemple:
         /// <code>
-        /// string lettre = DemanderChoixObjet≪String≫("Choisis une lettre", new string[] {"A","B","C","D"});
+        /// string character = DemanderChoixObjet≪String≫("Choose a character", new string[] {"A","B","C","D"});
         /// <para/>
-        /// Console.Write("Tu as choisi la lettre" + lettre);
+        /// Console.Write("You chose the letter : " + character);
         /// </code>
         /// </example>
         /// </summary>
-        /// <typeparam name="T">Type des objets choisis à retourner</typeparam>
-        /// <param name="message">Message à afficher pour expliquer le contexte à l'utilisateur</param>
+        /// <typeparam name="T">Type of objects chosen to return</typeparam>
+        /// <param name="message">Message to print to explain the context to the user</param>
         /// <param name="listeChoix">Objets parmi lesquels l'utilisateur peut choisir </param>
         /// <param name="listeIntitulesChoix">Optionnel : Une liste d'intitulé de choix. Si elle n'est pas renseignée, utilise les représentations textuelles des objets comme intitulés. (ie leur ToString)</param>
         /// <returns>L'objet choisi</returns>
