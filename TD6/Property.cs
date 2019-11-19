@@ -17,7 +17,7 @@ namespace TD6
             get;
         }
 
-        private Property(string id, string name, int buyPrice, int[] rentPrice) : base(id, name)
+        public Property(string id, string name, int buyPrice, int[] rentPrice) : base(id, name)
         {
             this.BuyPrice = buyPrice;
             this.rentPrice = rentPrice;
