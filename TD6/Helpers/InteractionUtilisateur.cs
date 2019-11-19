@@ -69,9 +69,9 @@ namespace TD6
 
         /// <summary>
         /// Dispaly a message to the user and ask him for an input.
-        /// <example> For exemple:
+        /// <example> For example:
         /// <code>
-        ///    string nomJoueur = DemanderString("What's the player's name ?");
+        ///    string playerName = GetEnteredString("What's the player's name ?");
         /// </code>
         /// </example>
         /// </summary>
@@ -85,47 +85,47 @@ namespace TD6
 
         /// <summary>
         /// Print a message to the user and offer him choices. The user must choose one.  
-        /// <example> For exemple:
+        /// <example> For example:
         /// <code>
-        /// string character = DemanderChoixObjet≪String≫("Choose a character", new string[] {"A","B","C","D"});
+        /// string character = GetObjectChoice≪String≫("Choose a character", new string[] {"A","B","C","D"});
         /// <para/>
         /// Console.Write("You chose the letter : " + character);
         /// </code>
         /// </example>
         /// </summary>
         /// <typeparam name="T">Type of objects chosen to return</typeparam>
-        /// <param name="message">Message to print to explain the context to the user</param>
-        /// <param name="choicesList">Objets parmi lesquels l'utilisateur peut choisir </param>
-        /// <param name="choicesTitlesList">Optionnel : Une liste d'intitulé de choix. Si elle n'est pas renseignée, utilise les représentations textuelles des objets comme intitulés. (ie leur ToString)</param>
-        /// <returns>L'objet choisi</returns>
+        /// <param name="message">Message to print to explain the context to the user.</param>
+        /// <param name="choicesList">Objects from which the user can choose.</param>
+        /// <param name="choicesTitlesList">Optional : List of choice titles. If it is not informed, use the ToString of the objects as titled.</param>
+        /// <returns>The chosen object</returns>
         public static T GetObjectChoice<T>(string message, IList<T> choicesList, IList<string> choicesTitlesList = null)
         {
             T choosedObject;
             if (choicesTitlesList == null)
             {
-                choicesTitlesList = new string[choicesList.Count];//Nouvelle liste de longueur identique au nombre de choix
+                choicesTitlesList = new string[choicesList.Count];//New list with the same length as the number of choices
                 for (int i = 0; i < choicesList.Count; i++)
                 {
                     choicesTitlesList[i] = choicesList[i].ToString();
                 }
             }
             int choice = GetChoosedInt(message, choicesTitlesList);
-            choosedObject = choicesList[choice];//L'objet choisi est celui de la liste correspondant au numéro choisi par l'utilisateur. 
+            choosedObject = choicesList[choice]; //The object chosen is the object corresponding to the number chosen in the list by the user. 
             return choosedObject;
         }
 
         /// <summary>
-        /// Demande un par un plusieurs paramètres à l'utilisateur
-        /// <example> Par exemple:
+        /// Asks the user one by one several settings.
+        /// <example> For example:
         /// <code>
-        /// Dictionary≪string, string≫ parametres = DemanderParametres(new [] {"prenom du joueur", "nom du joueur"}); 
+        /// Dictionary≪string, string≫ setting = GetEnteredParameters(new [] {"player's first name", "player's last name"}); 
         /// <para/>
-        /// Console.Write("Bonjour " + parametres["prenom du joueur"] + parametres["nom du joueur"])
+        /// Console.Write("Hello " + setting["player's first name"] + setting["player's last name"])
         /// </code>
         /// </example>
         /// </summary>
-        /// <param name="parametersToGet">array des noms des parametres à demander. Seront utilisés comme clés du dico et affichés à l'utilisateur lors de la demande</param>
-        /// <returns>Dico de clés paramètres et valeurs les valeurs entrées par l'utilisateur</returns>
+        /// <param name="parametersToGet"> Array of the names of the parameters to ask. Will be used as keys to the dico and displayed to the user when requesting</param>
+        /// <returns>Dictionary of keys settings and values values entered by the user</returns>
         public static Dictionary<string, string> GetEnteredParameters(IList<string> parametersToGet)
         {
             Dictionary<string, string> choice = new Dictionary<string, string>();
@@ -137,10 +137,10 @@ namespace TD6
         }
 
         /// <summary>
-        /// Demande un double à l'utilisateur
+        /// Asks the user for a duplicate
         /// </summary>
-        /// <param name="message">Message de contexte à afficher</param>
-        /// <returns>double correspondant à l'entrée utilisateur</returns>
+        /// <param name="message">Message to print to explain the context to the user.</param>
+        /// <returns>double corresponding at the user input</returns>
         public static double GetEnteredDouble(string message = "Enter a number")
         {
             Console.WriteLine($"{message}");
