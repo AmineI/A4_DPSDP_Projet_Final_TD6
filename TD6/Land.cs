@@ -11,16 +11,16 @@ namespace TD6
     class Land : Property
     {
         public Color color;
+        public int numberHouses = 0;
 
         public Land(string id, string name, int buyPrice, int[] rentPrice, Color color) : base(id, name, buyPrice, rentPrice)
         {
             this.color = color;
         }
 
-        // TODO : le RentPrice de Land
         public override int RentPrice
         {
-            get;
+            get => rentPrice[numberHouses];
         }
     }
 }
