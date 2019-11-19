@@ -19,8 +19,8 @@ namespace TD6
 
         public Space(string id, string name)
         {
-            this.id = id;
-            this.name = name;
+            this.Id = id;
+            this.Name = name;
         }
     }
 }
