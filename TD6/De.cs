@@ -8,11 +8,13 @@ namespace TD6
 {
     public static class De
     {
-        //TODO : Retourner un nombre aléatoire.
-        public static int LancerDe()
+        // We initialize the random generator
+        private Random rnd = new Random();
+        
+        public static int RollDice()
         {
-
-            throw new NotImplementedException();
+            // When we want to rill the dice we call random.Next(1,7) which return an interger between 1 and 7-1 
+            return rnd.Next(1,7);
         }
     }
 }
