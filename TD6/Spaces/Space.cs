@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TD6
 {
-    public class Space
+    public abstract class Space
     {
         //TODO classe Case
 
