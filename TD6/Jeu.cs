@@ -4,10 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace TD6
 {
     public class Jeu
     {
+        private Plateau board;
+        private List<Joueur> players;
+        private int currentTurn;
+        
+
         /// <summary>
         /// On stocke l'unique instance du Jeu dans une variable statique.
         /// </summary>
@@ -32,6 +38,8 @@ namespace TD6
         /// </summary>
         public static void LancerPartie()
         {
+            
+            
             //Todo : (Ré)Initialiser le plateau
             //Todo : Demander nombre de joueurs
             //Todo : (Ré)Initialiser chaque joueur : A l'aide d'une Factory de joueur ? Ils ont par défaut un certain montant d'argent notamment. 
