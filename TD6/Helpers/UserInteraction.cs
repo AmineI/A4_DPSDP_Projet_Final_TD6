@@ -20,13 +20,13 @@ namespace TD6
         /// Print a list in the console
         /// </summary>
         /// <param name="message">Message to display to the user before the list </param>
-        /// <param name="choiceList">List to print</param>
-        public static void DisplayObjectList<T>(string message, IList<T> choiceList)
+        /// <param name="objectList">List of objects to print</param>
+        public static void DisplayObjectList<T>(string message, IList<T> objectList)
         {
             Console.WriteLine(message);
-            for (int index = 0; index < choiceList.Count; index++)
+            for (int index = 0; index < objectList.Count; index++)
             {
-                Console.WriteLine($"{index + 1} - {choiceList[index]}");
+                Console.WriteLine($"{index + 1} - {objectList[index]}");
             }
         }
 
@@ -54,7 +54,7 @@ namespace TD6
                     if (choice <= 0 || choice > choicesTitlesList.Count)
                     {
                         valid = false;
-                        Console.WriteLine("Invalid choice, choose an existing option.>");
+                        Console.WriteLine("Invalid choice, choose an existing option>");
                     }
                 }
                 catch
@@ -62,9 +62,9 @@ namespace TD6
                     Console.WriteLine("Invalid input, enter an integer please.");
                 }
 
-            } while (!valid);//We ask it while the input is invalid.
+            } while (!valid);//We ask it as long as the input is invalid.
 
-            return choice - 1; //-1 to put the choice in an index between 0 and length-1
+            return choice - 1; //-1 to put the choice in a range of index between 0 and length-1
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace TD6
         /// </code>
         /// </example>
         /// </summary>
-        /// <param name="message">Message to display to the user to tell him what to do</param>
+        /// <param name="message">Message to display to the user to tell him what to enter</param>
         /// <returns>string entered by the user.</returns>
         public static string GetEnteredString(string message)
         {
@@ -96,7 +96,7 @@ namespace TD6
         /// <typeparam name="T">Type of objects chosen to return</typeparam>
         /// <param name="message">Message to print to explain the context to the user.</param>
         /// <param name="choicesList">Objects from which the user can choose.</param>
-        /// <param name="choicesTitlesList">Optional : List of choice titles. If it is not informed, use the ToString of the objects as titled.</param>
+        /// <param name="choicesTitlesList">Optional : List of choice titles. If it is not provided, it uses the ToString of the objects as titles.</param>
         /// <returns>The chosen object</returns>
         public static T GetObjectChoice<T>(string message, IList<T> choicesList, IList<string> choicesTitlesList = null)
         {
@@ -140,7 +140,7 @@ namespace TD6
         /// Asks the user for a duplicate
         /// </summary>
         /// <param name="message">Message to print to explain the context to the user.</param>
-        /// <returns>double corresponding at the user input</returns>
+        /// <returns>double corresponding to the user input</returns>
         public static double GetEnteredDouble(string message = "Enter a number")
         {
             Console.WriteLine($"{message}");
