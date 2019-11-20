@@ -10,6 +10,7 @@ namespace TD6
     public class Game
     {
         private Board board;
+        public Board Board { get => board; }
         private List<Player> players;
         private int currentTurn;
         
@@ -25,8 +26,8 @@ namespace TD6
         {
             get => game;
         }
-        
-        
+
+
         /// <summary>
         /// The constructor is private to ensure the uniqueness of the Game.
         /// </summary>
