@@ -45,6 +45,29 @@ namespace TD6
                 return dice1 == dice2;
             }
         }
+        /// <summary>
+        /// Pay money to someone.
+        /// </summary>
+        /// <param name="amount">Amount of money to pay</param>
+        /// <param name="destinationPlayer">Player to pay. If null, it pays the bank</param>
+        public void Pay(int amount, Player destinationPlayer = null)
+        {
+            money -= amount;
+            if (destinationPlayer != null)
+            {
+                destinationPlayer.Earn(amount);
+            }
+        }
+
+        /// <summary>
+        /// Earn money from someone
+        /// </summary>
+        /// <param name="amount">amount of money to earn</param>
+        public void Earn(int amount)
+        {
+            money += amount;
+        }
+
 
         public void Move(int distance)
         {
