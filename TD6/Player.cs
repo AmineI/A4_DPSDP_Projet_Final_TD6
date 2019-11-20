@@ -11,7 +11,7 @@ namespace TD6
         //TODO jailed decorator( design pattern ) 
         private int id;
         private string playerName;
-        private int position = 0;
+        private int currentPosition = 0;
         private int money;
         private int dice1;
         private int dice2;
@@ -48,25 +48,34 @@ namespace TD6
 
         public void Move(int distance)
         {
-            position = position + distance;
-            if (position >= 40)
+            currentPosition = currentPosition + distance;
+            if (currentPosition >= 40)
             {
-                position -= 40;
-                passGo();
+                //If we are at the end of the board, we go back to the beginning and pass through the "Go" space
+                currentPosition -= 40;
+                PassGo();
             }
+            else if(currentPosition<0)
+            {
+                currentPosition += 40;
+
+            }
+            //TODO "visit" each case to fire an eventual event on pass.
         }
 
-        public void TP(Space arrival)
+        public void Teleport(Space arrival, bool passThroughGoSpace = false)
         {
-            //TODO get index from Game.Instance.Board
-
-
-            throw new NotImplementedException();
+            int destinationindex = Game.Instance.Board.FindSpaceIndex(arrival);
+            if (passThroughGoSpace && destinationindex < currentPosition)
+            {//Some luck cards can teleport us while still going through the Go space.
+                PassGo();
+            }//Whereas the "Go to Jail" event don't
+            currentPosition = destinationindex;
         }
-        public void passGo()
-            {
-            //TODO argentplus(200);
-            }
+        public void PassGo()
+        {
+            //TODO event case Départ. ie earn(200);
+        }
         public void PlayTurn()
         {
             //TODO Decorator for jail 
@@ -75,12 +84,12 @@ namespace TD6
             //launch dice
             dice1 = Dice.RollDice();
             dice2 = Dice.RollDice();
-            if ( IsDiceDouble )
+            if (IsDiceDouble)
             {
                 doubleCount++;
-                if (doubleCount==3)
+                if (doubleCount == 3)
                 {
-                    doubleCount = 0; 
+                    doubleCount = 0;
                     //TODO Go to jail
                 }
             }
@@ -89,6 +98,9 @@ namespace TD6
             //if passed by Go ( start )  ( case 0 ) {received 200}
             //do event -> pay rent, buy property, pay tax, receive money
             //do player action, build house etc
+
+            //Check bankrupt
+
             //end play 
             //if double = true 
             // players.PlayTurn;
