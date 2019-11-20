@@ -20,12 +20,11 @@ namespace TD6
         {
             this.id = id;
             this.playerName = playerName;
-
             this.money = money;
 
         }
         /// <summary>
-        /// We get the sums of the dice 
+        /// We get the sums of the dices 
         /// </summary>
         public int DiceValue
         {
@@ -64,9 +63,12 @@ namespace TD6
             throw new NotImplementedException();
         }
         public void passGo()
-            {
+        {
             //TODO argentplus(200);
-            }
+        }
+        /// <summary>
+        /// Function for a player turn, launch dice, move(DiceValue)
+        /// </summary>
         public void PlayTurn()
         {
             //TODO Decorator for jail 
@@ -75,12 +77,12 @@ namespace TD6
             //launch dice
             dice1 = Dice.RollDice();
             dice2 = Dice.RollDice();
-            if ( IsDiceDouble )
+            if (IsDiceDouble)
             {
                 doubleCount++;
-                if (doubleCount==3)
+                if (doubleCount == 3)
                 {
-                    doubleCount = 0; 
+                    doubleCount = 0;
                     //TODO Go to jail
                 }
             }
