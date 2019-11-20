@@ -11,7 +11,7 @@ namespace TD6
         //TODO jailed decorator( design pattern ) 
         private int id;
         private string playerName;
-        private int position;
+        private int position = 0;
         private int money;
         private int dice1;
         private int dice2;
@@ -20,9 +20,9 @@ namespace TD6
         {
             this.id = id;
             this.playerName = playerName;
-            
+
             this.money = money;
-            
+
         }
         /// <summary>
         /// We get the sums of the dice 
@@ -46,7 +46,57 @@ namespace TD6
             }
         }
 
-        
+        public void Move(int distance)
+        {
+            position = position + distance;
+            if (position >= 40)
+            {
+                position -= 40;
+                passGo();
+            }
+        }
+
+        public void TP(Space arrival)
+        {
+            //TODO get index from Game.Instance.Board
+
+
+            throw new NotImplementedException();
+        }
+        public void passGo()
+            {
+            //TODO argentplus(200);
+            }
+        public void PlayTurn()
+        {
+            //TODO Decorator for jail 
+            //We are not in jail in this fonction 
+
+            //launch dice
+            dice1 = Dice.RollDice();
+            dice2 = Dice.RollDice();
+            if ( IsDiceDouble )
+            {
+                doubleCount++;
+                if (doubleCount==3)
+                {
+                    doubleCount = 0; 
+                    //TODO Go to jail
+                }
+            }
+            Move(DiceValue);
+            //Moveplayer on board
+            //if passed by Go ( start )  ( case 0 ) {received 200}
+            //do event -> pay rent, buy property, pay tax, receive money
+            //do player action, build house etc
+            //end play 
+            //if double = true 
+            // players.PlayTurn;
+
+
+
+            //
+        }
 
     }
 
