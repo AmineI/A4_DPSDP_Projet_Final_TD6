@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,7 +33,7 @@ namespace TD6
         /// We check if dices are equal and get the bool value
         /// </summary>
         public bool IsDiceDouble { get => dice1 == dice2; }
-        
+
         /// <summary>
         /// Pay money to someone.
         /// </summary>
@@ -67,12 +67,11 @@ namespace TD6
                 currentPosition -= 40;
                 PassGo();
             }
-            else if(currentPosition<0)
+            else if (currentPosition < 0)
             {
                 currentPosition += 40;
-
             }
-            //TODO "visit" each case to fire an eventual event on pass.
+            //TODO "visit" each case to fire an eventual event on pass. (The "Go" Space event for example.)
         }
 
         public void Teleport(Space arrival, bool passThroughGoSpace = false)
@@ -86,7 +85,7 @@ namespace TD6
         }
         public void PassGo()
         {
-            //TODO event case Départ. ie earn(200);
+            //TODO Appel de l'event case Départ. ie earn(200);
         }
         public void PlayTurn()
         {
@@ -106,6 +105,7 @@ namespace TD6
                 }
             }
             Move(DiceValue);
+            //TODO :
             //Moveplayer on board
             //if passed by Go ( start )  ( case 0 ) {received 200}
             //do event -> pay rent, buy property, pay tax, receive money
