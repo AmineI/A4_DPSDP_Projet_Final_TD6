@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,24 +27,13 @@ namespace TD6
         /// <summary>
         /// We get the sums of the dice 
         /// </summary>
-        public int DiceValue
-        {
-            get
-            {
-                return dice1 + dice2;
-            }
-        }
+        public int DiceValue { get => dice1 + dice2; }
 
         /// <summary>
-        /// We check if dice are equal and get the bool value
+        /// We check if dices are equal and get the bool value
         /// </summary>
-        public bool IsDiceDouble
-        {
-            get
-            {
-                return dice1 == dice2;
-            }
-        }
+        public bool IsDiceDouble { get => dice1 == dice2; }
+        
         /// <summary>
         /// Pay money to someone.
         /// </summary>
