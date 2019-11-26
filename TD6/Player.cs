@@ -20,7 +20,6 @@ namespace TD6
         {
             this.id = id;
             this.playerName = playerName;
-
             this.money = money;
 
         }
@@ -31,7 +30,7 @@ namespace TD6
         }
 
         /// <summary>
-        /// We get the sums of the dice 
+        /// We get the sums of the dices 
         /// </summary>
         public int DiceValue { get => dice1 + dice2; }
 
@@ -92,8 +91,12 @@ namespace TD6
         public void PassGo()
         {
             //TODO Appel de l'event case Départ. ie earn(200);
+            Earn(200);          
         }
 
+        /// <summary>
+        /// Function for a player turn, launch dice, move(DiceValue)
+        /// </summary>
         public void PlayTurn()
         {
             //TODO Decorator for jail 
