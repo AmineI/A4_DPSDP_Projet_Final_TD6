@@ -14,17 +14,22 @@ namespace TD6
             get => boardSpaces[key];
         }
 
+
         //TODO : Si on ajoute la cagnotte au centre, la stocker sur le plateau
 
-        public Board()
+        public Board(List<Space> spacesList)
         {
-            boardSpaces = new List<Space>();
+            boardSpaces = spacesList;
         }
 
-        //TODO : créer et ajouter toutes les cases du plateau à la liste de cases.
-        //TODO : Builder pattern maybe ?
+        //TODO : créer et ajouter toutes les cases du plateau à la liste de cases. Builder pattern maybe ?
 
-        //TODO implémenter un indexer pour acceder aux cases du plateau
+
+        public int FindSpaceIndex(Space searchedSpace)
+        {
+            return boardSpaces.FindIndex(space => searchedSpace==space);
+        }
+        
         //TODO ? Implémenter un enumerator/iterator pour iterer sur le plateau sans avoir accès à la liste de cases ?
 
     }
