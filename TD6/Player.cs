@@ -11,7 +11,7 @@ namespace TD6
         //TODO jailed decorator( design pattern ) 
         private int id;
         private string playerName;
-        private int position = 0;
+        private int currentPosition = 0;
         private int money;
         private int dice1;
         private int dice2;
@@ -26,46 +26,68 @@ namespace TD6
         /// <summary>
         /// We get the sums of the dices 
         /// </summary>
-        public int DiceValue
+        public int DiceValue { get => dice1 + dice2; }
+
+        /// <summary>
+        /// We check if dices are equal and get the bool value
+        /// </summary>
+        public bool IsDiceDouble { get => dice1 == dice2; }
+
+        /// <summary>
+        /// Pay money to someone.
+        /// </summary>
+        /// <param name="amount">Amount of money to pay</param>
+        /// <param name="destinationPlayer">Player to pay. If null, it pays the bank</param>
+        public void Pay(int amount, Player destinationPlayer = null)
         {
-            get
+            money -= amount;
+            if (destinationPlayer != null)
             {
-                return dice1 + dice2;
+                destinationPlayer.Earn(amount);
             }
         }
 
         /// <summary>
-        /// We check if dice are equal and get the bool value
+        /// Earn money from someone
         /// </summary>
-        public bool IsDiceDouble
+        /// <param name="amount">amount of money to earn</param>
+        public void Earn(int amount)
         {
-            get
-            {
-                return dice1 == dice2;
-            }
+            money += amount;
         }
+
 
         public void Move(int distance)
         {
-            position = position + distance;
-            if (position >= 40)
+            currentPosition = currentPosition + distance;
+            if (currentPosition >= 40)
             {
-                position -= 40;
-                passGo();
+                //If we are at the end of the board, we go back to the beginning and pass through the "Go" space
+                currentPosition -= 40;
+                PassGo();
             }
+            else if (currentPosition < 0)
+            {
+                currentPosition += 40;
+            }
+            //TODO "visit" each case to fire an eventual event on pass. (The "Go" Space event for example.)
         }
 
-        public void TP(Space arrival)
+        public void Teleport(Space arrival, bool passThroughGoSpace = false)
         {
-            //TODO get index from Game.Instance.Board
-
-
-            throw new NotImplementedException();
-        }
-        public void passGo()
+            int destinationindex = Game.Instance.Board.FindSpaceIndex(arrival);
+            if (passThroughGoSpace && destinationindex < currentPosition)
+            {//Some luck cards can teleport us while still going through the Go space.
+                PassGo();
+            }//Whereas the "Go to Jail" event don't
+            currentPosition = destinationindex;
+        }       
+        
+        public void PassGo()
         {
-            //TODO argentplus(200);
+            //TODO Appel de l'event case Départ. ie earn(200);
         }
+
         /// <summary>
         /// Function for a player turn, launch dice, move(DiceValue)
         /// </summary>
@@ -87,10 +109,14 @@ namespace TD6
                 }
             }
             Move(DiceValue);
+            //TODO :
             //Moveplayer on board
             //if passed by Go ( start )  ( case 0 ) {received 200}
             //do event -> pay rent, buy property, pay tax, receive money
             //do player action, build house etc
+
+            //Check bankrupt
+
             //end play 
             //if double = true 
             // players.PlayTurn;
