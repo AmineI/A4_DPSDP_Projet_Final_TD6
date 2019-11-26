@@ -8,7 +8,7 @@ namespace TD6
 {
     public abstract class Property : Space
     {
-        private Player owner;
+        private IPlayer owner;
         public int BuyPrice { get; }
         protected int[] rentPrices;
 
