@@ -81,11 +81,11 @@ namespace TD6
                 PassGo();
             }//Whereas the "Go to Jail" event don't
             currentPosition = destinationindex;
-        }       
-        
+        }
         public void PassGo()
         {
             //TODO Appel de l'event case Départ. ie earn(200);
+            Earn(200);          
         }
 
         /// <summary>
