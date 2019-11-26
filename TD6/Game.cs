@@ -11,7 +11,7 @@ namespace TD6
     {
         private Board board;
         public Board Board { get => board; }
-        private List<Player> players;
+        private List<IPlayer> players;
         private int currentTurn;
         
 

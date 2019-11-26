@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TD6
 {
-    public class Player
+    public class Player : IPlayer
     {
         //TODO jailed decorator( design pattern ) 
         private int id;
@@ -24,6 +24,12 @@ namespace TD6
             this.money = money;
 
         }
+        public void RollDices()
+        {
+            dice1 = Dice.RollDice();
+            dice2 = Dice.RollDice();
+        }
+
         /// <summary>
         /// We get the sums of the dice 
         /// </summary>
@@ -39,7 +45,7 @@ namespace TD6
         /// </summary>
         /// <param name="amount">Amount of money to pay</param>
         /// <param name="destinationPlayer">Player to pay. If null, it pays the bank</param>
-        public void Pay(int amount, Player destinationPlayer = null)
+        public void Pay(int amount, IPlayer destinationPlayer = null)
         {
             money -= amount;
             if (destinationPlayer != null)
@@ -87,14 +93,15 @@ namespace TD6
         {
             //TODO Appel de l'event case Départ. ie earn(200);
         }
+
         public void PlayTurn()
         {
             //TODO Decorator for jail 
             //We are not in jail in this fonction 
 
             //launch dice
-            dice1 = Dice.RollDice();
-            dice2 = Dice.RollDice();
+            RollDices();
+
             if (IsDiceDouble)
             {
                 doubleCount++;
@@ -121,7 +128,6 @@ namespace TD6
 
             //
         }
-
     }
 
 
