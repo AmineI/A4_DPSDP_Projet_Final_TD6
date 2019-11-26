@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TD6
 {
-    abstract class Property : Space
+    public abstract class Property : Space
     {
         private Player owner;
         public int BuyPrice { get; }
@@ -21,6 +21,7 @@ namespace TD6
         {
             this.BuyPrice = buyPrice;
             this.rentPrices = rentPrice;
+            //TODO : set the event on stop for a property
         }
         
     }

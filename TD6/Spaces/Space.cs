@@ -21,7 +21,7 @@ namespace TD6
         /// </code>
         /// </example>
         /// </summary>
-        private Action<Player> eventOnStop;
+        protected Action<Player> eventOnStop;
         public Action<Player> EventOnStop { get => eventOnStop; }
 
 
