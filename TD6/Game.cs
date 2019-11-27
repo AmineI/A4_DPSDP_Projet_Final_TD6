@@ -12,7 +12,9 @@ namespace TD6
         private Board board;
         public Board Board { get => board; }
         private List<IPlayer> players;
+        public List<IPlayer> Players { get => players; }
         private int currentTurn;
+        public int CurrentTurn { get => currentTurn; }
         
 
         /// <summary>
