@@ -8,9 +8,9 @@ namespace TD6
 {
     public class Board
     {
-        private List<Space> boardSpaces;
-        public Space this[int key]
+        private List<IVisitableSpace> boardSpaces;
         public int Count { get => boardSpaces.Count; }
+        public IVisitableSpace this[int key]
         {
             get => boardSpaces[key];
         }
@@ -18,7 +18,7 @@ namespace TD6
 
         //TODO : Si on ajoute la cagnotte au centre, la stocker sur le plateau
 
-        public Board(List<Space> spacesList)
+        public Board(List<IVisitableSpace> spacesList)
         {
             boardSpaces = spacesList;
         }
@@ -26,7 +26,8 @@ namespace TD6
         //TODO : créer et ajouter toutes les cases du plateau à la liste de cases. Builder pattern maybe ?
 
 
-        public int FindSpaceIndex(Space searchedSpace)
+
+        public int FindSpaceIndex(IVisitableSpace searchedSpace)
         {
             return boardSpaces.FindIndex(space => searchedSpace==space);
         }

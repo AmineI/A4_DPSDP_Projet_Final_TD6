@@ -62,36 +62,79 @@ namespace TD6
             money += amount;
         }
 
-
+        /// <summary>
+        /// Moves the player, and walk on each space on the way to the destination, then stop on the destination space. Fires any action due to walking or stopping on a space.
+        /// </summary>
+        /// <param name="distanceToMove">distance to move, forwards or backwards depending on if it is positive or negative </param>
         public void Move(int distance)
         {
-            currentPosition = currentPosition + distance;
-            if (currentPosition >= 40)
+            //TODO : Find a way to refactor this into a single function ?
+            if (distance > 0)
             {
-                //If we are at the end of the board, we go back to the beginning and pass through the "Go" space
-                currentPosition -= 40;
-                PassGo();
+                MoveForward(Math.Abs(distance));
             }
-            else if (currentPosition < 0)
+            else
             {
-                currentPosition += 40;
+                MoveBackwards(Math.Abs(distance));
             }
-            //TODO "visit" each case to fire an eventual event on pass. (The "Go" Space event for example.)
         }
 
-        public void Teleport(Space arrival, bool passThroughGoSpace = false)
+        /// <summary>
+        /// Moves the player forward, and walk on each space on the way to the destination, then stop on the destination space. Fires any action due to walking or stopping on a space.
+        /// </summary>
+        /// <param name="distanceToMove">distance to move forward</param>
+        private void MoveForward(int distanceToMove)
+        {
+
+            for (int step = 0; step < distanceToMove; step++)
+            {
+                currentPosition++;
+                if (currentPosition >= Game.Instance.Board.Count)
+                {
+                    //If we are after the end of the board, we go back to the beginning.
+                    currentPosition -= Game.Instance.Board.Count;
+                }
+                //We "visit" the space. If the space has an action occuring on walk, it will happen.
+                Game.Instance.Board[currentPosition].AcceptWalking((ISpaceVisitor)this);
+            }
+
+            //We stop on the space. If the space has an action occuring on stop, it will happen.
+            Game.Instance.Board[currentPosition].AcceptStopping((ISpaceVisitor)this);
+        }
+
+        /// <summary>
+        /// Moves the player forward, and walk on each space on the way to the destination, then stop on the destination space. Fires any action due to walking or stopping on a space.
+        /// </summary>
+        /// <param name="distanceToMove">distance to move forward</param>
+        private void MoveBackwards(int distanceToMove)
+        {
+            for (int step = 0; step < distanceToMove; step++)
+            {
+                currentPosition--;
+                if (currentPosition < 0)
+                {
+                    //If we are after the end of the board, we go back to the beginning.
+                    currentPosition += Game.Instance.Board.Count;
+                }
+                //We "visit" the space. If the space has an action occuring on walk, it will happen.
+                Game.Instance.Board[currentPosition].AcceptWalking((ISpaceVisitor)this);
+            }
+
+            //We stop on the space. If the space has an action occuring on stop, it will happen.
+            Game.Instance.Board[currentPosition].AcceptStopping((ISpaceVisitor)this);
+        }
+
+        public void Teleport(IVisitableSpace arrival, bool passThroughGoSpace = false)
         {
             int destinationindex = Game.Instance.Board.FindSpaceIndex(arrival);
             if (passThroughGoSpace && destinationindex < currentPosition)
             {//Some luck cards can teleport us while still going through the Go space.
-                PassGo();
+                //In this case we walk on the Go Space
+                Game.Instance.Board[0].AcceptWalking((ISpaceVisitor)this);
             }//Whereas the "Go to Jail" event don't
             currentPosition = destinationindex;
-        }
-        public void PassGo()
-        {
-            //TODO Appel de l'event case Départ. ie earn(200);
-            Earn(200);          
+            //Then we stop on the destination Space
+            Game.Instance.Board[currentPosition].AcceptStopping((ISpaceVisitor)this);
         }
 
         /// <summary>
