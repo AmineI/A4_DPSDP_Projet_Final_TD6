@@ -46,7 +46,7 @@ namespace TD6
         /// </summary>
         /// <param name="amount">Amount of money to pay</param>
         /// <param name="destinationPlayer">Player to pay. If null, it pays the bank</param>
-        void Pay(int amount, IPlayer destinationPlayer);
+        void Pay(int amount, IPlayer destinationPlayer=null);
 
         /// <summary>
         /// Earn money from someone
