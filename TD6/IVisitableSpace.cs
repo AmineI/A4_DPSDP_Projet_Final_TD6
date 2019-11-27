@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace TD6
 {
-    public interface IVisitable
+    public interface IVisitableSpace
     {
+        string Id { get; }
+        string Name { get; }
+
         void AcceptWalking(ISpaceVisitor visitor);
         void AcceptStopping(ISpaceVisitor visitor);
     }
