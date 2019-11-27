@@ -8,21 +8,9 @@ namespace TD6
 {
     public abstract class Space
     {
-        //Auto-property : Can be publicly accessed but can only be set in the constructor. Id and name never changes so it is fine to use them.
+        //Auto-property : Can be publicly accessed but can only be set in the constructor. Id and name never changes so it is fine to use them as auto-properties.
         public string Id { get; }
         public string Name { get; }
-
-        /// <summary>
-        /// Event to realize when the user stops on the space.
-        /// Action is a delegate type taking a Player parameter and not returning anything.
-        /// <example> For exemple
-        /// <code>
-        /// Action≪Joueur≫ SayHelloToPlayer = delegate (Player player){ Console.WriteLine($"Hi {player}"); };
-        /// </code>
-        /// </example>
-        /// </summary>
-        protected Action<Player> eventOnStop;
-        public Action<Player> EventOnStop { get => eventOnStop; }
 
 
         //TODO : Certaines cases doivent notifier le propriétaire à l'arret (avec un IObserver)
