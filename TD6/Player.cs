@@ -9,25 +9,20 @@ namespace TD6
     public class Player : IPlayer, ISpaceVisitor
     {
         //TODO jailed decorator( design pattern ) 
-        private int id;
-        private string playerName;
+        //Auto-properties : Can be publicly accessed but can only be set in the constructor. Id and name never changes so it is fine to use them as auto-properties.
+        public int Id { get; }
+        /// <summary>
+        /// TODO : Find a way to ensure Id uniqueness. Maybe with a sorted collection of players ? 
+        /// </summary>
+        public string PlayerName { get; }
+
         private int currentPosition = 0;
         private int money;
         private int dice1;
         private int dice2;
         private int doubleCount;
-        public Player(int id, string playerName, int money)
-        {
-            this.id = id;
-            this.playerName = playerName;
-            this.money = money;
-
-        }
-        public void RollDices()
-        {
-            dice1 = Dice.RollDice();
-            dice2 = Dice.RollDice();
-        }
+        public int CurrentPosition { get => currentPosition; }
+        public int Money { get => money; }
 
         /// <summary>
         /// We get the sums of the dices 
@@ -38,6 +33,20 @@ namespace TD6
         /// We check if dices are equal and get the bool value
         /// </summary>
         public bool IsDiceDouble { get => dice1 == dice2; }
+
+
+        public Player(int id, string playerName, int money)
+        {
+            this.Id = id;
+            this.PlayerName = playerName;
+            this.money = money;
+        }
+
+        public void RollDices()
+        {
+            dice1 = Dice.RollDice();
+            dice2 = Dice.RollDice();
+        }
 
         /// <summary>
         /// Pay money to someone.

@@ -8,8 +8,24 @@ namespace TD6
 {
     public interface IPlayer
     {
+        /// <summary>
+        /// Unique Id of the player 
+        /// </summary>
+        int Id { get; }
+        
+        /// <summary>
+        /// Display name of the player
+        /// </summary>
+        string PlayerName { get; }
 
-
+        /// <summary>
+        /// Position of the player on the board
+        /// </summary>
+        int CurrentPosition { get; }
+        /// <summary>
+        /// Amount of money of the player
+        /// </summary>
+        int Money { get; }
         /// <summary>
         /// We get the sums of the dice 
         /// </summary>
@@ -30,7 +46,7 @@ namespace TD6
         /// </summary>
         /// <param name="amount">Amount of money to pay</param>
         /// <param name="destinationPlayer">Player to pay. If null, it pays the bank</param>
-        void Pay(int amount, IPlayer destinationPlayer);
+        void Pay(int amount, IPlayer destinationPlayer=null);
 
         /// <summary>
         /// Earn money from someone
