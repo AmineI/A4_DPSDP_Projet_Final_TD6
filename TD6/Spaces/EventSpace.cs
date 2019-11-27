@@ -2,7 +2,7 @@
 
 namespace TD6
 {
-    public class EventSpace : Space
+    public class EventSpace : Space, IVisitableSpace
     {
         /// <summary>
         /// A delegate that does nothing. The default event.
@@ -35,6 +35,16 @@ namespace TD6
         public EventSpace(string id, string name, Action<IPlayer> onStopAction, Action<IPlayer> onWalkAction) : this(id, name, onStopAction)
         {
             this.onWalkAction = onWalkAction;
+        }
+
+        public void AcceptStopping(ISpaceVisitor visitor)
+        {
+            visitor.StopOnEvent(this);
+        }
+
+        public void AcceptWalking(ISpaceVisitor visitor)
+        {
+            visitor.WalkOnEvent(this);
         }
     }
 }

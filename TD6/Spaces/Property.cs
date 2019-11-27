@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TD6
 {
-    public abstract class Property : Space
+    public abstract class Property : Space, IVisitableSpace
     {
         private IPlayer owner;
         public int BuyPrice { get; }
@@ -23,6 +23,15 @@ namespace TD6
             this.rentPrices = rentPrice;
             //TODO : set the event on stop for a property
         }
-        
+
+        public void AcceptWalking(ISpaceVisitor visitor)
+        {
+            visitor.WalkOnProperty(this);
+        }
+
+        public void AcceptStopping(ISpaceVisitor visitor)
+        {
+            visitor.StopOnProperty(this);
+        }
     }
 }
