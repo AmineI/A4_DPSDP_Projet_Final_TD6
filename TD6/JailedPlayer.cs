@@ -8,6 +8,14 @@
 
         public bool IsDiceDouble => player.IsDiceDouble;
 
+        public int Id => player.Id;
+
+        public string PlayerName => player.PlayerName;
+
+        public int CurrentPosition => player.CurrentPosition;
+
+        public int Money => player.Money;
+
         public void RollDices()
         {
             player.RollDices();
