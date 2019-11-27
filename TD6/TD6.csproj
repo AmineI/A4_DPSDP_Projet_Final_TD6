@@ -58,6 +58,7 @@
     <Compile Include="Spaces\Railroad.cs" />
     <Compile Include="IVisitableSpace.cs" />
     <Compile Include="ISpaceVisitor.cs" />
+    <Compile Include="Spaces\SpaceFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
