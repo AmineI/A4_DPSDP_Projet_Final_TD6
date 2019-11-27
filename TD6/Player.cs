@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TD6
 {
-    public class Player : IPlayer
+    public class Player : IPlayer, ISpaceVisitor
     {
         //TODO jailed decorator( design pattern ) 
         private int id;
@@ -135,6 +135,30 @@ namespace TD6
             currentPosition = destinationindex;
             //Then we stop on the destination Space
             Game.Instance.Board[currentPosition].AcceptStopping((ISpaceVisitor)this);
+        }
+
+        public void WalkOnProperty(Property property)
+        {
+            //When you walk on a property, nothing actually happens in the real Monopoly.
+            //TODO : We could display the space we walked on, maybe ?
+        }
+
+        public void WalkOnEvent(EventSpace eventSpace)
+        {
+            //We call the walk action delegate of this event space.
+            eventSpace.OnWalkAction((IPlayer)this);
+        }
+
+        public void StopOnProperty(Property property)
+        {
+            //TODO : Buy or pay rent.
+            throw new NotImplementedException();
+        }
+
+        public void StopOnEvent(EventSpace eventSpace)
+        {
+            //We call the stop action delegate of this event space.
+            eventSpace.OnStopAction((IPlayer)this);
         }
 
         /// <summary>
