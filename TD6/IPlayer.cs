@@ -8,8 +8,24 @@ namespace TD6
 {
     public interface IPlayer
     {
+        /// <summary>
+        /// Unique Id of the player 
+        /// </summary>
+        int Id { get; }
+        
+        /// <summary>
+        /// Display name of the player
+        /// </summary>
+        string PlayerName { get; }
 
-
+        /// <summary>
+        /// Position of the player on the board
+        /// </summary>
+        int CurrentPosition { get; }
+        /// <summary>
+        /// Amount of money of the player
+        /// </summary>
+        int Money { get; }
         /// <summary>
         /// We get the sums of the dice 
         /// </summary>
