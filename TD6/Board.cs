@@ -10,6 +10,7 @@ namespace TD6
     {
         private List<Space> boardSpaces;
         public Space this[int key]
+        public int Count { get => boardSpaces.Count; }
         {
             get => boardSpaces[key];
         }
