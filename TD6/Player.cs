@@ -74,61 +74,36 @@ namespace TD6
         /// <summary>
         /// Moves the player, and walk on each space on the way to the destination, then stop on the destination space. Fires any action due to walking or stopping on a space.
         /// </summary>
-        /// <param name="distance">distance to move, forwards or backwards depending on if it is positive or negative </param>
-        public void Move(int distance)
+        /// <param name="distanceToMove">distance to move, forwards or backwards depending on if it is positive or negative </param>
+        public void Move(int distanceToMove)
         {
-            //TODO : Find a way to refactor this into a single function ?
-            if (distance > 0)
+            //Choose whether to increment or decrement the position depending on the distance to move (positive or negative)
+            Action MovePositionByOne;
+            if (distanceToMove > 0)
             {
-                MoveForward(Math.Abs(distance));
+                MovePositionByOne = () => currentPosition++;
             }
             else
             {
-                MoveBackwards(Math.Abs(distance));
+                MovePositionByOne = () => currentPosition--;
             }
-        }
 
-        /// <summary>
-        /// Moves the player forward, and walk on each space on the way to the destination, then stop on the destination space. Fires any action due to walking or stopping on a space.
-        /// </summary>
-        /// <param name="distanceToMove">distance to move forward</param>
-        private void MoveForward(int distanceToMove)
-        {
-
-            for (int step = 0; step < distanceToMove; step++)
+            for (int step = 0; step < Math.Abs(distanceToMove); step++)
             {
-                currentPosition++;
+                MovePositionByOne();
                 if (currentPosition >= Game.Instance.Board.Count)
-                {
-                    //If we are after the end of the board, we go back to the beginning.
+                {//If we are after the end of the board, we go back to the beginning.
                     currentPosition -= Game.Instance.Board.Count;
                 }
-                //We "visit" the space. If the space has an action occuring on walk, it will happen.
-                Game.Instance.Board[currentPosition].AcceptWalking((ISpaceVisitor)this);
-            }
-
-            //We stop on the space. If the space has an action occuring on stop, it will happen.
-            Game.Instance.Board[currentPosition].AcceptStopping((ISpaceVisitor)this);
-        }
-
-        /// <summary>
-        /// Moves the player forward, and walk on each space on the way to the destination, then stop on the destination space. Fires any action due to walking or stopping on a space.
-        /// </summary>
-        /// <param name="distanceToMove">distance to move forward</param>
-        private void MoveBackwards(int distanceToMove)
-        {
-            for (int step = 0; step < distanceToMove; step++)
-            {
-                currentPosition--;
-                if (currentPosition < 0)
-                {
-                    //If we are after the end of the board, we go back to the beginning.
+                else if (currentPosition < 0)
+                {//If we are before the beginning of the board, we go back to the end of the board.
                     currentPosition += Game.Instance.Board.Count;
                 }
-                //We "visit" the space. If the space has an action occuring on walk, it will happen.
+
+                //We "visit" the space we just landed on. If the space has an action occuring on walk, it will happen.
                 Game.Instance.Board[currentPosition].AcceptWalking((ISpaceVisitor)this);
             }
-
+            //Now that we walked the requested distance, 
             //We stop on the space. If the space has an action occuring on stop, it will happen.
             Game.Instance.Board[currentPosition].AcceptStopping((ISpaceVisitor)this);
         }
