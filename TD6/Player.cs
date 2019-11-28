@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TD6
 {
-    public class Player : IPlayer
+    public class Player : IPlayer, ISpaceVisitor
     {
         //TODO jailed decorator( design pattern ) 
         //Auto-properties : Can be publicly accessed but can only be set in the constructor. Id and name never changes so it is fine to use them as auto-properties.
@@ -71,36 +71,108 @@ namespace TD6
             money += amount;
         }
 
-
+        /// <summary>
+        /// Moves the player, and walk on each space on the way to the destination, then stop on the destination space. Fires any action due to walking or stopping on a space.
+        /// </summary>
+        /// <param name="distance">distance to move, forwards or backwards depending on if it is positive or negative </param>
         public void Move(int distance)
         {
-            currentPosition = currentPosition + distance;
-            if (currentPosition >= 40)
+            //TODO : Find a way to refactor this into a single function ?
+            if (distance > 0)
             {
-                //If we are at the end of the board, we go back to the beginning and pass through the "Go" space
-                currentPosition -= 40;
-                PassGo();
+                MoveForward(Math.Abs(distance));
             }
-            else if (currentPosition < 0)
+            else
             {
-                currentPosition += 40;
+                MoveBackwards(Math.Abs(distance));
             }
-            //TODO "visit" each case to fire an eventual event on pass. (The "Go" Space event for example.)
         }
 
-        public void Teleport(Space arrival, bool passThroughGoSpace = false)
+        /// <summary>
+        /// Moves the player forward, and walk on each space on the way to the destination, then stop on the destination space. Fires any action due to walking or stopping on a space.
+        /// </summary>
+        /// <param name="distanceToMove">distance to move forward</param>
+        private void MoveForward(int distanceToMove)
         {
-            int destinationindex = Game.Instance.Board.FindSpaceIndex(arrival);
-            if (passThroughGoSpace && destinationindex < currentPosition)
-            {//Some luck cards can teleport us while still going through the Go space.
-                PassGo();
-            }//Whereas the "Go to Jail" event don't
-            currentPosition = destinationindex;
+
+            for (int step = 0; step < distanceToMove; step++)
+            {
+                currentPosition++;
+                if (currentPosition >= Game.Instance.Board.Count)
+                {
+                    //If we are after the end of the board, we go back to the beginning.
+                    currentPosition -= Game.Instance.Board.Count;
+                }
+                //We "visit" the space. If the space has an action occuring on walk, it will happen.
+                Game.Instance.Board[currentPosition].AcceptWalking((ISpaceVisitor)this);
+            }
+
+            //We stop on the space. If the space has an action occuring on stop, it will happen.
+            Game.Instance.Board[currentPosition].AcceptStopping((ISpaceVisitor)this);
         }
-        public void PassGo()
+
+        /// <summary>
+        /// Moves the player forward, and walk on each space on the way to the destination, then stop on the destination space. Fires any action due to walking or stopping on a space.
+        /// </summary>
+        /// <param name="distanceToMove">distance to move forward</param>
+        private void MoveBackwards(int distanceToMove)
         {
-            //TODO Appel de l'event case Départ. ie earn(200);
-            Earn(200);          
+            for (int step = 0; step < distanceToMove; step++)
+            {
+                currentPosition--;
+                if (currentPosition < 0)
+                {
+                    //If we are after the end of the board, we go back to the beginning.
+                    currentPosition += Game.Instance.Board.Count;
+                }
+                //We "visit" the space. If the space has an action occuring on walk, it will happen.
+                Game.Instance.Board[currentPosition].AcceptWalking((ISpaceVisitor)this);
+            }
+
+            //We stop on the space. If the space has an action occuring on stop, it will happen.
+            Game.Instance.Board[currentPosition].AcceptStopping((ISpaceVisitor)this);
+        }
+
+        /// <summary>
+        /// Teleport the player on a space, with or without passing through the go space and earning its money
+        /// </summary>
+        /// <param name="arrival">Destination space</param>
+        /// <param name="passThroughGoSpace">True if the user has to pass through the go space while teleporting.</param>
+        public void Teleport(IVisitableSpace arrival, bool passThroughGoSpace = false)
+        {
+            int destinationIndex = Game.Instance.Board.FindSpaceIndex(arrival);
+            if (passThroughGoSpace && destinationIndex < currentPosition)
+            {//Some luck cards can teleport us while still going through the Go space.
+                //In this case we walk on the Go Space
+                Game.Instance.Board[0].AcceptWalking((ISpaceVisitor)this);
+            }//Whereas the "Go to Jail" event don't
+            currentPosition = destinationIndex;
+            //Then we stop on the destination Space
+            Game.Instance.Board[currentPosition].AcceptStopping((ISpaceVisitor)this);
+        }
+
+        public void WalkOnProperty(Property property)
+        {
+            //When you walk on a property, nothing actually happens in the real Monopoly.
+            //TODO : We could display the space we walked on, maybe ?
+        }
+
+        public void WalkOnEvent(EventSpace eventSpace)
+        {
+            //We call the walk action delegate of this event space.
+            eventSpace.OnWalkAction((IPlayer)this);
+        }
+
+        public void StopOnProperty(Property property)
+        {
+            //TODO : Buy or pay rent.
+            throw new NotImplementedException();
+        }
+
+        public void StopOnEvent(EventSpace eventSpace)
+        {
+            //We call the stop action delegate of this event space.
+            eventSpace.OnStopAction((IPlayer)this);
         }
 
         /// <summary>

@@ -6,17 +6,21 @@ using System.Threading.Tasks;
 
 namespace TD6
 {
-    public class Space
+    public abstract class Space
     {
-        //TODO classe Case
+        //Auto-property : Can be publicly accessed but can only be set in the constructor. Id and name never changes so it is fine to use them as auto-properties.
+        public string Id { get; }
+        public string Name { get; }
 
-        private string id;
-        private string name;
+
+        //TODO : Certaines cases doivent notifier le propriétaire à l'arret (avec un IObserver)
+        //TODO : Certaines doivent déplacer le joueur et lui appliquer l'"état" Prison (case "Allez en prison")
+        //TODO : Eventuellement certaines cases bonus (chance, etc)
 
         public Space(string id, string name)
         {
-            this.id = id;
-            this.name = name;
+            this.Id = id;
+            this.Name = name;
         }
     }
 }
