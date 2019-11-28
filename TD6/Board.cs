@@ -26,13 +26,29 @@ namespace TD6
         //TODO : créer et ajouter toutes les cases du plateau à la liste de cases. Builder pattern maybe ?
 
 
-
         public int FindSpaceIndex(IVisitableSpace searchedSpace)
         {
-            return boardSpaces.FindIndex(space => searchedSpace==space);
+            return boardSpaces.FindIndex(space => searchedSpace == space);
         }
-        
-        //TODO ? Implémenter un enumerator/iterator pour iterer sur le plateau sans avoir accès à la liste de cases ?
+
+        /// <summary>
+        /// Obtain a list of all spaces of type S matching the conditions given in the match predicate
+        /// <para/>
+        /// <example> For example
+        /// <code>
+        /// FindAllSpaces≪Railroad≫(railroad=>railroad.Owner==player1);
+        /// </code>
+        /// </example>
+        /// </summary>
+        /// <typeparam name="S">Type of space searched : Land, Railroad, etc</typeparam>
+        /// <param name="match">predicate that has to be verified for a space to be included in the result</param>
+        /// <returns>List of Spaces of type S matching the conditions given in the match predicate </returns>
+        public List<S> FindAllSpaces<S>(Predicate<S> match) where S : Space
+        {
+            return boardSpaces.OfType<S>()//Takes only the items of requested types from the space list
+                              .ToList()//Cast back the enumerable obtained to a list
+                              .FindAll(match);//And find the elements that match our predicate.
+        }
 
     }
 }
