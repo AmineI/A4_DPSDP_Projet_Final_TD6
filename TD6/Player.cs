@@ -140,13 +140,13 @@ namespace TD6
         /// <param name="passThroughGoSpace">True if the user has to pass through the go space while teleporting.</param>
         public void Teleport(IVisitableSpace arrival, bool passThroughGoSpace = false)
         {
-            int destinationindex = Game.Instance.Board.FindSpaceIndex(arrival);
-            if (passThroughGoSpace && destinationindex < currentPosition)
+            int destinationIndex = Game.Instance.Board.FindSpaceIndex(arrival);
+            if (passThroughGoSpace && destinationIndex < currentPosition)
             {//Some luck cards can teleport us while still going through the Go space.
                 //In this case we walk on the Go Space
                 Game.Instance.Board[0].AcceptWalking((ISpaceVisitor)this);
             }//Whereas the "Go to Jail" event don't
-            currentPosition = destinationindex;
+            currentPosition = destinationIndex;
             //Then we stop on the destination Space
             Game.Instance.Board[currentPosition].AcceptStopping((ISpaceVisitor)this);
         }
