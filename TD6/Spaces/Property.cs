@@ -41,5 +41,6 @@ namespace TD6
         }
 
         
+        // TODO : pour la vente vérifier qu'il n'y a pas de maison sur la propriété
     }
 }
