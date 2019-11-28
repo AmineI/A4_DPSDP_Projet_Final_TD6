@@ -74,7 +74,7 @@ namespace TD6
         /// <summary>
         /// Moves the player, and walk on each space on the way to the destination, then stop on the destination space. Fires any action due to walking or stopping on a space.
         /// </summary>
-        /// <param name="distanceToMove">distance to move, forwards or backwards depending on if it is positive or negative </param>
+        /// <param name="distance">distance to move, forwards or backwards depending on if it is positive or negative </param>
         public void Move(int distance)
         {
             //TODO : Find a way to refactor this into a single function ?
@@ -133,6 +133,11 @@ namespace TD6
             Game.Instance.Board[currentPosition].AcceptStopping((ISpaceVisitor)this);
         }
 
+        /// <summary>
+        /// Teleport the player on a space, with or without passing through the go space and earning its money
+        /// </summary>
+        /// <param name="arrival">Destination space</param>
+        /// <param name="passThroughGoSpace">True if the user has to pass through the go space while teleporting.</param>
         public void Teleport(IVisitableSpace arrival, bool passThroughGoSpace = false)
         {
             int destinationindex = Game.Instance.Board.FindSpaceIndex(arrival);
