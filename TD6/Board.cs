@@ -32,9 +32,9 @@ namespace TD6
         /// </summary>
         /// <param name="searchedSpace">Space we need the index for</param>
         /// <returns>Index in the board where the searchedSpace instance is located.</returns>
-        public int FindSpaceIndex(IVisitableSpace searchedSpace)
+        public int IndexOfSpace(IVisitableSpace searchedSpace)
         {
-            return boardSpaces.FindIndex(space => searchedSpace == space);
+            return boardSpaces.IndexOf(searchedSpace);
         }
 
         /// <summary>
