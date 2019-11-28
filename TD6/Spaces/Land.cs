@@ -25,6 +25,6 @@ namespace TD6
             get => rentPrices[numberOfHouses];
         }
 
-        //TODO : function to "build a house" on the land
+        //TODO : function to "build a house" on the land pour ça il faut vérifier que tous les terrains de la même couleur sont au même proprio et qu'il ya le mm nb de maison partout
     }
 }
