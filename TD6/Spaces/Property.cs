@@ -25,25 +25,9 @@ namespace TD6
 
         public IPlayer Owner
         {
-            get;
+            get { return owner;  }
+            set { owner = value; }
         }
-
-        /// <summary>
-        /// Makes sure there isn't already an owner and adds the new owner
-        /// </summary>
-        /// <param name="player"> the player who wants to buy this property</param>
-        public void setOwner(IPlayer player)
-        {
-            if (this.Owner == null)
-            {
-                this.owner = player;
-            }
-            // I think we will check that the property does not belong to anyone before calling this function.
-            // But I prefere let it here
-            else
-            {
-                Console.WriteLine("This property already belongs to " + this.Owner + ".");
-            }
-        }
+        
     }
 }
