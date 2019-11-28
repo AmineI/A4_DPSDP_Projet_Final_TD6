@@ -22,6 +22,10 @@ namespace TD6
             this.BuyPrice = buyPrice;
             this.rentPrices = rentPrice;
         }
-        
+
+        public IPlayer Owner
+        {
+            get;
+        }
     }
 }
