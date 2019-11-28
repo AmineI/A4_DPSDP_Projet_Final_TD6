@@ -26,6 +26,12 @@ namespace TD6
         //TODO : créer et ajouter toutes les cases du plateau à la liste de cases. Builder pattern maybe ?
 
 
+
+        /// <summary>
+        /// Find a specific space's index in the board.
+        /// </summary>
+        /// <param name="searchedSpace">Space we need the index for</param>
+        /// <returns>Index in the board where the searchedSpace instance is located.</returns>
         public int FindSpaceIndex(IVisitableSpace searchedSpace)
         {
             return boardSpaces.FindIndex(space => searchedSpace == space);
