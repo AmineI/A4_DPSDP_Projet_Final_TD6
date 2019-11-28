@@ -29,5 +29,6 @@ namespace TD6
             set { owner = value; }
         }
         
+        // TODO : pour la vente vérifier qu'il n'y a pas de maison sur la propriété
     }
 }
