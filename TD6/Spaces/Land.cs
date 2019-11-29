@@ -45,7 +45,7 @@ namespace TD6
                     buildable = false;
                 }
 
-                if ((land.NumberOfHouses != numberOfHouses) && (land.NumberOfHouses+1 != numberOfHouses))
+                if ((land.NumberOfHouses != numberOfHouses) && (land.NumberOfHouses != numberOfHouses +1))
                 {
                     buildable = false;
                 }
