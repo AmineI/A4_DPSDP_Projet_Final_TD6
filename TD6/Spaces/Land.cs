@@ -57,6 +57,7 @@ namespace TD6
             }
             else if (buildable && numberOfHouses <= 6)
             {
+                // TODO : trouver un moyen d'éviter le WriteLine 
                 Console.WriteLine("You can't build more than an hotel on this land.");
             }
             else
