@@ -12,10 +12,18 @@ namespace TD6
         {
         }
 
-        // TODO : le RentPrice de Railroad
         public override int RentPrice
         {
-            get;
+            get
+            {
+                List<Railroad> stations = Board.FindAllSpaces<Railroad>(railroad => railroad.Owner == this.Owner);
+                int count = 0;
+                foreach (Railroad station in stations)
+                {
+                    count++;
+                }
+                return rentPrices[count];
+            }
         }
     }
 }
