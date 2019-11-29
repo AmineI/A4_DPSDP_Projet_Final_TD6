@@ -16,7 +16,8 @@ namespace TD6
         {
             get
             {
-                List<Railroad> stations = Board.FindAllSpaces<Railroad>(railroad => railroad.Owner == this.Owner);
+                IPlayer player = this.Owner;
+                List<Railroad> stations = Game.Instance.Board.FindAllSpaces<Railroad>(railroad => railroad.Owner == player);
                 int count = 0;
                 foreach (Railroad station in stations)
                 {

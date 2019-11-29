@@ -34,7 +34,7 @@ namespace TD6
         /// </summary>
         public void BuildHouse()
         {
-            List<Land> properties = Board.FindAllSpaces<Land>(land => land.Color.Equals(color));
+            List<Land> properties = Game.Instance.Board.FindAllSpaces<Land>(land => land.Color.Equals(color));
             bool buildable = true;
             foreach (Land land in properties)
             {
