@@ -66,5 +66,19 @@ namespace TD6
             }
         }
 
+        /// <summary>
+        /// Checks if the number of house on this land is equal to 0.
+        /// </summary>
+        /// <returns> A boolean representing if the land can be sold (so if it don't have any house)</returns>
+        public override bool CanBeSold()
+        {
+            bool res = false;
+            if (numberOfHouses == 0)
+            {
+                res = true;
+            }
+            return res;
+        }
+
     }
 }

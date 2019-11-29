@@ -31,5 +31,14 @@ namespace TD6
             }
             return count;
         }
+
+        /// <summary>
+        /// A railroad can always be sold, so return true
+        /// </summary>
+        /// <returns> Return true</returns>
+        public override bool CanBeSold()
+        {
+            return true;
+        }
     }
 }

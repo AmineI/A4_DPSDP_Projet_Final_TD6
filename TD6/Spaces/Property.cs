@@ -40,6 +40,10 @@ namespace TD6
             visitor.StopOnProperty(this);
         }
         
-        // TODO : pour la vente vérifier qu'il n'y a pas de maison sur la propriété
+        /// <summary>
+        /// Return a boolean representing if a property can be sold
+        /// </summary>
+        /// <returns> a boolean representinf if this property can be sold</returns>
+        public abstract bool CanBeSold();
     }
 }
