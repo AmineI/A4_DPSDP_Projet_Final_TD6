@@ -31,7 +31,7 @@ namespace TD6
 
         /// <summary>
         /// This funtion check if the player can build a house.
-        /// If he can, it build a new house.
+        /// If he can, it build a new house and he pays for the construction of the house.
         /// If he cannot, it write in the console why the player cannot build a house.
         /// </summary>
         public void BuildHouse()
@@ -53,7 +53,7 @@ namespace TD6
             if (buildable && numberOfHouses<6)
             {
                 numberOfHouses++;
-                // TODO : Ajouter le retrait d'argent au joueur
+                this.Owner.Pay(priceHouse);
             }
             else if (buildable && numberOfHouses <= 6)
             {
