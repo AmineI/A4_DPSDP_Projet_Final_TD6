@@ -36,26 +36,26 @@ namespace TD6
         /// </summary>
         public void BuildHouse()
         {
-            List<Land> properties = Game.Instance.Board.FindAllSpaces<Land>(land => land.Color.Equals(color));
+            List<Land> sameColorLands = Game.Instance.Board.FindAllSpaces<Land>(land => land.Color.Equals(color));
             bool buildable = true;
-            foreach (Land land in properties)
+            foreach (Land land in sameColorLands)
             {
                 if (land.Owner != this.Owner)
                 {
                     buildable = false;
                 }
 
-                if ((land.NumberOfHouses != numberOfHouses) && (land.NumberOfHouses != numberOfHouses +1))
+                if ((land.NumberOfHouses != this.numberOfHouses) && (land.NumberOfHouses != this.numberOfHouses +1))
                 {
                     buildable = false;
                 }
             }
-            if (buildable && numberOfHouses<6)
+            if (buildable && this.numberOfHouses<6)
             {
                 numberOfHouses++;
                 this.Owner.Pay(priceHouse);
             }
-            else if (buildable && numberOfHouses <= 6)
+            else if (buildable && this.numberOfHouses <= 6)
             {
                 // TODO : trouver un moyen d'éviter le WriteLine 
                 Console.WriteLine("You can't build more than an hotel on this land.");
