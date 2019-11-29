@@ -2,7 +2,14 @@
 {
     public class JailedPlayer : IPlayer
     {
-        Player player;
+
+
+        private Player player;
+
+        public JailedPlayer(Player player)
+        {
+            this.player = player;
+        }
 
         public int DiceValue => player.DiceValue;
 
@@ -31,6 +38,12 @@
             player.Pay(amount, destinationPlayer);
         }
 
+        public void GetOutJailed()
+        {
+            //TODO 
+
+        }
+
         public void PlayTurn()
         {
             RollDices();
@@ -44,6 +57,7 @@
             if (IsDiceDouble)
             {
                 //TODO
+
             }
         }
 

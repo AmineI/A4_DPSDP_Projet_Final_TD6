@@ -103,6 +103,13 @@ namespace TD6
             Earn(200);          
         }
 
+        public void GetJailed()
+        {
+            //TODO 
+            JailedPlayer jailedPlayer = new JailedPlayer(this);
+            
+        }
+
         /// <summary>
         /// Function for a player turn, launch dice, move(DiceValue)
         /// </summary>
