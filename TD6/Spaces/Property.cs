@@ -43,7 +43,7 @@ namespace TD6
         /// <summary>
         /// Return a boolean representing if a property can be sold
         /// </summary>
-        /// <returns> a boolean representinf if this property can be sold</returns>
+        /// <returns> a boolean representing if this property can be sold</returns>
         public abstract bool CanBeSold();
     }
 }
