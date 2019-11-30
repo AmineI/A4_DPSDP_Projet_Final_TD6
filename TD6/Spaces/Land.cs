@@ -14,11 +14,11 @@ namespace TD6
         public Color Color { get => color; }
         private int numberOfHouses = 0;
         public int NumberOfHouses { get => numberOfHouses; }
-        public int priceHouse;
+        public int housePrice;
 
-        public Land(string id, string name, int buyPrice, int[] rentPrice, Color color, int price) : base(id, name, buyPrice, rentPrice)
+        public Land(string id, string name, int buyPrice, int[] rentPrice, Color color, int housePrice) : base(id, name, buyPrice, rentPrice)
         {
-            this.priceHouse = housePrice;
+            this.housePrice = housePrice;
             this.color = color;
         }
 
@@ -53,7 +53,7 @@ namespace TD6
             if (buildable && this.numberOfHouses<6)
             {
                 numberOfHouses++;
-                this.Owner.Pay(priceHouse);
+                this.Owner.Pay(housePrice);
             }
             else if (buildable && this.numberOfHouses <= 6)
             {
