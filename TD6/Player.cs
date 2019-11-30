@@ -154,7 +154,20 @@ namespace TD6
         {
             //TODO 
             JailedPlayer jailedPlayer = new JailedPlayer(this);
-            
+            ReplaceInstances(this, jailedPlayer);
+        }
+
+        /// <summary>
+        /// Replace all instances of a player to another. For example, in order to replace all instances of a Player to a JailedPlayer.
+        /// </summary>
+        /// <param name="oldPlayer">old IPlayer instance to replace</param>
+        /// <param name="newPlayer">new IPlayer instance to put in place of the old one</param>
+        public static void ReplaceInstances(IPlayer oldPlayer, IPlayer newPlayer)
+        {
+            //Replace the player from the player list
+            int playerIndex = Game.Instance.Players.IndexOf(oldPlayer);
+            Game.Instance.Players[playerIndex] = newPlayer;
+            //TODO Replace the player in his owned properties
         }
 
         /// <summary>
