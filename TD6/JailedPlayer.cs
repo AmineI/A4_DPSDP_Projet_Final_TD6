@@ -5,10 +5,12 @@
 
 
         private Player player;
+        private int turnInJail;
 
-        public JailedPlayer(Player player)
+        public JailedPlayer(Player player, int turnInJail = 0)
         {
             this.player = player;
+            this.turnInJail = turnInJail;
         }
 
         public int DiceValue => player.DiceValue;
@@ -57,7 +59,12 @@
             if (IsDiceDouble)
             {
                 //TODO
-
+                GetOutJailed();
+                player.Move(DiceValue);
+            }
+            else
+            {
+                turnInJail++;
             }
         }
 
