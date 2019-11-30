@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Spaces\EventSpace.cs" />
     <Compile Include="IPlayer.cs" />
     <Compile Include="JailedPlayer.cs" />
     <Compile Include="Spaces\Space.cs" />
@@ -56,6 +57,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Spaces\Property.cs" />
     <Compile Include="Spaces\Railroad.cs" />
+    <Compile Include="IVisitableSpace.cs" />
+    <Compile Include="ISpaceVisitor.cs" />
+    <Compile Include="Spaces\SpaceFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
