@@ -20,7 +20,7 @@ namespace TD6
         protected Property(string id, string name, int buyPrice, int[] rentPrices) : base(id, name)
         {
             this.BuyPrice = buyPrice;
-            this.rentPrices = rentPrice;
+            this.rentPrices = rentPrices;
         }
 
 
