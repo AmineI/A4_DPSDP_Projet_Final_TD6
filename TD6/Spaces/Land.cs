@@ -18,7 +18,7 @@ namespace TD6
 
         public Land(string id, string name, int buyPrice, int[] rentPrice, Color color, int price) : base(id, name, buyPrice, rentPrice)
         {
-            this.priceHouse = price;
+            this.priceHouse = housePrice;
             this.color = color;
         }
 
