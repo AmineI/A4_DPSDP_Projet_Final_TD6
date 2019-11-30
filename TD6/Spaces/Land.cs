@@ -43,7 +43,7 @@ namespace TD6
                     sameOwner = false;
                 }
             }
-            if (sameOwner)
+            if (sameOwner && numberOfHouses == 0)
             {
                 rentPrice = rentPrice * 2;
             }
