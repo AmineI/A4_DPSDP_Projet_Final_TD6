@@ -16,20 +16,14 @@ namespace TD6
         {
             get
             {
-                return rentPrices[getNumberRailroad()];
+                return rentPrices[getNumberOfOwnedRailroads(this.Owner)];
             }
         }
 
-        public int getNumberRailroad()
+        public static int getNumberOfOwnedRailroads(IPlayer playerOwner)
         {
-            IPlayer player = this.Owner;
-            List<Railroad> stations = Game.Instance.Board.FindAllSpaces<Railroad>(railroad => railroad.Owner == player);
-            int count = 0;
-            foreach (Railroad station in stations)
-            {
-                count++;
-            }
-            return count;
+            List<Railroad> stationsOwnedByPlayer = Game.Instance.Board.FindAllSpaces<Railroad>(railroad => railroad.Owner == playerOwner);
+            return stationsOwnedByPlayer.Count;
         }
 
         /// <summary>
