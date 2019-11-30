@@ -40,7 +40,7 @@
             player.Pay(amount, destinationPlayer);
         }
 
-        public void GetOutJailed()
+        public void GetOutOfJail()
         {
             //TODO 
 
@@ -59,7 +59,7 @@
             if (IsDiceDouble)
             {
                 //TODO
-                GetOutJailed();
+                GetOutOfJail();
                 player.Move(DiceValue);
             }
             else
