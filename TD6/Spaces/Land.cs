@@ -24,7 +24,30 @@ namespace TD6
 
         public override int RentPrice
         {
-            get => rentPrices[numberOfHouses];
+            get => getRentPrice();
+        }
+
+        /// <summary>
+        /// This function gives the rent of the land based on the number of houses and land owned by the land owner.
+        /// </summary>
+        /// <returns> An integer representing the price of rent</returns>
+        public int getRentPrice()
+        {
+            int rentPrice = rentPrices[numberOfHouses];
+            List<Land> sameColorLands = Game.Instance.Board.FindAllSpaces<Land>(land => land.Color.Equals(color));
+            bool sameOwner = true;
+            foreach (Land land in sameColorLands)
+            {
+                if (land.Owner != this.Owner)
+                {
+                    sameOwner = false;
+                }
+            }
+            if (sameOwner)
+            {
+                rentPrice = rentPrice * 2;
+            }
+            return rentPrice;
         }
 
         // TODO : vérifier que le owner est le joueur
