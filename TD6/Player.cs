@@ -27,6 +27,7 @@ namespace TD6
 
         public bool IsDiceDouble { get => dice1 == dice2; }
 
+        public List<Property> OwnedProperties { get => Game.Instance.Board.FindAllSpaces<Property>(prop => prop.Owner == this); }
 
         public Player(int id, string playerName, int money)
         {

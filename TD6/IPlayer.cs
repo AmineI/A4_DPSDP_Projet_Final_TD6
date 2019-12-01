@@ -12,7 +12,7 @@ namespace TD6
         /// Unique Id of the player 
         /// </summary>
         int Id { get; }
-        
+
         /// <summary>
         /// Display name of the player
         /// </summary>
@@ -22,10 +22,17 @@ namespace TD6
         /// Position of the player on the board
         /// </summary>
         int CurrentPosition { get; }
+
         /// <summary>
         /// Amount of money of the player
         /// </summary>
         int Money { get; }
+
+        /// <summary>
+        /// List of properties owned by the player.
+        /// </summary>
+        List<Property> OwnedProperties { get; }
+
         /// <summary>
         /// We get the sums of the dice 
         /// </summary>
@@ -46,7 +53,7 @@ namespace TD6
         /// </summary>
         /// <param name="amount">Amount of money to pay</param>
         /// <param name="destinationPlayer">Player to pay. If null, it pays the bank</param>
-        void Pay(int amount, IPlayer destinationPlayer=null);
+        void Pay(int amount, IPlayer destinationPlayer = null);
 
         /// <summary>
         /// Earn money from someone
