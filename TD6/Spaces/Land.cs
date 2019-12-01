@@ -16,6 +16,7 @@ namespace TD6
         public int NumberOfHouses { get => numberOfHouses; }
         public int housePrice;
 
+        /// <param name="rentPrice">rent price list according to the number of houses built on the land. Up to 6 houses.</param>
         public Land(string id, string name, Color color, int buyPrice, int[] rentPrices, int housePrice) : base(id, name, buyPrice, rentPrices)
         {
             this.housePrice = housePrice;
@@ -24,7 +25,7 @@ namespace TD6
 
         public override int RentPrice
         {
-            get => getRentPrice();
+            get => GetRentPrice();
         }
 
         ///A land can be sold only if there is no house on it
@@ -33,7 +34,7 @@ namespace TD6
         /// This function gives the rent of the land based on the number of houses and land owned by the land owner.
         /// </summary>
         /// <returns> An integer representing the price of rent</returns>
-        public int getRentPrice()
+        public int GetRentPrice()
         {
             int rentPrice = rentPrices[numberOfHouses];
             List<Land> sameColorLands = Game.Instance.Board.FindAllSpaces<Land>(land => land.Color.Equals(color));
@@ -55,7 +56,7 @@ namespace TD6
         // TODO : vérifier que le owner est le joueur
 
         /// <summary>
-        /// This funtion check if the player can build a house.
+        /// This function checks if the player can build a house on this land.
         /// If he can, it build a new house and he pays for the construction of the house.
         /// If he cannot, it write in the console why the player cannot build a house.
         /// </summary>
