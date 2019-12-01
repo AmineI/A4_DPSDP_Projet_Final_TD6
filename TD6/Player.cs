@@ -194,6 +194,7 @@ namespace TD6
                 {
                     doubleCount = 0;
                     //TODO Go to jail
+                    GetJailed();
                 }
             }
             Move(DiceValue);

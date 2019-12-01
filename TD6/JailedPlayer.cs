@@ -43,6 +43,8 @@
         public void GetOutOfJail()
         {
             //TODO 
+            Player Newplayer = new Player(this);
+            player.ReplaceInstances(this, Newplayer);
 
         }
 
