@@ -42,10 +42,7 @@
 
         public void GetOutOfJail()
         {
-            //TODO 
-            
-            Player.ReplaceInstances(this, player);
-
+            Game.ReplaceIPlayerInstances(this, player);
         }
 
         public void PlayTurn()
@@ -70,7 +67,7 @@
             }
         }
 
-        
+
 
     }
 }
