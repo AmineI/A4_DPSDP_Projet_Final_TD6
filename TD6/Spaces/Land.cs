@@ -29,7 +29,7 @@ namespace TD6
         }
 
         ///A land can be sold only if there is no house on it
-        public override bool CanBeSold => numberOfHouses != 0;
+        public override bool CanBeSold => numberOfHouses == 0;
 
 
         /// <summary>
