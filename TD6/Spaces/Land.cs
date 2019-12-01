@@ -90,18 +90,10 @@ namespace TD6
             }
         }
 
-        /// <summary>
-        /// Checks if the land can be sold.
-        /// </summary>
-        /// <returns> A boolean representing if the land haven't got houses</returns>
         public override bool CanBeSold()
         {
-            bool res = false;
-            if (numberOfHouses == 0)
-            {
-                res = true;
-            }
-            return res;
+            //A land can be sold only if there is no house on it
+            return numberOfHouses!=0;
         }
 
     }
