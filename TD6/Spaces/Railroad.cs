@@ -19,20 +19,12 @@ namespace TD6
                 return rentPrices[getNumberOfOwnedRailroads(this.Owner)];
             }
         }
+        public override bool CanBeSold { get => true; }
 
         public static int getNumberOfOwnedRailroads(IPlayer playerOwner)
         {
             List<Railroad> stationsOwnedByPlayer = Game.Instance.Board.FindAllSpaces<Railroad>(railroad => railroad.Owner == playerOwner);
             return stationsOwnedByPlayer.Count;
-        }
-
-        /// <summary>
-        /// A railroad can always be sold, so return true
-        /// </summary>
-        /// <returns> Return true</returns>
-        public override bool CanBeSold()
-        {
-            return true;
         }
     }
 }

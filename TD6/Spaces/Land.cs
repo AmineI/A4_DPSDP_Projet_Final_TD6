@@ -27,6 +27,8 @@ namespace TD6
             get => getRentPrice();
         }
 
+        ///A land can be sold only if there is no house on it
+        public override bool CanBeSold => numberOfHouses != 0;
         /// <summary>
         /// This function gives the rent of the land based on the number of houses and land owned by the land owner.
         /// </summary>
@@ -90,11 +92,6 @@ namespace TD6
             }
         }
 
-        public override bool CanBeSold()
-        {
-            //A land can be sold only if there is no house on it
-            return numberOfHouses!=0;
-        }
 
     }
 }
