@@ -23,15 +23,8 @@ namespace TD6
         private int doubleCount;
         public int CurrentPosition { get => currentPosition; }
         public int Money { get => money; }
-
-        /// <summary>
-        /// We get the sums of the dices 
-        /// </summary>
         public int DiceValue { get => dice1 + dice2; }
 
-        /// <summary>
-        /// We check if dices are equal and get the bool value
-        /// </summary>
         public bool IsDiceDouble { get => dice1 == dice2; }
 
 
@@ -48,11 +41,6 @@ namespace TD6
             dice2 = Dice.RollDice();
         }
 
-        /// <summary>
-        /// Pay money to someone.
-        /// </summary>
-        /// <param name="amount">Amount of money to pay</param>
-        /// <param name="destinationPlayer">Player to pay. If null, it pays the bank</param>
         public void Pay(int amount, IPlayer destinationPlayer = null)
         {
             money -= amount;
@@ -62,10 +50,7 @@ namespace TD6
             }
         }
 
-        /// <summary>
-        /// Earn money from someone
-        /// </summary>
-        /// <param name="amount">amount of money to earn</param>
+
         public void Earn(int amount)
         {
             money += amount;
