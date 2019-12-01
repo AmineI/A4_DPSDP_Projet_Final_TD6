@@ -16,7 +16,7 @@ namespace TD6
         public int NumberOfHouses { get => numberOfHouses; }
         public int housePrice;
 
-        public Land(string id, string name, int buyPrice, int[] rentPrices, Color color, int housePrice) : base(id, name, buyPrice, rentPrices)
+        public Land(string id, string name, Color color, int buyPrice, int[] rentPrices, int housePrice) : base(id, name, buyPrice, rentPrices)
         {
             this.housePrice = housePrice;
             this.color = color;
