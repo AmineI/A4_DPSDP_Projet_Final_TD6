@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 
@@ -55,6 +56,16 @@ namespace TD6
         //Initialize both the game board and the players 
         public void InitializeGame()
         {
+            //We initialize the default board in a separate thread in the background, before asking the user for the player infos.
+            Thread boardInitializationThread = new Thread(InitializeDefaultBoard);
+            boardInitializationThread.Start();
+
+            List<IPlayer> playerList = null;//TODO : appeler une fonction interface utilisateur qui demande les infos d'un joueur jusqu'à ce que l'utilisateur dise qu'il n'y a plus de joueurs
+
+            InitializePlayerList(playerList);
+
+            //Once the players are set up, we wait for the board to finish its initialization before joining the threads.
+            boardInitializationThread.Join();
         }
 
         /// <summary>
