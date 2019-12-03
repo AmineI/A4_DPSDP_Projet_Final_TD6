@@ -73,43 +73,30 @@ namespace TD6
         // TODO : vérifier que le owner est le joueur
 
         /// <summary>
-        /// This function checks if the player can build a house on this land.
-        /// If he can, it build a new house and he pays for the construction of the house.
-        /// If he cannot, it write in the console why the player cannot build a house.
+        /// Builds a house on the land, and make the owner pay for the construction.
         /// </summary>
         public void BuildHouse()
         {
-            List<Land> sameColorLands = Game.Instance.Board.FindAllSpaces<Land>(land => land.Color.Equals(color));
-            bool buildable = true;
-            foreach (Land land in sameColorLands)
-            {
-                if (land.Owner != this.Owner)
-                {
-                    buildable = false;
-                }
-
-                if (land.NumberOfHouses < this.numberOfHouses) 
-                {
-                    buildable = false;
-                }
-            }
-            if (buildable && this.numberOfHouses<6)
-            {
-                numberOfHouses++;
-                this.Owner.Pay(housePrice);
-            }
-            else if (buildable && this.numberOfHouses <= 6)
-            {
-                // TODO : trouver un moyen d'éviter le WriteLine 
-                Console.WriteLine("You can't build more than an hotel on this land.");
-            }
-            else
-            {
-                Console.WriteLine("You can't build a house if you are not the owner of all the properties in this color or if" +
-                    "you haven't got the same number of houses on every land.");
-            }
+            numberOfHouses++;
+            this.Owner.Pay(housePrice);
         }
 
+        /// <summary>
+        /// Checks if the player can build a house on this land.
+        /// </summary>
+        /// <returns>A boolean true if </returns>
+        public bool IsHouseBuildable()
+        {
+            //The maximum number of houses on this land is 6, with 6 being a hostel. 
+            if (this.NumberOfHouses >= 6) { return false; }//In this case we immediately return, no need to check all the lands of the color group.
+
+            List<Land> sameColorLands = Game.Instance.Board.FindAllSpaces<Land>(land => land.Color == color);
+
+            return sameColorLands.All<Land>(land => land.Owner == this.Owner //All lands in the color group have to be owned by the same player
+                                             && land.NumberOfHouses >= this.NumberOfHouses);//And all lands in the color group must have more houses than this land.
+
+            //You can only build a house on the land with the fewest houses of the color group, and you have to own all the lands of the color group.");
+        }
 
     }
 }
