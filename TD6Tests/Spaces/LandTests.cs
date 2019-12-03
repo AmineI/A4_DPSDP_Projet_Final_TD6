@@ -20,6 +20,8 @@ namespace TD6.Tests
         [TestMethod()]
         public void RentPriceTest()
         {
+            //TODO : Adapt this when the builder pattern is done to generate a board.
+            //TODO : Even better, try to look at the dependency injection pattern in order to use stubs in tests.
             Land landTest = new Land("id", "Rue de la paix", Color.Green, 300, new int[] { 50, 100, 140, 250, 300, 450 }, 200);
             Assert.AreEqual(100, landTest.RentPrice);
         }
