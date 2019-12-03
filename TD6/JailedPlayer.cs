@@ -1,4 +1,6 @@
-﻿namespace TD6
+﻿using System.Collections.Generic;
+
+namespace TD6
 {
     public class JailedPlayer : IPlayer
     {
@@ -24,6 +26,8 @@
         public int CurrentPosition => player.CurrentPosition;
 
         public int Money => player.Money;
+
+        public List<Property> OwnedProperties => player.OwnedProperties;
 
         public void RollDices()
         {
