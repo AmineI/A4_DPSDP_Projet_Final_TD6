@@ -51,15 +51,26 @@ namespace TD6
 
             this.players = players;
         }
+
+        //Initialize both the game board and the players 
+        public void InitializeGame()
+        {
+        }
+
         /// <summary>
         /// Launch the game
         /// </summary>
         public void LaunchGame()
         {
-            //Todo : (Ré)Initialiser le plateau
-            //Todo : Demander nombre de joueurs
-            //Todo : (Ré)Initialiser chaque joueur : A l'aide d'une Factory de joueur ? Ils ont par défaut un certain montant d'argent notamment. 
-            //TODO : Peut etre qu'on peut initialiser le plateau dans un thread séparé pendant qu'on demande les infos sur les joueurs !?
+
+            if (board == null || players == null)
+            {
+                throw new NullReferenceException("The board or players list is not initialized. Ensure you called Game.InitializeGame beforehand.");
+            }
+
+            //Faire les tours des joueurs un à un jusqu'à la banqueroute, et vérifier après chaque tour si banqueroute il y a afin de retirer le joueur du jeu
+            //TODO : Si un joueur tombe en banqueroute, remplacer toutes ses instances par null, puis l'effacer de la liste des joueurs.
+            //Ou l'effacer de la liste des joueurs puis remplacer par null
         }
     }
 }
