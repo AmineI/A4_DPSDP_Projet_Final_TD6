@@ -77,8 +77,8 @@ namespace TD6
         /// </summary>
         public void BuildHouse()
         {
-            numberOfHouses++;
-            this.Owner.Pay(housePrice);
+            this.Owner?.Pay(housePrice);//If the owner is not null, it pays the price.
+            numberOfHouses++;//A house is built regardless, in case an extension is made where the bank builds a house for example.
         }
 
         /// <summary>
