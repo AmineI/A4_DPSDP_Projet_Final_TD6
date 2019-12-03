@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants.cs" />
+    <Compile Include="Creators\ISpaceFactory.cs" />
     <Compile Include="IBoard.cs" />
     <Compile Include="Spaces\EventSpace.cs" />
     <Compile Include="IPlayer.cs" />
@@ -59,7 +61,7 @@
     <Compile Include="Spaces\Railroad.cs" />
     <Compile Include="IVisitableSpace.cs" />
     <Compile Include="ISpaceVisitor.cs" />
-    <Compile Include="Spaces\SpaceFactory.cs" />
+    <Compile Include="Creators\DefaultInternationalSpaceFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
