@@ -19,11 +19,14 @@ namespace TD6
         /// </summary>
         /// <param name="eventSpace">EventSpace to walk on</param>
         void WalkOnEvent(EventSpace eventSpace);
+
         /// <summary>
         /// Action that the player has to execute when stopping on a specified property.
         /// </summary>
         /// <param name="property">Property to stop on</param>
-        void StopOnProperty(Property property);/// <summary>
+        void StopOnProperty(Property property);
+        
+        /// <summary>
         /// Action that the player has to execute when stopping on a specified event space.
         /// </summary>
         /// <param name="eventSpace">EventSpace to stop on</param>
