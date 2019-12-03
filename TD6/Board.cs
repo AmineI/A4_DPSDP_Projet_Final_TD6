@@ -18,11 +18,21 @@ namespace TD6
 
         //TODO : Si on ajoute la cagnotte au centre, la stocker sur le plateau
 
+        public Board()
+        {
+            boardSpaces = new List<IVisitableSpace>();
+        }
+
         public Board(List<IVisitableSpace> spacesList)
         {
             boardSpaces = spacesList;
         }
 
+        public void Add(IVisitableSpace visitableSpace)
+        {
+            //On stocke dans la liste :
+            boardSpaces.Add(visitableSpace);
+        }
         //TODO : créer et ajouter toutes les cases du plateau à la liste de cases. Builder pattern maybe ?
 
 
