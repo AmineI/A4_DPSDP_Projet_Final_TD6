@@ -20,7 +20,9 @@ namespace TD6.Tests
         [TestMethod()]
         public void getRentPriceTest()
         {
-            Assert.Fail();
+            Land landTest = new Land("id", "Rue de la paix", 300, new int[] { 50, 100, 140, 250, 300, 450 }, Color.Green, 200);
+            int rentPrice = landTest.RentPrice;
+            Assert.IsTrue(rentPrice == 100);
         }
 
         [TestMethod()]
@@ -32,7 +34,9 @@ namespace TD6.Tests
         [TestMethod()]
         public void CanBeSoldTest()
         {
-            Assert.Fail();
+            Land landTest = new Land("id", "Rue de la paix", 300, new int[] { 50, 100, 140, 250, 300, 450 }, Color.Green, 200);
+            Assert.IsTrue(landTest.CanBeSold());
+            // TODO : vérifier que renvoie false si il y a une maison de construite
         }
     }
 }
