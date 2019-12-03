@@ -87,8 +87,8 @@ namespace TD6
         /// <returns>A boolean true if </returns>
         public bool IsHouseBuildable()
         {
-            //The maximum number of houses on this land is 6, with 6 being a hostel. 
-            if (this.NumberOfHouses >= 6) { return false; }//In this case we immediately return, no need to check all the lands of the color group.
+            //The maximum number of houses on this land is 5, with 5 being a hostel. 
+            if (this.NumberOfHouses >= 5) { return false; }//In this case we immediately return, no need to check all the lands of the color group.
 
             List<Land> sameColorLands = Game.Instance.Board.FindAllSpaces<Land>(land => land.Color == color);
 
