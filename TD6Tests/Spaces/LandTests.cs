@@ -31,11 +31,17 @@ namespace TD6.Tests
         }
 
         [TestMethod()]
-        public void CanBeSoldTest()
+        public void CanBeSoldTest_LandsWithoutHousesCanBeSold()
         {
-            // TODO : vérifier que renvoie false si il y a une maison de construite
             Land landTest = new Land("id", "Rue de la paix", Color.Green, 300, new int[] { 50, 100, 140, 250, 300, 450 }, 200);
             Assert.IsTrue(landTest.CanBeSold);
+        }
+        [TestMethod()]
+        public void CanBeSoldTest_LandsWithHousesCantBeSold()
+        {
+            Land landTest = new Land("id", "Rue de la paix", Color.Green, 300, new int[] { 50, 100, 140, 250, 300, 450 }, 200);
+            landTest.BuildHouse();
+            Assert.IsFalse(landTest.CanBeSold);
         }
     }
 }
