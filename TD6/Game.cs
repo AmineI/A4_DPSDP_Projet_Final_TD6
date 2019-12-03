@@ -41,6 +41,10 @@ namespace TD6
         {
             this.board = board;
         }
+        public void InitializeDefaultBoard()
+        {
+            InitializeBoard(InternationalBoardBuilder.BuildDefaultBoard());
+        }
         public void InitializePlayerList(List<IPlayer> players)
         {
             //Todo : (Ré)Initialiser chaque joueur : A l'aide d'une Factory de joueur ? Ils ont par défaut un certain montant d'argent notamment. 
