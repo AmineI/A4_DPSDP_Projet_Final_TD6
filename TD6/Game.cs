@@ -37,6 +37,16 @@ namespace TD6
         {
         }
 
+        public void InitializeBoard(Board board)
+        {
+            this.board = board;
+        }
+        public void InitializePlayerList(List<IPlayer> players)
+        {
+            //Todo : (Ré)Initialiser chaque joueur : A l'aide d'une Factory de joueur ? Ils ont par défaut un certain montant d'argent notamment. 
+
+            this.players = players;
+        }
         /// <summary>
         /// Launch the game
         /// </summary>
