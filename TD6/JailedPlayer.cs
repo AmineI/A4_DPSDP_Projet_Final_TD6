@@ -7,12 +7,11 @@ namespace TD6
 
 
         private Player player;
-        private int turnInJail;
+        private int turnInJail=0;
 
-        public JailedPlayer(Player player, int turnInJail = 0)
+        public JailedPlayer(Player player)
         {
             this.player = player;
-            this.turnInJail = turnInJail;
         }
 
         public int DiceValue => player.DiceValue;
