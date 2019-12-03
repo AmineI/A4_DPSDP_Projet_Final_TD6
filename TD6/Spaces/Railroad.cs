@@ -8,31 +8,20 @@ namespace TD6
 {
     public class Railroad : Property
     {
-        public Railroad(string id, string name, int buyPrice, int[] rentPrice) : base(id, name, buyPrice, rentPrice)
+        /// <param name="rentPrice">rent price list according to the number of railroads owned by the same player.</param>
+        public Railroad(string id, string name, int buyPrice, int[] rentPrices) : base(id, name, buyPrice, rentPrices)
         {
         }
 
-        public override int RentPrice
-        {
-            get
-            {
-                return rentPrices[getNumberOfOwnedRailroads(this.Owner)];
-            }
-        }
+        public override int RentPrice { get => rentPrices[GetNumberOfOwnedRailroads(this.Owner)]; }
 
-        public static int getNumberOfOwnedRailroads(IPlayer playerOwner)
+        // A railroad can always be sold
+        public override bool CanBeSold { get => true; }
+
+        public static int GetNumberOfOwnedRailroads(IPlayer playerOwner)
         {
             List<Railroad> stationsOwnedByPlayer = Game.Instance.Board.FindAllSpaces<Railroad>(railroad => railroad.Owner == playerOwner);
             return stationsOwnedByPlayer.Count;
-        }
-
-        /// <summary>
-        /// A railroad can always be sold, so return true
-        /// </summary>
-        /// <returns> Return true</returns>
-        public override bool CanBeSold()
-        {
-            return true;
         }
     }
 }
