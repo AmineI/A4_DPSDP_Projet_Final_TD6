@@ -17,7 +17,7 @@ namespace TD6
         public int housePrice;
 
         /// <param name="rentPrice">rent price list according to the number of houses built on the land. Up to 6 houses.</param>
-        public Land(string id, string name, Color color, int buyPrice, int[] rentPrices, int housePrice) : base(id, name, buyPrice, rentPrices)
+        public Land(string id, string name, Color color, int buyPrice, int[] rentPrices, int housePrice, IBoard board = null) : base(id, name, buyPrice, rentPrices, board)
         {
             this.housePrice = housePrice;
             this.color = color;
@@ -35,7 +35,7 @@ namespace TD6
         /// <summary>
         /// A boolean indicating if this land is in a monopoly (ie all lands of that color group are owned by the same player) or not
         /// </summary>
-        public bool IsInMonopoly { get => IsColorMonopolized(this.color); }
+        public bool IsInMonopoly { get => IsColorMonopolized(this.color, this.board); }
 
         /// <summary>
         /// This function gives the rent of the land based on the number of houses and land owned by the land owner.
@@ -57,11 +57,12 @@ namespace TD6
         /// Check if a given color group is monopolized, ie all lands of that color group are owned by the same player
         /// </summary>
         /// <param name="color">Color of the group we want to check</param>
+        /// <param name="board">Board we are checking against. Default to the game board</param>
         /// <returns>true if the color group is monopolized (owned by the same player), false otherwise.</returns>
-        public static bool IsColorMonopolized(Color color)
+        public static bool IsColorMonopolized(Color color, IBoard board)
         {
             //We gather the list of lands from that color group.
-            List<Land> sameColorLands = Game.Instance.Board.FindAllSpaces<Land>(land => land.Color == color);
+            List<Land> sameColorLands = board.FindAllSpaces<Land>(land => land.Color == color);
 
             //We get the owner of the first land of that color.
             IPlayer firstLandOwner = sameColorLands.First<Land>().Owner;
@@ -90,7 +91,7 @@ namespace TD6
             //The maximum number of houses on this land is 5, with 5 being a hostel. 
             if (this.NumberOfHouses >= 5) { return false; }//In this case we immediately return, no need to check all the lands of the color group.
 
-            List<Land> sameColorLands = Game.Instance.Board.FindAllSpaces<Land>(land => land.Color == color);
+            List<Land> sameColorLands = board.FindAllSpaces<Land>(land => land.Color == color);
 
             return sameColorLands.All<Land>(land => land.Owner == this.Owner //All lands in the color group have to be owned by the same player
                                              && land.NumberOfHouses >= this.NumberOfHouses);//And all lands in the color group must have more houses than this land.
