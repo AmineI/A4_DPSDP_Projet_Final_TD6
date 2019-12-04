@@ -10,13 +10,13 @@ namespace TD6
 {
     //TODO : Move these methods to the board builder and player factory/builder when it will be done
     public delegate IBoard IBoardCreator();
-    public delegate List<IPlayer> IPlayerListCreator();
-    public class Game
+    public delegate IList<IPlayer> IPlayerListCreator();
+    public class Game : IGame
     {
         private IBoard board = new Board();
         public IBoard Board { get => board; }
-        private List<IPlayer> players;
-        public List<IPlayer> Players { get => players; }
+        private IList<IPlayer> players;
+        public IList<IPlayer> Players { get => players; }
         private int currentTurn;
         public int CurrentTurn { get => currentTurn; }
 
@@ -45,7 +45,7 @@ namespace TD6
         {
             this.board = board;
         }
-        public void InitializePlayerList(List<IPlayer> players)
+        public void InitializePlayerList(IList<IPlayer> players)
         {
             this.players = players;
         }
