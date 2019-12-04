@@ -28,11 +28,11 @@ namespace TD6
         public Action<IPlayer> OnWalkAction { get => onWalkAction ?? NoAction; }
 
 
-        public EventSpace(string id, string name, Action<IPlayer> onStopAction) : base(id, name)
+        public EventSpace(string id, string name, Action<IPlayer> onStopAction, Board board=null) : base(id, name, board)
         {
             this.onStopAction = onStopAction;
         }
-        public EventSpace(string id, string name, Action<IPlayer> onStopAction, Action<IPlayer> onWalkAction) : this(id, name, onStopAction)
+        public EventSpace(string id, string name, Action<IPlayer> onStopAction, Action<IPlayer> onWalkAction, Board board=null) : this(id, name, onStopAction, board)
         {
             this.onWalkAction = onWalkAction;
         }

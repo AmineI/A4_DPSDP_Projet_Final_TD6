@@ -27,13 +27,15 @@ namespace TD6
 
         public bool IsDiceDouble { get => dice1 == dice2; }
 
-        public List<Property> OwnedProperties { get => Game.Instance.Board.FindAllSpaces<Property>(prop => prop.Owner == this); }
+        private Board gameBoard;
+        public List<Property> OwnedProperties { get => gameBoard.FindAllSpaces<Property>(prop => prop.Owner == this); }
 
-        public Player(int id, string playerName, int money)
+        public Player(int id, string playerName, int money, Board gameBoard=null)
         {
             this.Id = id;
             this.PlayerName = playerName;
             this.money = money;
+            this.gameBoard = gameBoard ?? Game.Instance.Board;
         }
 
         public void RollDices()
@@ -77,21 +79,21 @@ namespace TD6
             for (int step = 0; step < Math.Abs(distanceToMove); step++)
             {
                 MovePositionByOne();
-                if (currentPosition >= Game.Instance.Board.Count)
+                if (currentPosition >= gameBoard.Count)
                 {//If we are after the end of the board, we go back to the beginning.
-                    currentPosition -= Game.Instance.Board.Count;
+                    currentPosition -= gameBoard.Count;
                 }
                 else if (currentPosition < 0)
                 {//If we are before the beginning of the board, we go back to the end of the board.
-                    currentPosition += Game.Instance.Board.Count;
+                    currentPosition += gameBoard.Count;
                 }
 
                 //We "visit" the space we just landed on. If the space has an action occuring on walk, it will happen.
-                Game.Instance.Board[currentPosition].AcceptWalking((ISpaceVisitor)this);
+                gameBoard[currentPosition].AcceptWalking((ISpaceVisitor)this);
             }
             //Now that we walked the requested distance, 
             //We stop on the space. If the space has an action occuring on stop, it will happen.
-            Game.Instance.Board[currentPosition].AcceptStopping((ISpaceVisitor)this);
+            gameBoard[currentPosition].AcceptStopping((ISpaceVisitor)this);
         }
 
         /// <summary>
@@ -101,15 +103,15 @@ namespace TD6
         /// <param name="passThroughGoSpace">True if the user has to pass through the go space while teleporting.</param>
         public void Teleport(IVisitableSpace arrival, bool passThroughGoSpace = false)
         {
-            int destinationIndex = Game.Instance.Board.IndexOfSpace(arrival);
+            int destinationIndex = gameBoard.IndexOfSpace(arrival);
             if (passThroughGoSpace && destinationIndex < currentPosition)
             {//Some luck cards can teleport us while still going through the Go space.
                 //In this case we walk on the Go Space
-                Game.Instance.Board[0].AcceptWalking((ISpaceVisitor)this);
+                gameBoard[0].AcceptWalking((ISpaceVisitor)this);
             }//Whereas the "Go to Jail" event don't
             currentPosition = destinationIndex;
             //Then we stop on the destination Space
-            Game.Instance.Board[currentPosition].AcceptStopping((ISpaceVisitor)this);
+            gameBoard[currentPosition].AcceptStopping((ISpaceVisitor)this);
         }
 
         public void WalkOnProperty(Property property)

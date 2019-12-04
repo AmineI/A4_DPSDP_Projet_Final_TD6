@@ -12,15 +12,25 @@ namespace TD6
         public string Id { get; }
         public string Name { get; }
 
+        protected Board board;
+
 
         //TODO : Certaines cases doivent notifier le propriétaire à l'arret (avec un IObserver)
         //TODO : Certaines doivent déplacer le joueur et lui appliquer l'"état" Prison (case "Allez en prison")
         //TODO : Eventuellement certaines cases bonus (chance, etc)
 
-        public Space(string id, string name)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id">Space Id</param>
+        /// <param name="name">Space name</param>
+        /// <param name="board">Game board where the space has to be added. If null, defaults to the Game Instance's Board</param>
+        public Space(string id, string name,Board board)
         {
             this.Id = id;
             this.Name = name;
+            this.board = board ?? Game.Instance.Board;
         }
+
     }
 }

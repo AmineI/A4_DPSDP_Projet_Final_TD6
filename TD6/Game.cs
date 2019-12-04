@@ -9,7 +9,7 @@ namespace TD6
 {
     public class Game
     {
-        private Board board;
+        private Board board=new Board();
         public Board Board { get => board; }
         private List<IPlayer> players;
         public List<IPlayer> Players { get => players; }
