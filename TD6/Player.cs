@@ -38,6 +38,7 @@ namespace TD6
             this.PlayerName = playerName;
             this.money = money;
             this.gameBoard = gameBoard ?? Game.Instance.Board;
+            // The null-coalescing operator ?? returns the value of its left-hand operand if it isn't null; otherwise, it evaluates the right-hand operand and returns its result
         }
 
         public void RollDices()
