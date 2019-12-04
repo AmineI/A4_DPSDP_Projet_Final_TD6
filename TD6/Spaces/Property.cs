@@ -9,20 +9,38 @@ namespace TD6
     public abstract class Property : Space, IVisitableSpace
     {
         private IPlayer owner;
+        public IPlayer Owner
+        {
+            get => owner;
+            set => owner = value;
+        }
+
+        /// <summary>
+        /// Price at which a player can buy the house from the bank
+        /// </summary>
         public int BuyPrice { get; }
+
+        /// <summary>
+        /// list of rent prices according to a parameter : for example the number of houses on a land, or the number of owned railroads.
+        /// </summary>
         protected int[] rentPrices;
 
-        public abstract int RentPrice
-        {
-            get;
-        }
+        /// <summary>
+        /// Property to get the current RentPrice.
+        /// </summary>
+        public abstract int RentPrice { get; }
 
-        protected Property(string id, string name, int buyPrice, int[] rentPrice) : base(id, name)
+        /// <summary>
+        /// A boolean representing if a property can be sold to another player
+        /// </summary>
+        public abstract bool CanBeSold { get; }
+
+        protected Property(string id, string name, int buyPrice, int[] rentPrices) : base(id, name)
         {
             this.BuyPrice = buyPrice;
-            this.rentPrices = rentPrice;
-            //TODO : set the event on stop for a property
+            this.rentPrices = rentPrices;
         }
+
 
         public void AcceptWalking(ISpaceVisitor visitor)
         {
@@ -33,5 +51,6 @@ namespace TD6
         {
             visitor.StopOnProperty(this);
         }
+
     }
 }
