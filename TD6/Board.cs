@@ -29,7 +29,6 @@ namespace TD6
 
         public void Add(IVisitableSpace visitableSpace)
         {
-            //On stocke dans la liste :
             boardSpaces.Add(visitableSpace);
         }
         //TODO : créer et ajouter toutes les cases du plateau à la liste de cases. Builder pattern maybe ?
