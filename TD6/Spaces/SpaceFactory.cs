@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TD6.Spaces
+namespace TD6
 {
     public static class SpaceFactory
     {

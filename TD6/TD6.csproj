@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IBoard.cs" />
     <Compile Include="Spaces\EventSpace.cs" />
     <Compile Include="IPlayer.cs" />
     <Compile Include="JailedPlayer.cs" />
