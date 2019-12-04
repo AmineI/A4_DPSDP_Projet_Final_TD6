@@ -27,17 +27,20 @@ namespace TD6
 
         public bool IsDiceDouble { get => dice1 == dice2; }
 
-        private IBoard gameBoard;
-        public List<Property> OwnedProperties { get => gameBoard.FindAllSpaces<Property>(prop => prop.Owner == this); }
+        private IGame gameInstance;
+        //The board is not necessarily initialized when we create the player, so we get the board dynamically from the Game.
+        private IBoard GameBoard { get => gameInstance.Board; }
+        public List<Property> OwnedProperties { get => GameBoard.FindAllSpaces<Property>(prop => prop.Owner == this); }
 
 
-        /// <param name="gameBoard">Game Board the player is playing on. Defaults to the Game instance's board.</param>
-        public Player(int id, string playerName, int money, IBoard gameBoard = null)
+
+        /// <param name="gameBoard">Game instance the player is playing on. Defaults to the singleton Game instance.</param>
+        public Player(int id, string playerName, int money, IGame gameInstance = null)
         {
             this.Id = id;
             this.PlayerName = playerName;
             this.money = money;
-            this.gameBoard = gameBoard ?? Game.Instance.Board;
+            this.gameInstance = gameInstance ?? Game.Instance;
             // The null-coalescing operator ?? returns the value of its left-hand operand if it isn't null; otherwise, it evaluates the right-hand operand and returns its result
         }
 
@@ -82,21 +85,21 @@ namespace TD6
             for (int step = 0; step < Math.Abs(distanceToMove); step++)
             {
                 MovePositionByOne();
-                if (currentPosition >= gameBoard.Count)
+                if (currentPosition >= GameBoard.Count)
                 {//If we are after the end of the board, we go back to the beginning.
-                    currentPosition -= gameBoard.Count;
+                    currentPosition -= GameBoard.Count;
                 }
                 else if (currentPosition < 0)
                 {//If we are before the beginning of the board, we go back to the end of the board.
-                    currentPosition += gameBoard.Count;
+                    currentPosition += GameBoard.Count;
                 }
 
                 //We "visit" the space we just landed on. If the space has an action occuring on walk, it will happen.
-                gameBoard[currentPosition].AcceptWalking((ISpaceVisitor)this);
+                GameBoard[currentPosition].AcceptWalking((ISpaceVisitor)this);
             }
             //Now that we walked the requested distance, 
             //We stop on the space. If the space has an action occuring on stop, it will happen.
-            gameBoard[currentPosition].AcceptStopping((ISpaceVisitor)this);
+            GameBoard[currentPosition].AcceptStopping((ISpaceVisitor)this);
         }
 
         /// <summary>
@@ -106,15 +109,15 @@ namespace TD6
         /// <param name="passThroughGoSpace">True if the user has to pass through the go space while teleporting.</param>
         public void Teleport(IVisitableSpace arrival, bool passThroughGoSpace = false)
         {
-            int destinationIndex = gameBoard.IndexOfSpace(arrival);
+            int destinationIndex = GameBoard.IndexOfSpace(arrival);
             if (passThroughGoSpace && destinationIndex < currentPosition)
             {//Some luck cards can teleport us while still going through the Go space.
                 //In this case we walk on the Go Space
-                gameBoard[0].AcceptWalking((ISpaceVisitor)this);
+                GameBoard[0].AcceptWalking((ISpaceVisitor)this);
             }//Whereas the "Go to Jail" event don't
             currentPosition = destinationIndex;
             //Then we stop on the destination Space
-            gameBoard[currentPosition].AcceptStopping((ISpaceVisitor)this);
+            GameBoard[currentPosition].AcceptStopping((ISpaceVisitor)this);
         }
 
         public void WalkOnProperty(Property property)
