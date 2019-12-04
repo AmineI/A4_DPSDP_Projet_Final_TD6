@@ -78,9 +78,34 @@ namespace TD6
                 throw new NullReferenceException("The board or players list is not initialized. Ensure you initialized the Game beforehand.");
             }
 
-            //Faire les tours des joueurs un à un jusqu'à la banqueroute, et vérifier après chaque tour si banqueroute il y a afin de retirer le joueur du jeu
-            //TODO : Si un joueur tombe en banqueroute, remplacer toutes ses instances par null, puis l'effacer de la liste des joueurs.
-            //Ou l'effacer de la liste des joueurs puis remplacer par null
+            //TODO : Display board and basic information for each player when it's his turn.
+
+            while (players.Count > 1)//The game continues while there's more than one player.
+            {
+                List<IPlayer> losingPlayers = new List<IPlayer>();
+                foreach (IPlayer currentPlayer in players)
+                {
+                    currentPlayer.PlayTurn();
+                    if (currentPlayer.HasLost)
+                    {
+                        //TODO : Afficher message comme quoi le joueur a perdu
+                        //Adds the player to the list of losing players, to remove them later : 
+                        //Since we are in a foreach, we can't eliminate him right now. (or can we ? For example by setting it to null and checking against null references in the foreach)
+                        //If we don't eliminate him now, or at least remove his ownership of his properties, then other players would still have to pay rent to this losing player, even though he already lost.
+                        losingPlayers.Add(currentPlayer);
+                    }
+                }
+
+                losingPlayers.ForEach((losingPlayer) => EliminatePlayer(losingPlayer));
+            }
+
+            //TODO : Il ne reste qu'un joueur : Afficher message de fin de jeu
+        }
+
+        private void EliminatePlayer(IPlayer losingPlayer)
+        {
+            //TODO : Replace all instances of the player to null (using the function in PR #22 
+            //TODO : Then remove the player from the player list (the null reference)
         }
     }
 }
