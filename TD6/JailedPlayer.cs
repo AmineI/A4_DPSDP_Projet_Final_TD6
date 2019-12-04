@@ -55,7 +55,7 @@
             // Si pas double
             //      Sort si tour 3
             //
-            if (IsDiceDouble)
+            if (IsDiceDouble || turnInJail == 2)
             {
                 //TODO
                 GetOutOfJail();

@@ -167,7 +167,6 @@ namespace TD6
 
             //launch dice
             RollDices();
-
             if (IsDiceDouble)
             {
                 doubleCount++;
@@ -179,6 +178,11 @@ namespace TD6
                 }
             }
             Move(DiceValue);
+
+            if (money < 0 )
+            {
+                //TODO bankrupt
+            }
             //TODO :
             //Moveplayer on board
             //if passed by Go ( start )  ( case 0 ) {received 200}
