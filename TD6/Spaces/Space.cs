@@ -12,7 +12,7 @@ namespace TD6
         public string Id { get; }
         public string Name { get; }
 
-        protected Board board;
+        protected IBoard board;
 
 
         //TODO : Certaines cases doivent notifier le propriétaire à l'arret (avec un IObserver)
@@ -25,7 +25,7 @@ namespace TD6
         /// <param name="id">Space Id</param>
         /// <param name="name">Space name</param>
         /// <param name="board">Game board where the space has to be added. If null, defaults to the Game Instance's Board</param>
-        public Space(string id, string name,Board board)
+        public Space(string id, string name, IBoard board)
         {
             this.Id = id;
             this.Name = name;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TD6
 {
-    public class Board
+    public class Board : IBoard
     {
         private List<IVisitableSpace> boardSpaces;
         public int Count { get => boardSpaces.Count; }
@@ -14,7 +14,6 @@ namespace TD6
         {
             get => boardSpaces[key];
         }
-
 
         //TODO : Si on ajoute la cagnotte au centre, la stocker sur le plateau
 

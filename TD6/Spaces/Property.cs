@@ -35,12 +35,11 @@ namespace TD6
         /// </summary>
         public abstract bool CanBeSold { get; }
 
-        protected Property(string id, string name, int buyPrice, int[] rentPrices, Board board) : base(id, name, board)
+        protected Property(string id, string name, int buyPrice, int[] rentPrices, IBoard board) : base(id, name, board)
         {
             this.BuyPrice = buyPrice;
             this.rentPrices = rentPrices;
         }
-
 
         public void AcceptWalking(ISpaceVisitor visitor)
         {

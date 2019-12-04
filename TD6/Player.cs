@@ -27,10 +27,12 @@ namespace TD6
 
         public bool IsDiceDouble { get => dice1 == dice2; }
 
-        private Board gameBoard;
+        private IBoard gameBoard;
         public List<Property> OwnedProperties { get => gameBoard.FindAllSpaces<Property>(prop => prop.Owner == this); }
 
-        public Player(int id, string playerName, int money, Board gameBoard=null)
+
+        /// <param name="gameBoard">Game Board the player is playing on. Defaults to the Game instance's board.</param>
+        public Player(int id, string playerName, int money, IBoard gameBoard = null)
         {
             this.Id = id;
             this.PlayerName = playerName;

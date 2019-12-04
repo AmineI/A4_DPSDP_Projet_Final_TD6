@@ -17,7 +17,7 @@ namespace TD6
         public int housePrice;
 
         /// <param name="rentPrice">rent price list according to the number of houses built on the land. Up to 6 houses.</param>
-        public Land(string id, string name, Color color, int buyPrice, int[] rentPrices, int housePrice, Board board = null) : base(id, name, buyPrice, rentPrices, board)
+        public Land(string id, string name, Color color, int buyPrice, int[] rentPrices, int housePrice, IBoard board = null) : base(id, name, buyPrice, rentPrices, board)
         {
             this.housePrice = housePrice;
             this.color = color;
@@ -35,7 +35,7 @@ namespace TD6
         /// <summary>
         /// A boolean indicating if this land is in a monopoly (ie all lands of that color group are owned by the same player) or not
         /// </summary>
-        public bool IsInMonopoly { get => IsColorMonopolized(this.color,this.board); }
+        public bool IsInMonopoly { get => IsColorMonopolized(this.color, this.board); }
 
         /// <summary>
         /// This function gives the rent of the land based on the number of houses and land owned by the land owner.
@@ -59,7 +59,7 @@ namespace TD6
         /// <param name="color">Color of the group we want to check</param>
         /// <param name="board">Board we are checking against. Default to the game board</param>
         /// <returns>true if the color group is monopolized (owned by the same player), false otherwise.</returns>
-        public static bool IsColorMonopolized(Color color, Board board)
+        public static bool IsColorMonopolized(Color color, IBoard board)
         {
             //We gather the list of lands from that color group.
             List<Land> sameColorLands = board.FindAllSpaces<Land>(land => land.Color == color);
