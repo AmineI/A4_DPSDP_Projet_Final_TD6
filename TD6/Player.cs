@@ -32,6 +32,7 @@ namespace TD6
         private IBoard GameBoard { get => gameInstance.Board; }
         public List<Property> OwnedProperties { get => GameBoard.FindAllSpaces<Property>(prop => prop.Owner == this); }
 
+        public bool HasLost => Money < 0;
 
 
         /// <param name="gameBoard">Game instance the player is playing on. Defaults to the singleton Game instance.</param>

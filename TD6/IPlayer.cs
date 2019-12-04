@@ -42,6 +42,7 @@ namespace TD6
         /// We check if dices are equal and get the bool value
         /// </summary>
         bool IsDiceDouble { get; }
+        bool HasLost { get; }
 
         /// <summary>
         /// Roll our two dices.
