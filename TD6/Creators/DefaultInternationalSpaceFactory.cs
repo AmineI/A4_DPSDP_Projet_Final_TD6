@@ -12,8 +12,8 @@ namespace TD6
 
         private static Dictionary<string, SpaceFactoryFunction> PropertyCreators = new Dictionary<string, SpaceFactoryFunction>
         {
-            ["Old Kent Road"] = (id) => new Land(id, "Old Kent Road", Color.Brown, 60, new[] { 2, 10, 30, 90, 160, 250 }, 50),
-            ["Whitechapel Road"] = (id) => new Land(id, "Whitechapel Road", Color.Brown, 80, new[] { 4, 20, 60, 180, 320, 450 }, 50)
+            ["Old Kent Road"] = (id, board) => new Land(id, "Old Kent Road", Color.Brown, 60, new[] { 2, 10, 30, 90, 160, 250 }, 50, board),
+            ["Whitechapel Road"] = (id, board) => new Land(id, "Whitechapel Road", Color.Brown, 80, new[] { 4, 20, 60, 180, 320, 450 }, 50, board)
             //TODO : create the property creators for each property
         };
 
@@ -28,9 +28,9 @@ namespace TD6
 
         //TODO : Maybe the visit Jail event should display a message on walk.
 
-        public IVisitableSpace CreateProperty(string id, string nameOfThePropertyToCreate)
+        public IVisitableSpace CreateProperty(IBoard board, string id, string nameOfThePropertyToCreate)
         {
-            IVisitableSpace newCreatedSpace = PropertyCreators[nameOfThePropertyToCreate](id);
+            IVisitableSpace newCreatedSpace = PropertyCreators[nameOfThePropertyToCreate](id, board);
             if (newCreatedSpace == null)
             {
                 throw new ArgumentOutOfRangeException(nameOfThePropertyToCreate, "There is no information about this property in this factory.");
@@ -38,37 +38,37 @@ namespace TD6
             return newCreatedSpace;
         }
 
-        public IVisitableSpace CreateGoSpace(string id = Constants.GO_SPACE_ID)
+        public IVisitableSpace CreateGoSpace(IBoard board, string id = Constants.GO_SPACE_ID)
         {
-            return new EventSpace(id, "Go", onStopAction: null, onWalkAction: PassGo);
+            return new EventSpace(id, "Go", onStopAction: null, onWalkAction: PassGo, board);
         }
 
-        public IVisitableSpace CreateJailSpace(string id = Constants.JAIL_SPACE_ID)
+        public IVisitableSpace CreateJailSpace(IBoard board, string id = Constants.JAIL_SPACE_ID)
         {
             //TODO
             throw new NotImplementedException();
         }
 
-        public IVisitableSpace CreateGoToJailSpace(string id = Constants.GO_TO_JAIL_SPACE_ID)
+        public IVisitableSpace CreateGoToJailSpace(IBoard board, string id = Constants.GO_TO_JAIL_SPACE_ID)
         {
             //TODO
             throw new NotImplementedException();
         }
-        public IVisitableSpace CreateParkingSpace(string id = "PARKING")
+        public IVisitableSpace CreateParkingSpace(IBoard board, string id = "PARKING")
         {
             //TODO If time remains. For now, a parking space does nothing
-            return new EventSpace(id, "Parking (Not Implemented)", onStopAction: null);
+            return new EventSpace(id, "Parking (Not Implemented)", onStopAction: null, board);
         }
 
-        public IVisitableSpace CreateCommunityChest(string id)
+        public IVisitableSpace CreateCommunityChest(IBoard board, string id)
         {
             //TODO if time remains. For now, a community chest does nothing.
-            return new EventSpace(id, "Community Chest (Not Implemented)", onStopAction: null);
+            return new EventSpace(id, "Community Chest (Not Implemented)", onStopAction: null, board);
         }
 
-        public IVisitableSpace CreateIncomeTax(string id)
+        public IVisitableSpace CreateIncomeTax(IBoard board, string id)
         {
-            return new EventSpace(id, "Income Tax", PayIncomeTax);
+            return new EventSpace(id, "Income Tax", PayIncomeTax, board);
         }
 
     }

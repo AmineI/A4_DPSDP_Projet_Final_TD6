@@ -6,7 +6,7 @@
         /// Gets the final board built.
         /// </summary>
         /// <returns>The board built by the builder</returns>
-        Board GetBuiltBoard();
+        IBoard GetBuiltBoard();
 
         /// <summary>
         /// Resets the Builder to its default state.

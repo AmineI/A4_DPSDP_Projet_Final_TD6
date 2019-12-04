@@ -4,7 +4,7 @@ namespace TD6
 {
     public class InternationalBoardBuilder : IBoardBuilder
     {
-        public static Board BuildDefaultBoard()
+        public static IBoard BuildDefaultBoard()
         {
             ISpaceFactory defaultFactory = new DefaultInternationalSpaceFactory();
             return new InternationalBoardBuilder(defaultFactory).BuildGoSpace()
@@ -19,7 +19,7 @@ namespace TD6
         }
 
 
-        Board builtBoard;
+        IBoard builtBoard;
         ISpaceFactory spaceFactory;
 
 
@@ -28,6 +28,7 @@ namespace TD6
             Reset();
             spaceFactory = new DefaultInternationalSpaceFactory();
         }
+
         /// <summary>
         /// Constructor allowing to specify a custom factory to use, that would provide different prices for example.
         /// </summary>
@@ -43,25 +44,26 @@ namespace TD6
             builtBoard = new Board();
         }
 
-        public Board GetBuiltBoard()
+        public IBoard GetBuiltBoard()
         {
             return builtBoard;
         }
         public IBoardBuilder BuildGoSpace()
         {
-            builtBoard.Add(spaceFactory.CreateGoSpace());
+            builtBoard.Add(spaceFactory.CreateGoSpace(builtBoard));
             return this;
         }
         public IBoardBuilder BuildBrownSection()
         {
-            builtBoard.Add(spaceFactory.CreateProperty("BROWN_1", "Old Kent Road"));
-            builtBoard.Add(spaceFactory.CreateCommunityChest("BROWN_2"));
-            builtBoard.Add(spaceFactory.CreateProperty("BROWN_3", "Whitechapel Road"));
-            builtBoard.Add(spaceFactory.CreateIncomeTax("BROWN_4"));
+            builtBoard.Add(spaceFactory.CreateProperty(builtBoard,"BROWN_1", "Old Kent Road"));
+            builtBoard.Add(spaceFactory.CreateCommunityChest(builtBoard,"BROWN_2"));
+            builtBoard.Add(spaceFactory.CreateProperty(builtBoard,"BROWN_3", "Whitechapel Road"));
+            builtBoard.Add(spaceFactory.CreateIncomeTax(builtBoard,"BROWN_4"));
 
             return this;
         }
-            //TODO : All builder functions.
+
+        //TODO : All builder functions.
         public IBoardBuilder BuildFirstStation()
         {
             throw new NotImplementedException();
