@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace TD6
 {
+    //TODO : Move these methods to the board builder and player factory/builder when it will be done
+    public delegate IBoard IBoardCreator();
+    public delegate List<IPlayer> IPlayerListCreator();
     public class Game
     {
         private IBoard board = new Board();
@@ -38,31 +41,27 @@ namespace TD6
         {
         }
 
-        public void InitializeBoard(Board board)
+        public void InitializeBoard(IBoard board)
         {
             this.board = board;
         }
-        public void InitializeDefaultBoard()
-        {
-            InitializeBoard(InternationalBoardBuilder.BuildDefaultBoard());
-        }
         public void InitializePlayerList(List<IPlayer> players)
         {
-            //Todo : (Ré)Initialiser chaque joueur : A l'aide d'une Factory de joueur ? Ils ont par défaut un certain montant d'argent notamment. 
-
             this.players = players;
         }
 
-        //Initialize both the game board and the players 
-        public void InitializeGame()
+        /// <summary>
+        /// Initialize both the game board and the players thanks to the delegates method given.
+        /// Is optimized to use two threads : one  taking care of the board, and one taking care of the player list.
+        /// </summary>
+        public void InitializeGame(IBoardCreator boardCreator, IPlayerListCreator playerListCreator)
         {
+
             //We initialize the default board in a separate thread in the background, before asking the user for the player infos.
-            Thread boardInitializationThread = new Thread(InitializeDefaultBoard);
+            Thread boardInitializationThread = new Thread(() => InitializeBoard(boardCreator()));
             boardInitializationThread.Start();
 
-            List<IPlayer> playerList = null;//TODO : appeler une fonction interface utilisateur qui demande les infos d'un joueur jusqu'à ce que l'utilisateur dise qu'il n'y a plus de joueurs
-
-            InitializePlayerList(playerList);
+            InitializePlayerList(playerListCreator());
 
             //Once the players are set up, we wait for the board to finish its initialization before joining the threads.
             boardInitializationThread.Join();
@@ -76,7 +75,7 @@ namespace TD6
 
             if (board == null || players == null)
             {
-                throw new NullReferenceException("The board or players list is not initialized. Ensure you called Game.InitializeGame beforehand.");
+                throw new NullReferenceException("The board or players list is not initialized. Ensure you initialized the Game beforehand.");
             }
 
             //Faire les tours des joueurs un à un jusqu'à la banqueroute, et vérifier après chaque tour si banqueroute il y a afin de retirer le joueur du jeu
