@@ -22,11 +22,8 @@ namespace TD6
 
 
         public static Action<IPlayer> PayIncomeTax = delegate (IPlayer player) { player.Pay(200); };
-
-
-
-
-        //TODO : Maybe the visit Jail event should display a message on walk.
+        public static Action<IPlayer> PayLuxuryTax = delegate (IPlayer player) { player.Pay(75); };
+        //TODO        public static Action<IPlayer> GoToJail = delegate(IPlayer player) { player.GoToJail();player.GetJailed() };
 
         public IVisitableSpace CreateProperty(IBoard board, string id, string nameOfThePropertyToCreate)
         {
@@ -54,6 +51,15 @@ namespace TD6
             //TODO
             throw new NotImplementedException();
         }
+        public IVisitableSpace CreateIncomeTax(IBoard board, string id)
+        {
+            return new EventSpace(id, "Income Tax", PayIncomeTax, board);
+        }
+
+        public IVisitableSpace CreateLuxuryTax(IBoard board, string id)
+        {
+            return new EventSpace(id, "Income Tax", PayLuxuryTax, board);
+        }
         public IVisitableSpace CreateParkingSpace(IBoard board, string id = "PARKING")
         {
             //TODO If time remains. For now, a parking space does nothing
@@ -66,9 +72,10 @@ namespace TD6
             return new EventSpace(id, "Community Chest (Not Implemented)", onStopAction: null, board);
         }
 
-        public IVisitableSpace CreateIncomeTax(IBoard board, string id)
+        public IVisitableSpace CreateChanceSpace(IBoard board, string id)
         {
-            return new EventSpace(id, "Income Tax", PayIncomeTax, board);
+            //TODO if time remains. For now, a chance space does nothing.
+            return new EventSpace(id, "Chance space (Not Implemented)", onStopAction: null, board);
         }
 
     }
