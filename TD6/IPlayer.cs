@@ -36,7 +36,7 @@ namespace TD6
         /// <summary>
         /// We get the sums of the dice 
         /// </summary>
-        int DiceValue { get; }
+        int DicesValue { get; }
 
         /// <summary>
         /// We check if dices are equal and get the bool value
@@ -63,6 +63,5 @@ namespace TD6
 
 
         void PlayTurn();
-
     }
 }

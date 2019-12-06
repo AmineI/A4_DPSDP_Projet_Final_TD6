@@ -23,7 +23,7 @@ namespace TD6
         private int doubleCount;
         public int CurrentPosition { get => currentPosition; }
         public int Money { get => money; }
-        public int DiceValue { get => dice1 + dice2; }
+        public int DicesValue { get => dice1 + dice2; }
 
         public bool IsDiceDouble { get => dice1 == dice2; }
 
@@ -166,7 +166,7 @@ namespace TD6
                     return;
                 }
             }
-            Move(DiceValue);
+            Move(DicesValue);
 
             //TODO :
 

@@ -14,7 +14,7 @@ namespace TD6
             this.player = player;
         }
 
-        public int DiceValue => player.DiceValue;
+        public int DicesValue => player.DicesValue;
 
         public bool IsDiceDouble => player.IsDiceDouble;
 
@@ -59,7 +59,7 @@ namespace TD6
             if (IsDiceDouble || turnInJail >= 2)
             {
                 GetOutOfJail();
-                player.Move(DiceValue);
+                player.Move(DicesValue);
             }
             else
             {
