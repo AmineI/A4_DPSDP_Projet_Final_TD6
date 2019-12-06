@@ -9,13 +9,15 @@ namespace TD6
 {
     public class Game
     {
-        private Board board;
-        public Board Board { get => board; }
+        private IBoard board = new Board();
+        public IBoard Board { get => board; }
         private List<IPlayer> players;
         public List<IPlayer> Players { get => players; }
         private int currentTurn;
         public int CurrentTurn { get => currentTurn; }
         
+
+
         /// <summary>
         /// We store the unique instance of the Game in a static variable
         /// </summary>
@@ -59,7 +61,7 @@ namespace TD6
         /// Launch the game
         /// </summary>
         public void LaunchGame()
-        {            
+        {
             //Todo : (Ré)Initialiser le plateau
             //Todo : Demander nombre de joueurs
             //Todo : (Ré)Initialiser chaque joueur : A l'aide d'une Factory de joueur ? Ils ont par défaut un certain montant d'argent notamment. 
