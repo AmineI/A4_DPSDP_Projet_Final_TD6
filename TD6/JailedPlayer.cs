@@ -58,7 +58,7 @@ namespace TD6
             //if we make a double or if we are in jail for the 3th turn we GetOut and move 
             if (IsDiceDouble || turnInJail >= 2)
             {
-                //TODO
+                
                 GetOutOfJail();
                 player.Move(DiceValue);
             }
