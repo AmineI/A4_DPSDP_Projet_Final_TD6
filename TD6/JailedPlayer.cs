@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿    using System.Collections.Generic;
 
 namespace TD6
 {
@@ -7,7 +7,7 @@ namespace TD6
 
 
         private Player player;
-        private int turnInJail=0;
+        private int turnInJail = 0;
 
         public JailedPlayer(Player player)
         {
@@ -43,7 +43,7 @@ namespace TD6
             player.Pay(amount, destinationPlayer);
         }
         /// <summary>
-        /// Fonction GetOutOfJailed who call ReplaceIPlayerInstances to swap between a jailed player and a normal player
+        /// Removes a player from the jail, allowing him to move freely
         /// </summary>
         public void GetOutOfJail()
         {
@@ -55,10 +55,9 @@ namespace TD6
         public void PlayTurn()
         {
             RollDices();
-            //if we make a double or if we are in jail for the 3th turn we GetOut and move 
+            //if we get a double or if we are in jail for the 3rd turn we get out of jail and move 
             if (IsDiceDouble || turnInJail >= 2)
             {
-                
                 GetOutOfJail();
                 player.Move(DiceValue);
             }
