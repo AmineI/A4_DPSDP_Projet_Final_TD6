@@ -42,23 +42,21 @@ namespace TD6
         {
             player.Pay(amount, destinationPlayer);
         }
-
+        /// <summary>
+        /// Fonction GetOutOfJailed who call ReplaceIPlayerInstances to swap between a jailed player and a normal player
+        /// </summary>
         public void GetOutOfJail()
         {
             Game.ReplaceIPlayerInstances(this, player);
         }
-
+        /// <summary>
+        /// Fonction of a turn with a jailedPlayer
+        /// </summary>
         public void PlayTurn()
         {
             RollDices();
-            //TODO
-            //
-            // Si Double :
-            //      Sort de prison et continue sur un tour "normal" avec son lancer de dé
-            // Si pas double
-            //      Sort si tour 3
-            //
-            if (IsDiceDouble || turnInJail == 2)
+            //if we make a double or if we are in jail for the 3th turn we GetOut and move 
+            if (IsDiceDouble || turnInJail >= 2)
             {
                 //TODO
                 GetOutOfJail();

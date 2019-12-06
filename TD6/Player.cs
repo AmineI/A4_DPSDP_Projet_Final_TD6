@@ -148,10 +148,7 @@ namespace TD6
         /// </summary>
         public void PlayTurn()
         {
-            //TODO Decorator for jail 
-            //We are not in jail in this fonction 
-
-            //launch dice
+            // We launch the dice with a function 
             RollDices();
             if (IsDiceDouble)
             {
@@ -161,6 +158,7 @@ namespace TD6
                     doubleCount = 0;
                     //TODO Go to jail
                     GetJailed();
+                    //
                 }
             }
             Move(DiceValue);
@@ -170,7 +168,7 @@ namespace TD6
                 //TODO bankrupt
             }
             //TODO :
-            //Moveplayer on board
+            
             //if passed by Go ( start )  ( case 0 ) {received 200}
             //do event -> pay rent, buy property, pay tax, receive money
             //do player action, build house etc
@@ -180,7 +178,10 @@ namespace TD6
             //end play 
             //if double = true 
             // players.PlayTurn;
-
+            if (IsDiceDouble)
+            {
+                PlayTurn();
+            }
 
 
             //
