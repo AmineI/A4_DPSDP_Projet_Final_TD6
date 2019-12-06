@@ -168,17 +168,11 @@ namespace TD6
             }
             Move(DiceValue);
 
-            if (money < 0)
-            {
-                //TODO bankrupt
-            }
             //TODO :
 
             //if passed by Go ( start )  ( case 0 ) {received 200}
             //do event -> pay rent, buy property, pay tax, receive money
             //do player action, build house etc
-
-            //Check bankrupt
 
             //end play 
             //if double = true 
