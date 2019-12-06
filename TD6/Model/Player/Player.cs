@@ -61,6 +61,14 @@ namespace TD6
         {
             money += amount;
         }
+        /// <summary>
+        /// Function putting the player in a jailed state, using a jailedPlayer decorator
+        /// </summary>
+        private void GetJailed()
+        {
+            JailedPlayer jailedPlayer = new JailedPlayer(this);
+            Game.ReplaceIPlayerInstances(this, jailedPlayer);
+        }
         public void GoToJail()
         {
             //TODO Teleport the player to the Jail space
@@ -151,12 +159,6 @@ namespace TD6
             eventSpace.OnStopAction((IPlayer)this);
         }
 
-        public void GetJailed()
-        {
-            //TODO 
-            JailedPlayer jailedPlayer = new JailedPlayer(this);
-            Game.ReplaceIPlayerInstances(this, jailedPlayer);
-        }
 
         /// <summary>
         /// Function for a player turn, launch dice, move(DiceValue)
