@@ -46,6 +46,7 @@
     <Compile Include="IBoard.cs" />
     <Compile Include="Spaces\EventSpace.cs" />
     <Compile Include="IPlayer.cs" />
+    <Compile Include="JailedPlayer.cs" />
     <Compile Include="Spaces\Space.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Helpers\UserInteraction.cs" />

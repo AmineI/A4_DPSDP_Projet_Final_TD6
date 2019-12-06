@@ -141,39 +141,46 @@ namespace TD6
             eventSpace.OnStopAction((IPlayer)this);
         }
 
+        public void GetJailed()
+        {
+            //TODO 
+            JailedPlayer jailedPlayer = new JailedPlayer(this);
+            Game.ReplaceIPlayerInstances(this, jailedPlayer);
+        }
+
         /// <summary>
         /// Function for a player turn, launch dice, move(DiceValue)
         /// </summary>
         public void PlayTurn()
         {
-            //TODO Decorator for jail 
-            //We are not in jail in this fonction 
-
-            //launch dice
+            // We launch the dice with a function 
             RollDices();
-
             if (IsDiceDouble)
             {
                 doubleCount++;
                 if (doubleCount == 3)
                 {
                     doubleCount = 0;
-                    //TODO Go to jail
+                    //TODO teleport to Jail
+                    GetJailed();
+                    return;
                 }
             }
             Move(DiceValue);
+
             //TODO :
-            //Moveplayer on board
+
             //if passed by Go ( start )  ( case 0 ) {received 200}
             //do event -> pay rent, buy property, pay tax, receive money
             //do player action, build house etc
 
-            //Check bankrupt
-
             //end play 
             //if double = true 
             // players.PlayTurn;
-
+            if (IsDiceDouble)
+            {
+                PlayTurn();
+            }
 
 
             //
