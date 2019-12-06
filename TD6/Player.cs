@@ -61,6 +61,16 @@ namespace TD6
         {
             money += amount;
         }
+        public void GoToJail()
+        {
+            //TODO Teleport the player to the Jail space
+            this.GetJailed();//Then set it to the jailed state.
+        }
+
+        public void GetOutOfJail()
+        {
+            throw new InvalidOperationException("The player is not in jail.");
+        }
 
         /// <summary>
         /// Moves the player, and walk on each space on the way to the destination, then stop on the destination space. Fires any action due to walking or stopping on a space.
@@ -161,8 +171,7 @@ namespace TD6
                 if (doubleCount == 3)
                 {
                     doubleCount = 0;
-                    //TODO teleport to Jail
-                    GetJailed();
+                    GoToJail();
                     return;
                 }
             }
@@ -185,6 +194,7 @@ namespace TD6
 
             //
         }
+
     }
 
 

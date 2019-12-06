@@ -1,11 +1,10 @@
-﻿    using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System;
 
 namespace TD6
 {
     public class JailedPlayer : IPlayer
     {
-
-
         private Player player;
         private int turnInJail = 0;
 
@@ -42,6 +41,21 @@ namespace TD6
         {
             player.Pay(amount, destinationPlayer);
         }
+
+        public void Teleport(IVisitableSpace arrival, bool passThroughGoSpace = false)
+        {
+            throw new InvalidOperationException("A player in Jail can not teleport");
+        }
+
+        public void Move(int distanceToMove)
+        {
+            throw new InvalidOperationException("A player in Jail can not move");
+        }
+        public void GoToJail()
+        {
+            throw new InvalidOperationException("The player is already in Jail.");
+        }
+
         /// <summary>
         /// Removes a player from the jail, allowing him to move freely
         /// </summary>
@@ -49,6 +63,7 @@ namespace TD6
         {
             Game.ReplaceIPlayerInstances(this, player);
         }
+
         /// <summary>
         /// Fonction of a turn with a jailedPlayer
         /// </summary>
@@ -66,8 +81,6 @@ namespace TD6
                 turnInJail++;
             }
         }
-
-
 
     }
 }

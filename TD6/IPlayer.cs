@@ -61,7 +61,28 @@ namespace TD6
         /// <param name="amount">amount of money to earn</param>
         void Earn(int amount);
 
+        /// <summary>
+        /// Put the player behind the bars. He will be teleported to the Jail space and he will be jailed 
+        /// </summary>
+        void GoToJail();
 
+        /// <summary>
+        /// Removes a player from the jail, allowing him to move freely
+        /// </summary>
+        void GetOutOfJail();
+
+        /// <summary>
+        /// Teleport the player on a space, with or without passing through the go space and earning its money
+        /// </summary>
+        /// <param name="arrival">Destination space</param>
+        /// <param name="passThroughGoSpace">True if the user has to pass through the go space while teleporting.</param>
+        void Teleport(IVisitableSpace arrival, bool passThroughGoSpace = false);
+
+        /// <summary>
+        /// Moves the player, and walk on each space on the way to the destination, then stop on the destination space. Fires any action due to walking or stopping on a space.
+        /// </summary>
+        /// <param name="distanceToMove">distance to move, forwards or backwards depending on if it is positive or negative </param>
+        void Move(int distanceToMove);
         void PlayTurn();
     }
 }
