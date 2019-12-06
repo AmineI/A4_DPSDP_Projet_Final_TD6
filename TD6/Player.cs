@@ -161,19 +161,19 @@ namespace TD6
                 if (doubleCount == 3)
                 {
                     doubleCount = 0;
-                    //TODO Go to jail
+                    //TODO teleport to Jail
                     GetJailed();
-                    //
+                    return;
                 }
             }
             Move(DiceValue);
 
-            if (money < 0 )
+            if (money < 0)
             {
                 //TODO bankrupt
             }
             //TODO :
-            
+
             //if passed by Go ( start )  ( case 0 ) {received 200}
             //do event -> pay rent, buy property, pay tax, receive money
             //do player action, build house etc
