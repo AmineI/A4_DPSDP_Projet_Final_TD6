@@ -11,5 +11,7 @@ namespace TD6.View
         bool ConfirmationSale(Property property);
         bool ConfirmationPurchase(Property property);
 
+        void DisplayMessage(String message);
+
     }
 }

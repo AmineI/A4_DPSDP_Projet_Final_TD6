@@ -29,5 +29,14 @@ namespace TD6.View
             bool confirmation = UserInteraction.GetConfirmation("Do you want to sale " + property.Name + " ?");
             return confirmation;
         }
+
+        /// <summary>
+        /// Display the message in the setting
+        /// </summary>
+        /// <param name="message"></param>
+        public void DisplayMessage(string message)
+        {
+            Console.WriteLine(message);
+        }
     }
 }
