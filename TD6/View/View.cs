@@ -78,6 +78,14 @@ namespace TD6.View
             UserInteraction.DisplayObjectList<Land>("Here is the list of your properties :", sameOwnerLands);
         }
 
+        public void DisplayMoney(IPlayer player)
+        {
+            Console.WriteLine("You have " + player.Money + "$.");
+        }
+
+        /// <summary>
+        /// Clear the console
+        /// </summary>
         public void ConsoleClear()
         {
             Console.Clear();
