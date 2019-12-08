@@ -15,8 +15,7 @@ namespace TD6.View
         /// <returns> A boolean representing the response of the player</returns>
         public bool ConfirmationPurchase(Property property)
         {
-            bool confirmation = UserInteraction.GetConfirmation("Do you want to buy " + property.Name + " ?");
-            return confirmation;
+            return UserInteraction.GetConfirmation("Do you want to buy " + property.Name + " ?");
         }
 
         /// <summary>
@@ -26,8 +25,12 @@ namespace TD6.View
         /// <returns> A boolean representing the response of the player</returns>
         public bool ConfirmationSale(Property property)
         {
-            bool confirmation = UserInteraction.GetConfirmation("Do you want to sale " + property.Name + " ?");
-            return confirmation;
+            return UserInteraction.GetConfirmation("Do you want to sale " + property.Name + " ?");
+        }
+
+        public bool ConfirmationBuildHouse(Property property)
+        {
+            return UserInteraction.GetConfirmation("Do you want to build a house on " + property.Name + " ?");
         }
 
         /// <summary>

@@ -10,8 +10,10 @@ namespace TD6.View
     {
         bool ConfirmationSale(Property property);
         bool ConfirmationPurchase(Property property);
+        bool ConfirmationBuildHouse(Property property);
 
         void DisplayMessage(String message);
+
 
     }
 }
