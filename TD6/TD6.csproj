@@ -47,6 +47,7 @@
     <Compile Include="Model\Spaces\EventSpace.cs" />
     <Compile Include="Model\Player\IPlayer.cs" />
     <Compile Include="Model\Player\JailedPlayer.cs" />
+    <Compile Include="Model\Spaces\Utility.cs" />
     <Compile Include="Model\Spaces\Space.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Helpers\UserInteraction.cs" />
