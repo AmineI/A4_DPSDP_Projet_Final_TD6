@@ -35,7 +35,7 @@ namespace TD6.View
         /// </summary>
         /// <param name="land"></param>
         /// <returns> A boolean representinf the response of the player</returns>
-        public bool GetBuildHouseConfirmation(Land land)
+        public bool GetBuildHouseHereConfirmation(Land land)
         {
             return UserInteraction.GetConfirmation("Do you want to build a house on " + land.Name + " for " + land.HousePrice + "$ ?");
         }
