@@ -9,11 +9,15 @@ namespace TD6
     public interface ISpaceVisitor
     {
         /// <summary>
+        /// Dices value rolled to end up visiting a space.
+        /// </summary>
+        int DicesValue { get; }
+        /// <summary>
         /// Action that the player has to execute when walking on a specified property.
         /// </summary>
         /// <param name="property">Property to walk on</param>
         void WalkOnProperty(Property property);
-        
+
         /// <summary>
         /// Action that the player has to execute when walking on a specified event space.
         /// </summary>
@@ -25,7 +29,7 @@ namespace TD6
         /// </summary>
         /// <param name="property">Property to stop on</param>
         void StopOnProperty(Property property);
-        
+
         /// <summary>
         /// Action that the player has to execute when stopping on a specified event space.
         /// </summary>
