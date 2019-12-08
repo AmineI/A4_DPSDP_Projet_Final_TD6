@@ -43,6 +43,7 @@ namespace TD6
         /// </summary>
         bool IsDiceDouble { get; }
         bool HasLost { get; }
+        bool Replay { get; set; }
 
         /// <summary>
         /// Roll our two dices.

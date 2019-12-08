@@ -85,15 +85,20 @@ namespace TD6
                 List<IPlayer> losingPlayers = new List<IPlayer>();
                 foreach (IPlayer currentPlayer in players)
                 {
-                    currentPlayer.PlayTurn();
-                    if (currentPlayer.HasLost)
+                    do
                     {
-                        //TODO : Afficher message comme quoi le joueur a perdu
-                        //Adds the player to the list of losing players, to remove them later : 
-                        //Since we are in a foreach, we can't eliminate him right now. (or can we ? For example by setting it to null and checking against null references in the foreach)
-                        //If we don't eliminate him now, or at least remove his ownership of his properties, then other players would still have to pay rent to this losing player, even though he already lost.
-                        losingPlayers.Add(currentPlayer);
-                    }
+                        currentPlayer.Replay = false;
+                        currentPlayer.PlayTurn();
+                        if (currentPlayer.HasLost)
+                        {
+                            //TODO : Afficher message comme quoi le joueur a perdu
+                            //Adds the player to the list of losing players, to remove them later : 
+                            //Since we are in a foreach, we can't eliminate him right now. (or can we ? For example by setting it to null and checking against null references in the foreach)
+                            //If we don't eliminate him now, or at least remove his ownership of his properties, then other players would still have to pay rent to this losing player, even though he already lost.
+                            losingPlayers.Add(currentPlayer);
+                            break;
+                        }
+                    } while (currentPlayer.Replay);
                 }
 
                 losingPlayers.ForEach((losingPlayer) => EliminatePlayer(losingPlayer));

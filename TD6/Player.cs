@@ -33,6 +33,7 @@ namespace TD6
         public List<Property> OwnedProperties { get => GameBoard.FindAllSpaces<Property>(prop => prop.Owner == this); }
 
         public bool HasLost => Money < 0;
+        public bool Replay { get; set; }
 
 
         /// <param name="gameBoard">Game instance the player is playing on. Defaults to the singleton Game instance.</param>
@@ -150,6 +151,7 @@ namespace TD6
         /// </summary>
         public void PlayTurn()
         {
+            Replay = false;
             //TODO Decorator for jail 
             //We are not in jail in this fonction 
 
@@ -163,7 +165,9 @@ namespace TD6
                 {
                     doubleCount = 0;
                     //TODO Go to jail
+
                 }
+                Replay = true;
             }
             Move(DiceValue);
             //TODO :
@@ -175,12 +179,6 @@ namespace TD6
             //Check bankrupt
 
             //end play 
-            //if double = true 
-            // players.PlayTurn;
-
-
-
-            //
         }
     }
 
