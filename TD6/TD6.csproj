@@ -65,7 +65,6 @@
     <Compile Include="Model\Spaces\Railroad.cs" />
     <Compile Include="Model\Spaces\IVisitableSpace.cs" />
     <Compile Include="Model\Spaces\ISpaceVisitor.cs" />
-    <Compile Include="Model\Spaces\SpaceFactory.cs" />
     <Compile Include="Creators\DefaultInternationalSpaceFactory.cs" />
   </ItemGroup>
   <ItemGroup>
