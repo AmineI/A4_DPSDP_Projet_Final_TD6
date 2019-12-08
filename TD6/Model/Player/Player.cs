@@ -23,7 +23,7 @@ namespace TD6
         private int doubleCount;
         public int CurrentPosition { get => currentPosition; }
         public int Money { get => money; }
-        public int DiceValue { get => dice1 + dice2; }
+        public int DicesValue { get => dice1 + dice2; }
 
         public bool IsDiceDouble { get => dice1 == dice2; }
 
@@ -60,6 +60,24 @@ namespace TD6
         public void Earn(int amount)
         {
             money += amount;
+        }
+        /// <summary>
+        /// Function putting the player in a jailed state, using a jailedPlayer decorator
+        /// </summary>
+        private void GetJailed()
+        {
+            JailedPlayer jailedPlayer = new JailedPlayer(this);
+            Game.ReplaceIPlayerInstances(this, jailedPlayer);
+        }
+        public void GoToJail()
+        {
+            //TODO Teleport the player to the Jail space
+            this.GetJailed();//Then set it to the jailed state.
+        }
+
+        public void GetOutOfJail()
+        {
+            throw new InvalidOperationException("The player is not in jail.");
         }
 
         /// <summary>
@@ -141,12 +159,6 @@ namespace TD6
             eventSpace.OnStopAction((IPlayer)this);
         }
 
-        public void GetJailed()
-        {
-            //TODO 
-            JailedPlayer jailedPlayer = new JailedPlayer(this);
-            Game.ReplaceIPlayerInstances(this, jailedPlayer);
-        }
 
         /// <summary>
         /// Function for a player turn, launch dice, move(DiceValue)
@@ -161,12 +173,11 @@ namespace TD6
                 if (doubleCount == 3)
                 {
                     doubleCount = 0;
-                    //TODO teleport to Jail
-                    GetJailed();
+                    GoToJail();
                     return;
                 }
             }
-            Move(DiceValue);
+            Move(DicesValue);
 
             //TODO :
 
@@ -185,6 +196,7 @@ namespace TD6
 
             //
         }
+
     }
 
 
