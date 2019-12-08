@@ -8,8 +8,8 @@ namespace TD6.View
 {
     public interface IView
     {
-        void ConfirmationSale(Property property);
-        void ConfirmationPurchase(Property property);
+        bool ConfirmationSale(Property property);
+        bool ConfirmationPurchase(Property property);
 
     }
 }
