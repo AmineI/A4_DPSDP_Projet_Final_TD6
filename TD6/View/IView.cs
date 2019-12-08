@@ -15,6 +15,7 @@ namespace TD6.View
         Land ChooseLandToBuild(IPlayer player);
 
         void DisplayMessage(String message);
+        void DisplayLands(IPlayer player);
 
 
     }

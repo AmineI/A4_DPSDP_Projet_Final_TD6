@@ -47,9 +47,9 @@ namespace TD6.View
         /// <returns> The land where the player wants to builde his house </returns>
         public Land ChooseLandToBuild(IPlayer player)
         {
-            List<Land> sameColorLands = board.FindAllSpaces<Land>(land => land.Owner == player);
+            List<Land> sameOwnerLands = board.FindAllSpaces<Land>(land => land.Owner == player);
             List<Land> houseBuildableLand = new List<Land>();
-            foreach (Land land in sameColorLands)
+            foreach (Land land in sameOwnerLands)
             {
                 if (land.IsHouseBuildable())
                 {
@@ -66,6 +66,16 @@ namespace TD6.View
         public void DisplayMessage(string message)
         {
             Console.WriteLine(message);
+        }
+
+        /// <summary>
+        /// Display the lands of the player
+        /// </summary>
+        /// <param name="player"></param>
+        public void DisplayLands(IPlayer player)
+        {
+            List<Land> sameOwnerLands = board.FindAllSpaces<Land>(land => land.Owner == player);
+            UserInteraction.DisplayObjectList<Land>("Here is the list of your properties :", sameOwnerLands);
         }
     }
 }
