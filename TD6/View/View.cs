@@ -8,6 +8,8 @@ namespace TD6.View
 {
     public class View : IView
     {
+        protected IBoard board;
+
         /// <summary>
         /// Ask the player if he wants to buy the property
         /// </summary>
@@ -28,9 +30,33 @@ namespace TD6.View
             return UserInteraction.GetConfirmation("Do you want to sale " + property.Name + " ?");
         }
 
+        /// <summary>
+        /// Ask the player if he wants to build a house on the land
+        /// </summary>
+        /// <param name="land"></param>
+        /// <returns> A boolean representinf the response of the player</returns>
         public bool GetBuildHouseConfirmation(Land land)
         {
             return UserInteraction.GetConfirmation("Do you want to build a house on " + land.Name + " for " + land.housePrice + "$ ?");
+        }
+
+        /// <summary>
+        /// Ask the player where he wants to build his house
+        /// </summary>
+        /// <param name="player"></param>
+        /// <returns> The land where the player wants to builde his house </returns>
+        public Land ChooseLandToBuild(IPlayer player)
+        {
+            List<Land> sameColorLands = board.FindAllSpaces<Land>(land => land.Owner == player);
+            List<Land> houseBuildableLand = new List<Land>();
+            foreach (Land land in sameColorLands)
+            {
+                if (land.IsHouseBuildable())
+                {
+                    houseBuildableLand.Add(land);
+                }
+            }
+            return UserInteraction.GetObjectChoice<Land>("Where do you want to build your house ?", houseBuildableLand);
         }
 
         /// <summary>

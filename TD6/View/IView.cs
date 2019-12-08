@@ -12,6 +12,8 @@ namespace TD6.View
         bool GetPurchaseConfirmation(Property property);
         bool GetBuildHouseConfirmation(Land land);
 
+        Land ChooseLandToBuild(IPlayer player);
+
         void DisplayMessage(String message);
 
 
