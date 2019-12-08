@@ -13,9 +13,9 @@ namespace TD6.View
         /// </summary>
         /// <param name="property"></param>
         /// <returns> A boolean representing the response of the player</returns>
-        public bool ConfirmationPurchase(Property property)
+        public bool GetPurchaseConfirmation(Property property)
         {
-            return UserInteraction.GetConfirmation("Do you want to buy " + property.Name + " ?");
+            return UserInteraction.GetConfirmation("Do you want to buy " + property.Name + " for " + property.BuyPrice + "$ ?");
         }
 
         /// <summary>
@@ -23,14 +23,14 @@ namespace TD6.View
         /// </summary>
         /// <param name="property"></param>
         /// <returns> A boolean representing the response of the player</returns>
-        public bool ConfirmationSale(Property property)
+        public bool GetSaleConfirmation(Property property)
         {
             return UserInteraction.GetConfirmation("Do you want to sale " + property.Name + " ?");
         }
 
-        public bool ConfirmationBuildHouse(Property property)
+        public bool GetBuildHouseConfirmation(Land land)
         {
-            return UserInteraction.GetConfirmation("Do you want to build a house on " + property.Name + " ?");
+            return UserInteraction.GetConfirmation("Do you want to build a house on " + land.Name + " for " + land.housePrice + "$ ?");
         }
 
         /// <summary>
