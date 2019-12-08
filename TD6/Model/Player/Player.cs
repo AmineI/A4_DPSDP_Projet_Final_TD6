@@ -171,7 +171,7 @@ namespace TD6
         public void PlayTurn()
         {
             Replay = false;
-            // We launch the dice with a function 
+            // We launch the dices with a function 
             RollDices();
             if (IsDiceDouble)
             {
@@ -186,13 +186,8 @@ namespace TD6
             }
             Move(DicesValue);
 
-            //TODO :
+            //do player actions : build house etc
 
-            //if passed by Go ( start )  ( case 0 ) {received 200}
-            //do event -> pay rent, buy property, pay tax, receive money
-            //do player action, build house etc
-
-            //end play 
         }
 
     }
