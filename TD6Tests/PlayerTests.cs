@@ -28,7 +28,7 @@ namespace TD6.Tests
         {
             Player player1 = new Player(0, "player", 200);
             player1.RollDices();
-            Assert.IsTrue(player1.DiceValue > 0);
+            Assert.IsTrue(player1.DicesValue > 0);
         }
 
         /// <summary>

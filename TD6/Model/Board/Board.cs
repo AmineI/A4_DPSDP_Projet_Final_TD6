@@ -10,6 +10,10 @@ namespace TD6
     {
         private List<IVisitableSpace> boardSpaces;
         public int Count { get => boardSpaces.Count; }
+
+        public IVisitableSpace GoSpace { get; set; }
+        public IVisitableSpace JailSpace { get; set; }
+
         public IVisitableSpace this[int key]
         {
             get => boardSpaces[key];
