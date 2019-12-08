@@ -8,7 +8,6 @@ namespace TD6
 {
     public class Player : IPlayer, ISpaceVisitor
     {
-        //TODO jailed decorator( design pattern ) 
         //Auto-properties : Can be publicly accessed but can only be set in the constructor. Id and name never changes so it is fine to use them as auto-properties.
         public int Id { get; }
         /// <summary>

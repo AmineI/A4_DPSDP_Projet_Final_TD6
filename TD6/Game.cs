@@ -130,7 +130,7 @@ namespace TD6
         private void EliminatePlayer(IPlayer losingPlayer)
         {
             //TODO : Replace all instances of the player to null (using the function in PR #22 
-            //TODO : Then remove the player from the player list (the null reference)
+            //Then remove the player from the player list (the null reference)
         }
     }
 }

@@ -72,8 +72,6 @@ namespace TD6
             return sameColorLands.All(land => land.Owner == firstLandOwner);
         }
 
-        // TODO : vérifier que le owner est le joueur
-
         /// <summary>
         /// Builds a house on the land, and make the owner pay for the construction.
         /// </summary>
