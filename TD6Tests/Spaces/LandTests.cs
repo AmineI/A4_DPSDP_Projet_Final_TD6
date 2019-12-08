@@ -18,7 +18,7 @@ namespace TD6.Tests
         }
 
         [TestMethod()]
-        public void RentPriceTest_ColorOwnedBySamePlayer()
+        public void RentPriceTest_ColorOwnedBySamePlayerWithoutHouseCostDouble()
         {
             Board board = new Board();
             Land landTest1 = new Land("id", "Rue de la paix", Color.Green, 300, new int[] { 50, 100, 140, 250, 300, 450 }, 200, board);
