@@ -14,12 +14,13 @@ namespace TD6
         public Color Color { get => color; }
         private int numberOfHouses = 0;
         public int NumberOfHouses { get => numberOfHouses; }
-        public int housePrice;
+
+        public int HousePrice { get; }
 
         /// <param name="rentPrice">rent price list according to the number of houses built on the land. Up to 6 houses.</param>
         public Land(string id, string name, Color color, int buyPrice, int[] rentPrices, int housePrice, IBoard board = null) : base(id, name, buyPrice, rentPrices, board)
         {
-            this.housePrice = housePrice;
+            this.HousePrice = housePrice;
             this.color = color;
         }
 
@@ -78,7 +79,7 @@ namespace TD6
         /// </summary>
         public void BuildHouse()
         {
-            this.Owner?.Pay(housePrice);//If the owner is not null, it pays the price.
+            this.Owner?.Pay(HousePrice);//If the owner is not null, it pays the price.
             numberOfHouses++;//A house is built regardless, in case an extension is made where the bank builds a house for example.
         }
 
