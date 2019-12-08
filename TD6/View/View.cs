@@ -34,12 +34,16 @@ namespace TD6.View
         /// Ask the player if he wants to build a house on the land
         /// </summary>
         /// <param name="land"></param>
-        /// <returns> A boolean representinf the response of the player</returns>
+        /// <returns> A boolean representing the response of the player</returns>
         public bool GetBuildHouseHereConfirmation(Land land)
         {
             return UserInteraction.GetConfirmation("Do you want to build a house on " + land.Name + " for " + land.HousePrice + "$ ?");
         }
 
+        /// <summary>
+        /// Ask the player if he wants to build a house somewhere
+        /// </summary>
+        /// <returns> A boolean representing the response of the player</returns>
         public bool GetBuildHouseConfirmation()
         {
             return UserInteraction.GetConfirmation("Do you want to build a house ?");
@@ -83,6 +87,10 @@ namespace TD6.View
             UserInteraction.DisplayObjectList<Land>("Here is the list of your properties :", sameOwnerLands);
         }
 
+        /// <summary>
+        /// Display a message with the money of the player
+        /// </summary>
+        /// <param name="player"></param>
         public void DisplayMoney(IPlayer player)
         {
             Console.WriteLine("You have " + player.Money + "$.");
