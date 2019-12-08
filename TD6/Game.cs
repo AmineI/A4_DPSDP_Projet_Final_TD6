@@ -15,11 +15,11 @@ namespace TD6
     {
         private IBoard board = new Board();
         public IBoard Board { get => board; }
-        private IList<IPlayer> players;
-        public IList<IPlayer> Players { get => players; }
+        private List<IPlayer> players;
+        public List<IPlayer> Players { get => players; }
         private int currentTurn;
         public int CurrentTurn { get => currentTurn; }
-        
+
 
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace TD6
         }
         public void InitializePlayerList(IList<IPlayer> players)
         {
-            this.players = players;
+            this.players = players.ToList<IPlayer>();
         }
 
         /// <summary>
@@ -102,7 +102,6 @@ namespace TD6
 
             while (players.Count > 1)//The game continues while there's more than one player.
             {
-                List<IPlayer> losingPlayers = new List<IPlayer>();
                 foreach (IPlayer currentPlayer in players)
                 {
                     do
@@ -112,25 +111,18 @@ namespace TD6
                         if (currentPlayer.HasLost)
                         {
                             //TODO : Afficher message comme quoi le joueur a perdu
-                            //Adds the player to the list of losing players, to remove them later : 
-                            //Since we are in a foreach, we can't eliminate him right now. (or can we ? For example by setting it to null and checking against null references in the foreach)
-                            //If we don't eliminate him now, or at least remove his ownership of his properties, then other players would still have to pay rent to this losing player, even though he already lost.
-                            losingPlayers.Add(currentPlayer);
+
+                            //Since we are in a foreach, we can't remove him from the list right now.
+                            //We firstly remove its references from the game, so that other players won't have to pay rent to this losing player for example, even though he already lost.
+                            ReplaceIPlayerInstances(currentPlayer, null);
                             break;
                         }
                     } while (currentPlayer.Replay);
                 }
-
-                losingPlayers.ForEach((losingPlayer) => EliminatePlayer(losingPlayer));
+                players.RemoveAll(player => player == null);//We remove all the players that lost and thus were replaced by a null ref.
             }
 
             //TODO : Il ne reste qu'un joueur : Afficher message de fin de jeu
-        }
-
-        private void EliminatePlayer(IPlayer losingPlayer)
-        {
-            //TODO : Replace all instances of the player to null (using the function in PR #22 
-            //Then remove the player from the player list (the null reference)
         }
     }
 }
