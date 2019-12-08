@@ -12,7 +12,7 @@ namespace TD6
 
 
         /// <param name="rentPrice">rent price list according to the number of houses built on the land. Up to 6 houses.</param>
-        public Utility(string id, string name, int buyPrice, IBoard board = null) : base(id, name, buyPrice, new int[] { }, board)
+        public Utility(string id, string name, int buyPrice, IBoard board = null) : base(id, name, buyPrice, Array.Empty<int>(), board)
         {
         }
         private int lastDicesValue = 0;
