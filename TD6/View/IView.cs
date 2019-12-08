@@ -17,6 +17,6 @@ namespace TD6.View
         void DisplayMessage(String message);
         void DisplayLands(IPlayer player);
 
-
+        void ConsoleClear();
     }
 }

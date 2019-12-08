@@ -77,5 +77,10 @@ namespace TD6.View
             List<Land> sameOwnerLands = board.FindAllSpaces<Land>(land => land.Owner == player);
             UserInteraction.DisplayObjectList<Land>("Here is the list of your properties :", sameOwnerLands);
         }
+
+        public void ConsoleClear()
+        {
+            Console.Clear();
+        }
     }
 }
