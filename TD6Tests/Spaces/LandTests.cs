@@ -18,12 +18,17 @@ namespace TD6.Tests
         }
 
         [TestMethod()]
-        public void RentPriceTest()
+        public void RentPriceTest_ColorOwnedBySamePlayer()
         {
-            //TODO : Adapt this when the builder pattern is done to generate a board.
-            //TODO : Even better, try to look at the dependency injection pattern in order to use stubs in tests.
-            Land landTest = new Land("id", "Rue de la paix", Color.Green, 300, new int[] { 50, 100, 140, 250, 300, 450 }, 200);
-            Assert.AreEqual(100, landTest.RentPrice);
+            Board board = new Board();
+            Land landTest1 = new Land("id", "Rue de la paix", Color.Green, 300, new int[] { 50, 100, 140, 250, 300, 450 }, 200, board);
+            board.Add(landTest1);
+            Land landTest2 = new Land("id2", "Rue 2", Color.Green, 300, new int[] { 50, 100, 140, 250, 300, 450 }, 200, board);
+            board.Add(landTest2);
+            Player player = new Player(0, "player", 500, board);
+            landTest1.Owner = player;
+            landTest2.Owner = player;
+            Assert.AreEqual(100, landTest1.RentPrice);
         }
 
         [TestMethod()]
