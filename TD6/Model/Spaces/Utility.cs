@@ -11,8 +11,8 @@ namespace TD6
     {
 
 
-        /// <param name="rentPrice">rent price list according to the number of houses built on the land. Up to 6 houses.</param>
-        public Utility(string id, string name, int buyPrice, IBoard board = null) : base(id, name, buyPrice, Array.Empty<int>(), board)
+        /// <param name="rentPriceMultiplicator">rent price multiplicator list according to whether or not all utilities belong to the same player. The rent price will be (the multiplicator * the dice value)</param>
+        public Utility(string id, string name, int buyPrice, int[] rentPriceMultiplicator, IBoard board = null) : base(id, name, buyPrice, rentPriceMultiplicator, board)
         {
         }
         private int lastDicesValue = 0;
@@ -26,7 +26,7 @@ namespace TD6
         public bool IsMonopolized { get => IsUtilityMonopolized(board); }
 
         /// <summary>
-        /// This function gives the rent of the land based on the number of houses and land owned by the land owner.
+        /// This function gives the rent of the Utility based on the number of utilities owned by the land owner.
         /// </summary>
         /// <param name="dicesValue">Value of the dice roll used to get on this space.</param>
         /// <returns> An integer representing the price of rent</returns>
@@ -34,24 +34,23 @@ namespace TD6
         {
             //We get the base rent price according to the number of houses
             int rentPrice;
-            if (IsMonopolized)
+            if (!IsMonopolized)
             {
-                rentPrice = 10 * dicesValue;
+                rentPrice = rentPrices[0] * dicesValue;
             }
             else
             {
-                rentPrice = 4 * dicesValue;
+                rentPrice = rentPrices[1] * dicesValue;
             }
 
             return rentPrice;
         }
 
         /// <summary>
-        /// Check if a given color group is monopolized, ie all lands of that color group are owned by the same player
+        /// Check if the utilities are monopolized, ie all utilities are owned by the same player
         /// </summary>
-        /// <param name="color">Color of the group we want to check</param>
         /// <param name="board">Board we are checking against. Default to the game board</param>
-        /// <returns>true if the color group is monopolized (owned by the same player), false otherwise.</returns>
+        /// <returns>true if the utilities are monopolized (owned by the same player), false otherwise.</returns>
         public static bool IsUtilityMonopolized(IBoard board)
         {
             //We gather the list of utilities 
@@ -65,13 +64,9 @@ namespace TD6
         }
 
 
-        /// <summary>
-        /// Accept a visitor that is stopping on the space after walking on it, and act according to the type of space visited  (by calling the visitor's StopOn[TheSpaceType] method.)
-        /// </summary>
-        /// <param name="visitor">Visitor that is stopping on the space</param>
         public override void AcceptStopping(ISpaceVisitor visitor)
         {
-            lastDicesValue = visitor.DicesValue;
+            lastDicesValue = visitor.DicesValue;//We store the dice value when a visitor stops here, in order to charge him rent correctly afterwards. 
             base.AcceptStopping(visitor);
         }
 
