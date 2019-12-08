@@ -40,6 +40,11 @@ namespace TD6.View
             return UserInteraction.GetConfirmation("Do you want to build a house on " + land.Name + " for " + land.HousePrice + "$ ?");
         }
 
+        public bool GetBuildHouseConfirmation()
+        {
+            return UserInteraction.GetConfirmation("Do you want to build a house ?");
+        }
+
         /// <summary>
         /// Ask the player where he wants to build his house
         /// </summary>
