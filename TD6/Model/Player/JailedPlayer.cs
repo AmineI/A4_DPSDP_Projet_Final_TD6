@@ -19,6 +19,8 @@ namespace TD6
 
         public int Id => player.Id;
 
+        public string Character => player.Character;
+
         public string PlayerName => player.PlayerName;
 
         public int CurrentPosition => player.CurrentPosition;

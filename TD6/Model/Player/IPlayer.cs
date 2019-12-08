@@ -14,6 +14,11 @@ namespace TD6
         int Id { get; }
 
         /// <summary>
+        /// Display the character associated with the player in order to spot him on the board
+        /// </summary>
+        string Character { get; }
+
+        /// <summary>
         /// Display name of the player
         /// </summary>
         string PlayerName { get; }

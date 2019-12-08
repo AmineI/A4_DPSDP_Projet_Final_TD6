@@ -16,6 +16,8 @@ namespace TD6
         /// </summary>
         public string PlayerName { get; }
 
+        public string Character { get; }
+
         private int currentPosition = 0;
         private int money;
         private int dice1;
