@@ -19,12 +19,14 @@ namespace TD6
         public IList<IPlayer> Players { get => players; }
         private int currentTurn;
         public int CurrentTurn { get => currentTurn; }
+        
 
 
         /// <summary>
         /// We store the unique instance of the Game in a static variable
         /// </summary>
         static private Game game = new Game();
+
         /// <summary>
         /// We allow the user to access our unique Game instance
         /// </summary>
@@ -32,7 +34,6 @@ namespace TD6
         {
             get => game;
         }
-
 
         /// <summary>
         /// The constructor is private to ensure the uniqueness of the Game.
@@ -65,6 +66,25 @@ namespace TD6
 
             //Once the players are set up, we wait for the board to finish its initialization before joining the threads.
             boardInitializationThread.Join();
+        }
+
+        /// <summary>
+        /// Replace all instances of a player to another. For example, in order to replace all instances of a Player to a JailedPlayer.
+        /// </summary>
+        /// <param name="oldPlayer">old IPlayer instance to replace</param>
+        /// <param name="newPlayer">new IPlayer instance to put in place of the old one</param>
+        public static void ReplaceIPlayerInstances(IPlayer oldPlayer, IPlayer newPlayer)
+        {
+            //Replace the player from the player list
+            int playerIndex = Game.Instance.Players.IndexOf(oldPlayer);
+            Game.Instance.Players[playerIndex] = newPlayer;
+
+            //Replace the player instance from his owned properties
+            foreach (Property ownedProperty in oldPlayer.OwnedProperties)
+            {
+                ownedProperty.Owner = newPlayer;
+            }
+            //TODO : Replace the instance in any other field it may be added on later.
         }
 
         /// <summary>

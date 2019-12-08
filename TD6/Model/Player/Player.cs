@@ -23,7 +23,7 @@ namespace TD6
         private int doubleCount;
         public int CurrentPosition { get => currentPosition; }
         public int Money { get => money; }
-        public int DiceValue { get => dice1 + dice2; }
+        public int DicesValue { get => dice1 + dice2; }
 
         public bool IsDiceDouble { get => dice1 == dice2; }
 
@@ -65,6 +65,24 @@ namespace TD6
         public void Earn(int amount)
         {
             money += amount;
+        }
+        /// <summary>
+        /// Function putting the player in a jailed state, using a jailedPlayer decorator
+        /// </summary>
+        private void GetJailed()
+        {
+            JailedPlayer jailedPlayer = new JailedPlayer(this);
+            Game.ReplaceIPlayerInstances(this, jailedPlayer);
+        }
+        public void GoToJail()
+        {
+            //TODO Teleport the player to the Jail space
+            this.GetJailed();//Then set it to the jailed state.
+        }
+
+        public void GetOutOfJail()
+        {
+            throw new InvalidOperationException("The player is not in jail.");
         }
 
         /// <summary>
@@ -146,40 +164,37 @@ namespace TD6
             eventSpace.OnStopAction((IPlayer)this);
         }
 
+
         /// <summary>
         /// Function for a player turn, launch dice, move(DiceValue)
         /// </summary>
         public void PlayTurn()
         {
             Replay = false;
-            //TODO Decorator for jail 
-            //We are not in jail in this fonction 
-
-            //launch dice
+            // We launch the dice with a function 
             RollDices();
-
             if (IsDiceDouble)
             {
                 doubleCount++;
                 if (doubleCount == 3)
                 {
                     doubleCount = 0;
-                    //TODO Go to jail
-
+                    GoToJail();
+                    return;
                 }
                 Replay = true;
             }
-            Move(DiceValue);
+            Move(DicesValue);
+
             //TODO :
-            //Moveplayer on board
+
             //if passed by Go ( start )  ( case 0 ) {received 200}
             //do event -> pay rent, buy property, pay tax, receive money
             //do player action, build house etc
 
-            //Check bankrupt
-
             //end play 
         }
+
     }
 
 
