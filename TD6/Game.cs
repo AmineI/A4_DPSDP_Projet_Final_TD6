@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-
 namespace TD6
 {
     //TODO : Move these methods to the board builder and player factory/builder when it will be done
@@ -19,6 +18,8 @@ namespace TD6
         public List<IPlayer> Players { get => players; }
         private int currentTurn = 0;
         public int CurrentTurn { get => currentTurn; }
+
+        public IView View { get; set; }
 
 
 
@@ -40,6 +41,7 @@ namespace TD6
         /// </summary>
         private Game()
         {
+            this.View = new ConsoleView();
         }
 
         public void InitializeBoard(IBoard board)
