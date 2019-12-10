@@ -15,6 +15,8 @@ namespace TD6
         /// </summary>
         public string PlayerName { get; }
 
+        public char DisplayCharacter { get; set; }
+
         private int currentPosition = 0;
         private int money;
         private int dice1;
@@ -31,17 +33,23 @@ namespace TD6
         private IBoard GameBoard { get => gameInstance.Board; }
         public List<Property> OwnedProperties { get => GameBoard.FindAllSpaces<Property>(prop => prop.Owner == this); }
 
+        public List<Land> BuildableOwnedLands
+        {
+            get => gameBoard.FindAllSpaces<Land>(land => land.Owner == this && land.IsHouseBuildable());
+        }
+        
         public bool HasLost => Money < 0;
         public bool Replay { get; set; }
 
-
         /// <param name="gameBoard">Game instance the player is playing on. Defaults to the singleton Game instance.</param>
-        public Player(int id, string playerName, int money, IGame gameInstance = null)
+        public Player(int id, string playerName, int money, char displayCharacter='x', IGame gameInstance = null)
         {
             this.Id = id;
             this.PlayerName = playerName;
             this.money = money;
+            this.DisplayCharacter = displayCharacter;
             this.gameInstance = gameInstance ?? Game.Instance;
+
             // The null-coalescing operator ?? returns the value of its left-hand operand if it isn't null; otherwise, it evaluates the right-hand operand and returns its result
         }
 

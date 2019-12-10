@@ -13,7 +13,7 @@ namespace TD6
         {
         }
 
-        public override int RentPrice { get => rentPrices[GetNumberOfOwnedRailroads(this.Owner, this.board)]; }
+        public override int RentPrice { get => rentPrices[GetNumberOfOwnedRailroads(this.Owner, this.board)-1]; }
 
         // A railroad can always be sold
         public override bool CanBeSold { get => true; }
