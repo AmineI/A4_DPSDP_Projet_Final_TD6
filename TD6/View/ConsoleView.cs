@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TD6.View
+namespace TD6
 {
-    public class View : IView
+    public class ConsoleView : IView
     {
         protected IBoard board;
 

@@ -63,7 +63,7 @@
     <Compile Include="Creators\DefaultInternationalSpaceFactory.cs" />
     <Compile Include="Creators\ISpaceFactory.cs" />
     <Compile Include="View\IView.cs" />
-    <Compile Include="View\View.cs" />
+    <Compile Include="View\ConsoleView.cs" />
     <Compile Include="IGame.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Dice.cs" />
