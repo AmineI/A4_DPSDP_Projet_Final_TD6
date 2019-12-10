@@ -20,7 +20,7 @@ namespace TD6
                 Player player = PlayerFactory.CreatePlayer(playerName, game);
                 players.Add(player);
                 view.DisplayMessage($"You are the player number {players.Count}, and displayed as the {player.DisplayCharacter} symbol. You start with {player.Money}$.\n");
-                view.GetConfirmation("Do you want to continue ?");
+                view.Pause();
             } while (players.Count < 2 || view.GetConfirmation("Do you want to add another player ?"));
 
             return players;

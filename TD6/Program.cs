@@ -13,10 +13,11 @@ namespace TD6
         {
             IView view = new ConsoleView();
             view.DisplayMessage("Welcome to the Monopoly");
-            view.GetConfirmation("Ready to start ?");
+            view.Pause();
             do
             {
                 IPlayerListCreator InteractiveIPlayerListCreator = () => InteractivePlayerListBuilder.AskForPlayerList(Game.Instance, view);
+
                 Game.Instance.InitializeGame(view, InternationalBoardBuilder.BuildDefaultBoard, InteractiveIPlayerListCreator);
                 Game.Instance.LaunchGame();
                 // When the game ends, the user can choose to launch a new one or not
