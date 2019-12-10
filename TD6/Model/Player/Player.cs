@@ -182,7 +182,7 @@ namespace TD6
             int priceToSellFor = View.GetEnteredInt();
             if (View.GetSaleConfirmation(propertyToSell, priceToSellFor, playerToSellTo))
             {
-                if (playerToSellTo.View.GetPurchaseConfirmation(propertyToSell, priceToSellFor, (IPlayer)this))
+                if (playerToSellTo.Money >= priceToSellFor && playerToSellTo.View.GetPurchaseConfirmation(propertyToSell, priceToSellFor, (IPlayer)this))
                 {
                     playerToSellTo.Pay(priceToSellFor, (IPlayer)this);
                     propertyToSell.Owner = playerToSellTo;
