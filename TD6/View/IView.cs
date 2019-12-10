@@ -9,6 +9,7 @@ namespace TD6
     public interface IView
     {
         bool GetConfirmation(string message = "Do you want to continue ?");
+        string GetEnteredString(string message);
         bool GetSaleConfirmation(Property property);
         bool GetPurchaseConfirmation(Property property);
         bool GetBuildHouseHereConfirmation(Land land);

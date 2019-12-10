@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Creators\InteractivePlayerListBuilder.cs" />
+    <Compile Include="Creators\PlayerFactory.cs" />
     <Compile Include="Model\Player\IPlayer.cs" />
     <Compile Include="Model\Player\JailedPlayer.cs" />
     <Compile Include="Model\Player\Player.cs" />
