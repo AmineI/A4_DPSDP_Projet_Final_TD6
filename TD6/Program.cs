@@ -20,7 +20,7 @@ namespace TD6
                 //TODO : Create a player creator user interface that asks the user for the needed information before creating the players 
                 IPlayerListCreator InteractiveIPlayerListCreator = () =>
                 {
-                    return new List<IPlayer>() { new Player(1, "A", 200, Game.Instance) };
+                    return new List<IPlayer>() { new Player(1, "A", 200, 'x', Game.Instance) };
                 };//Temporary sample list for testing.
                 Game.Instance.InitializeGame(InternationalBoardBuilder.BuildDefaultBoard, InteractiveIPlayerListCreator);
                 Game.Instance.LaunchGame();

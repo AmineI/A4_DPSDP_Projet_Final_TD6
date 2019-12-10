@@ -35,7 +35,7 @@ namespace TD6
 
         public List<Land> BuildableOwnedLands
         {
-            get => gameBoard.FindAllSpaces<Land>(land => land.Owner == this && land.IsHouseBuildable());
+            get => GameBoard.FindAllSpaces<Land>(land => land.Owner == this && land.IsHouseBuildable());
         }
         
         public bool HasLost => Money < 0;
