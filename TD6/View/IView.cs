@@ -10,12 +10,15 @@ namespace TD6
     {
         bool GetConfirmation(string message = "Do you want to continue ?");
         string GetEnteredString(string message);
-        bool GetSaleConfirmation(Property property);
-        bool GetPurchaseConfirmation(Property property);
+        bool GetSaleConfirmation(Property propertyToSell, int priceToSellFor, IPlayer playerToSellTo);
+        bool GetPurchaseConfirmation(Property propertyToBuy, int PriceToBuyFor, IPlayer playerToBuyFrom = null);
         bool GetBuildHouseHereConfirmation(Land land);
         bool GetBuildHouseConfirmation();
 
         Land ChooseLandToBuildOn(IPlayer player);
+
+        T GetObjectChoice<T>(string message, IList<T> choicesList, IList<string> choicesTitlesList = null);
+
 
         void DisplayBoard(IBoard board);
         void DisplayMessage(String message);
@@ -25,5 +28,6 @@ namespace TD6
 
         void Pause();
         void ClearView();
+        int GetEnteredInt();
     }
 }
