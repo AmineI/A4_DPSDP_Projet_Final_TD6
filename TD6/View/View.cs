@@ -56,16 +56,8 @@ namespace TD6.View
         /// <returns> The land where the player wants to build his house </returns>
         public Land ChooseLandToBuildOn(IPlayer player)
         {
-            List<Land> sameOwnerLands = board.FindAllSpaces<Land>(land => land.Owner == player);
-            List<Land> houseBuildableLand = new List<Land>();
-            foreach (Land land in sameOwnerLands)
-            {
-                if (land.IsHouseBuildable())
-                {
-                    houseBuildableLand.Add(land);
-                }
-            }
-            return UserInteraction.GetObjectChoice<Land>("Where do you want to build your house ?", houseBuildableLand);
+            
+            return UserInteraction.GetObjectChoice<Land>("Where do you want to build your house ?", player.BuildableOwnedLands);
         }
 
         /// <summary>
@@ -100,8 +92,7 @@ namespace TD6.View
         {
             Console.WriteLine("Well done, the game is over.");
             Console.WriteLine("You finished this game with " + player.Money + " $.");
-            List<Land> sameOwnerLands = board.FindAllSpaces<Land>(land => land.Owner == player);
-            Console.WriteLine("You had " + sameOwnerLands.Count() + " properties.");
+            Console.WriteLine("You had " + player.OwnedProperties.Count + " properties.");
         }
 
         /// <summary>

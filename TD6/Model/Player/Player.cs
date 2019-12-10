@@ -32,6 +32,11 @@ namespace TD6
         private IBoard gameBoard;
         public List<Property> OwnedProperties { get => gameBoard.FindAllSpaces<Property>(prop => prop.Owner == this); }
 
+        public List<Land> BuildableOwnedLands
+        {
+            get => gameBoard.FindAllSpaces<Land>(land => land.Owner == this && land.IsHouseBuildable());
+        }
+
 
         /// <param name="gameBoard">Game Board the player is playing on. Defaults to the Game instance's board.</param>
         public Player(int id, string playerName, int money, char displayCharacter='x', IBoard gameBoard = null)

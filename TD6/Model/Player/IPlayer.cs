@@ -14,7 +14,7 @@ namespace TD6
         int Id { get; }
 
         /// <summary>
-        /// Display the character associated with the player in order to spot him on the board
+        /// The character associated with the player in order to spot him on the board
         /// </summary>
         char DisplayCharacter { get; }
 
@@ -37,7 +37,10 @@ namespace TD6
         /// List of properties owned by the player.
         /// </summary>
         List<Property> OwnedProperties { get; }
-
+        /// <summary>
+        /// List of lands owned by the player where he can build a house.
+        /// </summary>
+        List<Land> BuildableOwnedLands { get; }
         /// <summary>
         /// We get the sums of the dice 
         /// </summary>
