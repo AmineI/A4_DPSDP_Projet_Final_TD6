@@ -63,7 +63,6 @@ namespace TD6
             return this;
         }
 
-        
         public IBoardBuilder BuildFirstStation()
         {            
             builtBoard.Add(spaceFactory.CreateProperty(builtBoard,"STATION_1", "Kings Cross Station"));
@@ -81,6 +80,7 @@ namespace TD6
 
         public IBoardBuilder BuildJail()
         {
+
             builtBoard.Add(spaceFactory.CreateJailSpace(builtBoard));
             return this;
         }
@@ -128,7 +128,6 @@ namespace TD6
         {
             builtBoard.Add(spaceFactory.CreateProperty(builtBoard, "STATION_3", "Fenchurch St Station"));
             return this;
-            
         }
 
         public IBoardBuilder BuildYellowSection()
