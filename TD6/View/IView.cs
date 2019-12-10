@@ -20,6 +20,6 @@ namespace TD6.View
         void DisplayMoney(IPlayer player);
         void DisplayEndGame(IPlayer player);
 
-        void ConsoleClear();
+        void ClearView();
     }
 }

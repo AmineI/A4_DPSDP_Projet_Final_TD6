@@ -107,7 +107,7 @@ namespace TD6.View
         /// <summary>
         /// Clear the console
         /// </summary>
-        public void ConsoleClear()
+        public void ClearView()
         {
             Console.Clear();
         }
