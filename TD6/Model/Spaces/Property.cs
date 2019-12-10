@@ -41,12 +41,12 @@ namespace TD6
             this.rentPrices = rentPrices;
         }
 
-        public void AcceptWalking(ISpaceVisitor visitor)
+        public virtual void AcceptWalking(ISpaceVisitor visitor)
         {
             visitor.WalkOnProperty(this);
         }
 
-        public void AcceptStopping(ISpaceVisitor visitor)
+        public virtual void AcceptStopping(ISpaceVisitor visitor)
         {
             visitor.StopOnProperty(this);
         }

@@ -63,74 +63,110 @@ namespace TD6
             return this;
         }
 
-        //TODO : All builder functions.
         public IBoardBuilder BuildFirstStation()
-        {
-            throw new NotImplementedException();
+        {            
+            builtBoard.Add(spaceFactory.CreateProperty(builtBoard,"STATION_1", "Kings Cross Station"));
+            return this;
         }
         public IBoardBuilder BuildCyanSection()
         {
-            throw new NotImplementedException();
+            builtBoard.Add(spaceFactory.CreateProperty(builtBoard, "CYAN_1", "The Angel Islington"));
+            builtBoard.Add(spaceFactory.CreateChanceSpace(builtBoard, "CYAN_2"));
+            builtBoard.Add(spaceFactory.CreateProperty(builtBoard, "CYAN_3", "Euston Road"));
+            builtBoard.Add(spaceFactory.CreateProperty(builtBoard, "CYAN_4", "Pentonville Road"));
+            
+            return this;
         }
 
         public IBoardBuilder BuildJail()
         {
-            throw new NotImplementedException();
+
+            builtBoard.Add(spaceFactory.CreateJailSpace(builtBoard));
+            return this;
         }
 
         public IBoardBuilder BuildPurpleSection()
         {
-            throw new NotImplementedException();
+            builtBoard.Add(spaceFactory.CreateProperty(builtBoard, "PURPLE_1", "Pall Mall"));
+            builtBoard.Add(spaceFactory.CreateProperty(builtBoard, "PURPLE_2", "Electric Company"));
+            builtBoard.Add(spaceFactory.CreateProperty(builtBoard, "PURPLE_3", "Whitehall"));
+            builtBoard.Add(spaceFactory.CreateProperty(builtBoard, "PURPLE_4", "Northumberland Avenue"));
+            return this;
         }
 
         public IBoardBuilder BuildSecondStation()
         {
-            throw new NotImplementedException();
+            builtBoard.Add(spaceFactory.CreateProperty(builtBoard, "STATION_2", "Marylebone Station"));
+            return this;
         }
 
         public IBoardBuilder BuildOrangeSection()
         {
-            throw new NotImplementedException();
+            builtBoard.Add(spaceFactory.CreateProperty(builtBoard, "ORANGE_1", "Bow Street"));
+            builtBoard.Add(spaceFactory.CreateCommunityChest(builtBoard, "ORANGE_2"));
+            builtBoard.Add(spaceFactory.CreateProperty(builtBoard, "ORANGE_3", "Marlborough Street"));
+            builtBoard.Add(spaceFactory.CreateProperty(builtBoard, "ORANGE_4", "Vine Street"));
+            return this;
         }
 
         public IBoardBuilder BuildParking()
         {
-            throw new NotImplementedException();
+            builtBoard.Add(spaceFactory.CreateParkingSpace(builtBoard));
+            return this;
         }
 
         public IBoardBuilder BuildRedSection()
         {
-            throw new NotImplementedException();
+            builtBoard.Add(spaceFactory.CreateProperty(builtBoard, "RED_1", "The Strand"));
+            builtBoard.Add(spaceFactory.CreateChanceSpace(builtBoard, "RED_2"));
+            builtBoard.Add(spaceFactory.CreateProperty(builtBoard, "RED_3", "Fleet Street"));
+            builtBoard.Add(spaceFactory.CreateProperty(builtBoard, "RED_4", "Trafalgar Square"));
+            return this;
         }
 
         public IBoardBuilder BuildThirdStation()
         {
-            throw new NotImplementedException();
+            builtBoard.Add(spaceFactory.CreateProperty(builtBoard, "STATION_3", "Fenchurch St Station"));
+            return this;
         }
 
         public IBoardBuilder BuildYellowSection()
         {
-            throw new NotImplementedException();
+            builtBoard.Add(spaceFactory.CreateProperty(builtBoard, "YELLOW_1", "Leicester Square"));
+            builtBoard.Add(spaceFactory.CreateProperty(builtBoard, "YELLOW_2", "Coventry Street"));
+            builtBoard.Add(spaceFactory.CreateProperty(builtBoard, "YELLOW_3", "Water Works"));
+            builtBoard.Add(spaceFactory.CreateProperty(builtBoard, "YELLOW_4", "Picadilly"));
+            return this;
         }
 
         public IBoardBuilder BuildGoToJail()
         {
-            throw new NotImplementedException();
+            builtBoard.Add(spaceFactory.CreateGoToJailSpace(builtBoard));
+            return this;
         }
 
         public IBoardBuilder BuildGreenSection()
         {
-            throw new NotImplementedException();
+            builtBoard.Add(spaceFactory.CreateProperty(builtBoard, "GREEN_1", "Regent Street"));
+            builtBoard.Add(spaceFactory.CreateProperty(builtBoard, "GREEN_2", "Oxford Street"));
+            builtBoard.Add(spaceFactory.CreateCommunityChest(builtBoard, "GREEN_3"));
+            builtBoard.Add(spaceFactory.CreateProperty(builtBoard, "GREEN_4", "Bond Street"));
+            return this;
         }
 
         public IBoardBuilder BuildFourthStation()
         {
-            throw new NotImplementedException();
+            builtBoard.Add(spaceFactory.CreateProperty(builtBoard, "STATION_4", "Liverpool Street Station"));
+            return this;
         }
 
         public IBoardBuilder BuildBlueSection()
         {
-            throw new NotImplementedException();
+            builtBoard.Add(spaceFactory.CreateChanceSpace(builtBoard, "BLUE_1"));
+            builtBoard.Add(spaceFactory.CreateProperty(builtBoard, "BLUE_2", "Park Lane"));
+            builtBoard.Add(spaceFactory.CreateLuxuryTax(builtBoard, "BLUE_3"));
+            builtBoard.Add(spaceFactory.CreateProperty(builtBoard, "BLUE_4", "Coventry Street"));
+            return this;
         }
 
     }

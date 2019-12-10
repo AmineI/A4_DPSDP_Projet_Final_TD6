@@ -16,15 +16,14 @@ namespace TD6
 
     public interface ISpaceFactory
     {
-        IVisitableSpace CreateProperty(IBoard board,string id, string name);
-        IVisitableSpace CreateGoSpace(IBoard board,string id = Constants.GO_SPACE_ID);
+        IVisitableSpace CreateProperty(IBoard board, string id, string name);
+        IVisitableSpace CreateGoSpace(IBoard board, string id = Constants.GO_SPACE_ID);
         IVisitableSpace CreateJailSpace(IBoard board, string id = Constants.JAIL_SPACE_ID);
-        IVisitableSpace CreateGoToJailSpace(IBoard board,string id = Constants.GO_TO_JAIL_SPACE_ID);
-        IVisitableSpace CreateParkingSpace(IBoard board,string id = Constants.PARKING_SPACE_ID);
-        IVisitableSpace CreateCommunityChest(IBoard board,string id);
+        IVisitableSpace CreateGoToJailSpace(IBoard board, string id = Constants.GO_TO_JAIL_SPACE_ID);
+        IVisitableSpace CreateParkingSpace(IBoard board, string id = Constants.PARKING_SPACE_ID);
+        IVisitableSpace CreateCommunityChest(IBoard board, string id);
+        IVisitableSpace CreateChanceSpace(IBoard board, string id);
         IVisitableSpace CreateIncomeTax(IBoard board, string id);
-
-        //TODO Add other spaces types
-
+        IVisitableSpace CreateLuxuryTax(IBoard board, string id);
     }
 }

@@ -45,27 +45,32 @@
   <ItemGroup>
     <Compile Include="Model\Player\IPlayer.cs" />
     <Compile Include="Model\Player\JailedPlayer.cs" />
+    <Compile Include="Model\Player\Player.cs" />
+    <Compile Include="Model\Board\Board.cs" />
     <Compile Include="Model\Board\IBoard.cs" />
     <Compile Include="Model\Spaces\EventSpace.cs" />
+    <Compile Include="Model\Spaces\Utility.cs" />
     <Compile Include="Model\Spaces\Space.cs" />
-    <Compile Include="Creators\IBoardBuilder.cs" />
-    <Compile Include="Creators\InternationalBoardBuilder.cs" />
-    <Compile Include="Constants.cs" />
-    <Compile Include="Creators\ISpaceFactory.cs" />
-    <Compile Include="IGame.cs" />
-    <Compile Include="Game.cs" />
-    <Compile Include="Helpers\UserInteraction.cs" />
-    <Compile Include="Dice.cs" />
-    <Compile Include="Model\Player\Player.cs" />
     <Compile Include="Model\Spaces\Land.cs" />
-    <Compile Include="Model\Board\Board.cs" />
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\Spaces\Property.cs" />
     <Compile Include="Model\Spaces\Railroad.cs" />
     <Compile Include="Model\Spaces\IVisitableSpace.cs" />
     <Compile Include="Model\Spaces\ISpaceVisitor.cs" />
+    <Compile Include="Creators\IBoardBuilder.cs" />
+    <Compile Include="Creators\InternationalBoardBuilder.cs" />
     <Compile Include="Creators\DefaultInternationalSpaceFactory.cs" />
+    <Compile Include="Creators\ISpaceFactory.cs" />
+    <Compile Include="Creators\IBoardBuilder.cs" />
+    <Compile Include="Creators\InternationalBoardBuilder.cs" />
+    <Compile Include="Creators\ISpaceFactory.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="IGame.cs" />
+    <Compile Include="Game.cs" />
+    <Compile Include="Dice.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Helpers\UserInteraction.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
