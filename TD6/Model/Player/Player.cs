@@ -172,6 +172,30 @@ namespace TD6
             eventSpace.OnStopAction((IPlayer)this);
         }
 
+        void SellPropertyInterface()
+        {
+            Property propertyToSell = View.GetObjectChoice<Property>("Choose a property to sell", OwnedProperties);
+            IPlayer playerToSellTo = View.GetObjectChoice<IPlayer>("Choose a player to sell to", gameInstance.Players);
+            int priceToSellFor = View.GetEnteredInt();
+            if (View.GetSaleConfirmation(propertyToSell, priceToSellFor, playerToSellTo))
+            {
+                if (playerToSellTo.View.GetPurchaseConfirmation(propertyToSell, priceToSellFor, (IPlayer)this))
+                {
+                    playerToSellTo.Pay(priceToSellFor, (IPlayer)this);
+                    propertyToSell.Owner = playerToSellTo;
+                }
+            }
+
+        }
+
+        void BuildHouseInterface()
+        {
+            Land land = View.ChooseLandToBuildOn(this);
+            if (View.GetBuildHouseHereConfirmation(land))
+            {
+                land.BuildHouse();
+            }
+        }
 
         /// <summary>
         /// Function for a player turn, launch dice, move(DiceValue)
@@ -194,8 +218,17 @@ namespace TD6
             }
             Move(DicesValue);
 
+            Action End = () => { };
+            Action choosedAction = End;
             //do player actions : build house etc
 
+            do
+            {
+                choosedAction = View.GetObjectChoice<Action>("\nWhat do you want to do ?",
+                                   new[] { BuildHouseInterface, SellPropertyInterface, End },
+                                   new[] { "Build a House", "Sell a property", "End the turn" });
+                choosedAction();
+            } while (choosedAction != End);
         }
 
     }
