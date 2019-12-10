@@ -126,8 +126,10 @@ namespace TD6
                 GameBoard[currentPosition].AcceptWalking((ISpaceVisitor)this);
             }
             //Now that we walked the requested distance, 
-            //We stop on the space. If the space has an action occuring on stop, it will happen.
+            View.DisplayBoard(GameBoard);
             View.DisplayMessage($"You are stopping on : {GameBoard[CurrentPosition]}");
+
+            //We stop on the space. If the space has an action occuring on stop, it will happen.
             GameBoard[currentPosition].AcceptStopping((ISpaceVisitor)this);
         }
 

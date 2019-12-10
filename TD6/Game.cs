@@ -99,32 +99,40 @@ namespace TD6
                 throw new NullReferenceException("The view, board or players list is not initialized. Ensure you initialized the Game beforehand.");
             }
 
-            //TODO : Display board and basic information for each player when it's his turn.
 
             while (players.Count > 1)//The game continues while there's more than one player.
             {
                 currentTurn++;
+
                 foreach (IPlayer currentPlayer in players)
                 {
                     do
                     {
+                        //TODO : Display board and basic information for each player when it's his turn.
+                        View.DisplayMessage($"{currentPlayer}, it is your turn.");
+                        View.Pause();
+                        View.DisplayBoard(board);
+                        View.DisplayMoney(currentPlayer);
+                        View.DisplayProperties(currentPlayer);
+
                         currentPlayer.Replay = false;
                         currentPlayer.PlayTurn();
                         if (currentPlayer.HasLost)
                         {
-                            //TODO : Afficher message comme quoi le joueur a perdu
-
+                            View.DisplayMessage($"{currentPlayer} : You lost");
                             //Since we are in a foreach, we can't remove him from the list right now.
                             //We firstly remove its references from the game, so that other players won't have to pay rent to this losing player for example, even though he already lost.
                             ReplaceIPlayerInstances(currentPlayer, null);
                             break;
                         }
+                        View.Pause();
                     } while (currentPlayer.Replay);
                 }
                 players.RemoveAll(player => player == null);//We remove all the players that lost and thus were replaced by a null ref.
             }
 
             //TODO : Il ne reste qu'un joueur : Afficher message de fin de jeu
+            View.DisplayEndGame(players.Last());
         }
     }
 }
