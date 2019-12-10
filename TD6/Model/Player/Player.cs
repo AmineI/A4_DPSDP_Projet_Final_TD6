@@ -163,13 +163,14 @@ namespace TD6
         public void StopOnProperty(Property property)
         {
             //If there is no owner, we ask the current player if he wants to buy the property
+            property.ToString();
             if(property.Owner == null )
             {
                 if(money >= property.BuyPrice)
                 {
                     if (View.GetPurchaseConfirmation(property))
                     {
-                        Pay(property.RentPrice, null);
+                        Pay(property.BuyPrice, null);
                     }
                 }
                 else
