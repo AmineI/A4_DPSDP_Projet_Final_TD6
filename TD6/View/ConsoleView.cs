@@ -106,5 +106,10 @@ namespace TD6
         {
             return UserInteraction.GetConfirmation(message);
         }
+
+        public string GetEnteredString(string message)
+        {
+            return UserInteraction.GetEnteredString(message);
+        }
     }
 }
