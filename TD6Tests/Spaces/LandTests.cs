@@ -34,7 +34,10 @@ namespace TD6.Tests
         [TestMethod()]
         public void BuildHouseTest()
         {
-            Assert.Fail();
+            Board board = new Board();
+            Land landTest = new Land("id", "Rue de la paix", Color.Green, 300, new int[] { 50, 100, 140, 250, 300, 450 }, 200, board);
+            landTest.BuildHouse();
+            Assert.IsTrue(landTest.NumberOfHouses == 1);
         }
 
         [TestMethod()]
