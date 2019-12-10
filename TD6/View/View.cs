@@ -111,5 +111,10 @@ namespace TD6.View
         {
             Console.Clear();
         }
+
+        public bool GetConfirmation(string message = "Do you want to continue ?")
+        {
+            return UserInteraction.GetConfirmation(message);
+        }
     }
 }
