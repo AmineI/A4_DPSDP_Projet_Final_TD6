@@ -31,18 +31,19 @@ namespace TD6
         private IGame gameInstance;
         //The board is not necessarily initialized when we create the player, so we get the board dynamically from the Game.
         private IBoard GameBoard { get => gameInstance.Board; }
+        public IView View { get => gameInstance.View; }
         public List<Property> OwnedProperties { get => GameBoard.FindAllSpaces<Property>(prop => prop.Owner == this); }
 
         public List<Land> BuildableOwnedLands
         {
             get => GameBoard.FindAllSpaces<Land>(land => land.Owner == this && land.IsHouseBuildable());
         }
-        
+
         public bool HasLost => Money < 0;
         public bool Replay { get; set; }
 
         /// <param name="gameBoard">Game instance the player is playing on. Defaults to the singleton Game instance.</param>
-        public Player(int id, string playerName, int money, char displayCharacter='x', IGame gameInstance = null)
+        public Player(int id, string playerName, int money, char displayCharacter = 'x', IGame gameInstance = null)
         {
             this.Id = id;
             this.PlayerName = playerName;

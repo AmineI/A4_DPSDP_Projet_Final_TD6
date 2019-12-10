@@ -35,6 +35,8 @@ namespace TD6
 
         public bool Replay { get => player.Replay; set => player.Replay = value; }
 
+        public IView View => player.View;
+
         public void RollDices()
         {
             player.RollDices();

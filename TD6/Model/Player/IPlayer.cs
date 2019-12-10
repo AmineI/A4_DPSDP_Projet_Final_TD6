@@ -53,6 +53,8 @@ namespace TD6
         bool HasLost { get; }
         bool Replay { get; set; }
 
+        IView View { get; }
+
         /// <summary>
         /// Roll our two dices.
         /// </summary>
