@@ -8,9 +8,9 @@ namespace TD6
 {
     static class InteractivePlayerListBuilder
     {
-        static IList<Player> AskForPlayerList(IGame game, IView view)
+        public static IList<IPlayer> AskForPlayerList(IGame game, IView view)
         {
-            IList<Player> players = new List<Player>();
+            IList<IPlayer> players = new List<IPlayer>();
             //Add players
             do
             {
