@@ -84,7 +84,7 @@ namespace TD6
         }
         public void GoToJail()
         {
-            //TODO Teleport the player to the Jail space
+            Teleport(GameBoard.JailSpace, false);
             this.GetJailed();//Then set it to the jailed state.
         }
 
