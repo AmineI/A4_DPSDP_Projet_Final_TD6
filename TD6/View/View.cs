@@ -21,13 +21,13 @@ namespace TD6.View
         }
 
         /// <summary>
-        /// Ask the player if he wants to sale the property
+        /// Ask the player if he wants to sell the property
         /// </summary>
         /// <param name="property"></param>
         /// <returns> A boolean representing the response of the player</returns>
         public bool GetSaleConfirmation(Property property)
         {
-            return UserInteraction.GetConfirmation("Do you want to sale " + property.Name + " ?");
+            return UserInteraction.GetConfirmation("Do you want to sell " + property.Name + " ?");
         }
 
         /// <summary>
@@ -53,8 +53,8 @@ namespace TD6.View
         /// Ask the player where he wants to build his house
         /// </summary>
         /// <param name="player"></param>
-        /// <returns> The land where the player wants to builde his house </returns>
-        public Land ChooseLandToBuild(IPlayer player)
+        /// <returns> The land where the player wants to build his house </returns>
+        public Land ChooseLandToBuildOn(IPlayer player)
         {
             List<Land> sameOwnerLands = board.FindAllSpaces<Land>(land => land.Owner == player);
             List<Land> houseBuildableLand = new List<Land>();
@@ -69,9 +69,9 @@ namespace TD6.View
         }
 
         /// <summary>
-        /// Display the message in the setting
+        /// Displays a message
         /// </summary>
-        /// <param name="message"></param>
+        /// <param name="message">message we want to display</param>
         public void DisplayMessage(string message)
         {
             Console.WriteLine(message);
@@ -90,7 +90,7 @@ namespace TD6.View
         /// <summary>
         /// Display a message with the money of the player
         /// </summary>
-        /// <param name="player"></param>
+        /// <param name="player">player whose money we want to display</param>
         public void DisplayMoney(IPlayer player)
         {
             Console.WriteLine("You have " + player.Money + "$.");
@@ -98,7 +98,7 @@ namespace TD6.View
 
         public void DisplayEndGame(IPlayer player)
         {
-            Console.WriteLine("Well done, the game's over.");
+            Console.WriteLine("Well done, the game is over.");
             Console.WriteLine("You finished this game with " + player.Money + " $.");
             List<Land> sameOwnerLands = board.FindAllSpaces<Land>(land => land.Owner == player);
             Console.WriteLine("You had " + sameOwnerLands.Count() + " properties.");

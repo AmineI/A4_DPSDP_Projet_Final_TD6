@@ -13,8 +13,7 @@ namespace TD6.View
         bool GetBuildHouseHereConfirmation(Land land);
         bool GetBuildHouseConfirmation();
 
-        Land ChooseLandToBuild(IPlayer player);
-        
+        Land ChooseLandToBuildOn(IPlayer player);
 
         void DisplayMessage(String message);
         void DisplayLands(IPlayer player);
