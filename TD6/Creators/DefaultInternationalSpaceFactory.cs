@@ -61,6 +61,22 @@ namespace TD6
                 150, new[] { 4, 10 }, board),
             ["Picadilly"] = (id, board) => new Land(id, "Picadilly", Color.Yellow,
                 280, new[] { 24, 120, 360, 850, 1025, 1200 }, 150, board),
+
+            ["Regent Street"] = (id, board) => new Land(id, "Regent Street", Color.Green,
+                300, new[] { 26, 130, 390, 900, 1100, 1275 }, 150, board),
+            ["Oxford Street"] = (id, board) => new Land(id, "Oxford Street", Color.Green,
+                300, new[] { 26, 130, 390, 900, 1100, 1275 }, 150, board),
+            ["Bond Street"] = (id, board) => new Land(id, "Bond Street", Color.Green,
+                320, new[] { 28, 150, 450, 1000, 1200, 1400 }, 150, board),
+            ["Liverpool Street Station"] = (id, board) => new Railroad(id, "Liverpool Street Station",
+                200, new[] { 25, 50, 100, 200 }, board),
+
+            ["Park Lane"] = (id, board) => new Land(id, "Park Lane", Color.Blue,
+                350, new[] { 35, 175, 500, 1100, 1300, 1500 }, 150, board),
+            ["Coventry Street"] = (id, board) => new Land(id, "Coventry Street", Color.Blue,
+                400, new[] { 50, 200, 600, 1400, 1700, 2000 }, 150, board),
+
+
             //TODO : create the property creators for each property
         };
 
