@@ -56,7 +56,7 @@ namespace TD6
         /// <returns> The land where the player wants to build his house </returns>
         public Land ChooseLandToBuildOn(IPlayer player)
         {
-            
+
             return UserInteraction.GetObjectChoice<Land>("Where do you want to build your house ?", player.BuildableOwnedLands);
         }
 
@@ -116,6 +116,12 @@ namespace TD6
         {
             DisplayMessage("Press any key to continue");
             Console.ReadKey();
+        }
+
+        public void DisplayBoard(IBoard board)
+        {
+            //TODO
+            throw new NotImplementedException();
         }
     }
 }
