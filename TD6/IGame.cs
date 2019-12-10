@@ -7,7 +7,7 @@ namespace TD6
         IBoard Board { get; }
         List<IPlayer> Players { get; }
         int CurrentTurn { get; }
-
+        IView View { get; set; }
         void InitializeBoard(IBoard board);
         void InitializeGame(IBoardCreator boardCreator, IPlayerListCreator playerListCreator);
         void InitializePlayerList(IList<IPlayer> players);
