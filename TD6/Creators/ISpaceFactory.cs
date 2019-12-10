@@ -25,6 +25,5 @@ namespace TD6
         IVisitableSpace CreateChanceSpace(IBoard board, string id);
         IVisitableSpace CreateIncomeTax(IBoard board, string id);
         IVisitableSpace CreateLuxuryTax(IBoard board, string id);
-
     }
 }
