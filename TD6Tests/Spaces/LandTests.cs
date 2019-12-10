@@ -12,12 +12,6 @@ namespace TD6.Tests
     public class LandTests
     {
         [TestMethod()]
-        public void LandTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
         public void RentPriceTest_ColorOwnedBySamePlayerWithoutHouseCostDouble()
         {
             Board board = new Board();

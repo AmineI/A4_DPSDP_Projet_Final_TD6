@@ -12,12 +12,6 @@ namespace TD6.Tests
     public class RailroadTests
     {
         [TestMethod()]
-        public void RailroadTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
         public void GetNumberOfOwnedRailroadsTest()
         {
             Board board = new Board();
