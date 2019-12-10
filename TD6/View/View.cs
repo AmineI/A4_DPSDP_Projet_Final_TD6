@@ -96,6 +96,14 @@ namespace TD6.View
             Console.WriteLine("You have " + player.Money + "$.");
         }
 
+        public void DisplayEndGame(IPlayer player)
+        {
+            Console.WriteLine("Well done, the game's over.");
+            Console.WriteLine("You finished this game with " + player.Money + " $.");
+            List<Land> sameOwnerLands = board.FindAllSpaces<Land>(land => land.Owner == player);
+            Console.WriteLine("You had " + sameOwnerLands.Count() + " properties.");
+        }
+
         /// <summary>
         /// Clear the console
         /// </summary>

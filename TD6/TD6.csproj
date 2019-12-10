@@ -61,6 +61,8 @@
     <Compile Include="Model\Spaces\IVisitableSpace.cs" />
     <Compile Include="Model\Spaces\ISpaceVisitor.cs" />
     <Compile Include="Model\Spaces\SpaceFactory.cs" />
+    <Compile Include="View\IView.cs" />
+    <Compile Include="View\View.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
