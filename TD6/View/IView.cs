@@ -22,6 +22,7 @@ namespace TD6
         void DisplayMoney(IPlayer player);
         void DisplayEndGame(IPlayer player);
 
+        void Pause();
         void ClearView();
     }
 }

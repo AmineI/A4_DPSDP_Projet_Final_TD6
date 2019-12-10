@@ -111,5 +111,11 @@ namespace TD6
         {
             return UserInteraction.GetEnteredString(message);
         }
+
+        public void Pause()
+        {
+            DisplayMessage("Press any key to continue");
+            Console.ReadKey();
+        }
     }
 }
