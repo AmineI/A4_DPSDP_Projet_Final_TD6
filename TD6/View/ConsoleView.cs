@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TD6
 {
-    public class View : IView
+    public class ConsoleView : IView
     {
         protected IBoard board;
 
