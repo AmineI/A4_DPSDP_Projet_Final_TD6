@@ -78,13 +78,12 @@ namespace TD6.View
         }
 
         /// <summary>
-        /// Display the lands of the player
+        /// Display the properties of the player
         /// </summary>
         /// <param name="player"></param>
-        public void DisplayLands(IPlayer player)
+        public void DisplayProperties(IPlayer player)
         {
-            List<Land> sameOwnerLands = board.FindAllSpaces<Land>(land => land.Owner == player);
-            UserInteraction.DisplayObjectList<Land>("Here is the list of your properties :", sameOwnerLands);
+            UserInteraction.DisplayObjectList<Property>("Here is the list of your properties :", player.OwnedProperties);
         }
 
         /// <summary>
