@@ -34,7 +34,7 @@ namespace TD6
 
 
         /// <param name="gameBoard">Game Board the player is playing on. Defaults to the Game instance's board.</param>
-        public Player(int id, string playerName, int money, char displayCharacter, IBoard gameBoard = null)
+        public Player(int id, string playerName, int money, char displayCharacter='x', IBoard gameBoard = null)
         {
             this.Id = id;
             this.PlayerName = playerName;
