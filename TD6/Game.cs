@@ -41,7 +41,6 @@ namespace TD6
         /// </summary>
         private Game()
         {
-            this.View = new ConsoleView();
         }
 
         public void InitializeBoard(IBoard board)
@@ -57,9 +56,9 @@ namespace TD6
         /// Initialize both the game board and the players thanks to the delegates method given.
         /// Is optimized to use two threads : one  taking care of the board, and one taking care of the player list.
         /// </summary>
-        public void InitializeGame(IBoardCreator boardCreator, IPlayerListCreator playerListCreator)
+        public void InitializeGame(IView view, IBoardCreator boardCreator, IPlayerListCreator playerListCreator)
         {
-
+            View = view;
             //We initialize the default board in a separate thread in the background, before asking the user for the player infos.
             Thread boardInitializationThread = new Thread(() => InitializeBoard(boardCreator()));
             boardInitializationThread.Start();
@@ -95,9 +94,9 @@ namespace TD6
         public void LaunchGame()
         {
 
-            if (board == null || players == null)
+            if (View == null || board == null || players == null)
             {
-                throw new NullReferenceException("The board or players list is not initialized. Ensure you initialized the Game beforehand.");
+                throw new NullReferenceException("The view, board or players list is not initialized. Ensure you initialized the Game beforehand.");
             }
 
             //TODO : Display board and basic information for each player when it's his turn.
