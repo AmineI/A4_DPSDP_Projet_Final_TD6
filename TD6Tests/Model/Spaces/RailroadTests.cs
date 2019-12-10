@@ -11,6 +11,9 @@ namespace TD6.Tests
     [TestClass()]
     public class RailroadTests
     {
+        /// <summary>
+        /// Test the number of railroad owned by the player
+        /// </summary>
         [TestMethod()]
         public void GetNumberOfOwnedRailroadsTest()
         {
@@ -28,6 +31,9 @@ namespace TD6.Tests
             Assert.IsTrue(Railroad.GetNumberOfOwnedRailroads(player, board) == 3);
         }
 
+        /// <summary>
+        /// Test if the rent price of a railroad depends on the number of stations owned by the owner
+        /// </summary>
         [TestMethod()]
         public void RentPriceTest()
         {
