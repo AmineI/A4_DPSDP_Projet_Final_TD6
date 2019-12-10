@@ -82,11 +82,12 @@ namespace TD6
 
         //Store the actions we'll make the event spaces do as static delegates in the factory.
         public static Action<IPlayer> PassGo = delegate (IPlayer player) { player.Earn(1500); };
+        public static Action<IPlayer> PassJail = delegate (IPlayer player) { };//TODO : When a player passes the Jail visit space we can display a message
 
 
+        public static Action<IPlayer> GoToJail = delegate (IPlayer player) { player.GoToJail(); };
         public static Action<IPlayer> PayIncomeTax = delegate (IPlayer player) { player.Pay(200); };
         public static Action<IPlayer> PayLuxuryTax = delegate (IPlayer player) { player.Pay(75); };
-        //TODO        public static Action<IPlayer> GoToJail = delegate(IPlayer player) { player.GoToJail();player.GetJailed() };
 
         public IVisitableSpace CreateProperty(IBoard board, string id, string nameOfThePropertyToCreate)
         {
@@ -105,14 +106,12 @@ namespace TD6
 
         public IVisitableSpace CreateJailSpace(IBoard board, string id = Constants.JAIL_SPACE_ID)
         {
-            //TODO
-            throw new NotImplementedException();
+            return new EventSpace(id, "Jail (visit only)", onStopAction: PassJail, onWalkAction: PassJail, board);
         }
 
         public IVisitableSpace CreateGoToJailSpace(IBoard board, string id = Constants.GO_TO_JAIL_SPACE_ID)
         {
-            //TODO
-            throw new NotImplementedException();
+            return new EventSpace(id, "Go To Jail", onStopAction: GoToJail, board);
         }
         public IVisitableSpace CreateIncomeTax(IBoard board, string id)
         {
