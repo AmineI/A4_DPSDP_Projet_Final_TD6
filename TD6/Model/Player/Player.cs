@@ -163,6 +163,27 @@ namespace TD6
         public void StopOnProperty(Property property)
         {
             //TODO : Buy or pay rent.
+            if(property.Owner == null )
+            {
+                if(money >= property.BuyPrice)
+                {
+                    if (View.GetPurchaseConfirmation(property))
+                    {
+                        money -= property.BuyPrice;
+                        property.Owner = this;
+                    }
+                }
+                else
+                {
+                    View.DisplayMessage("You don't have enough money");
+                }
+            }
+            else if (property.Owner != this)
+            {
+                money -= property.RentPrice;
+                property.Owner.money += property.RentPrice;
+            }
+
             throw new NotImplementedException();
         }
 
