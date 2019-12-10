@@ -162,7 +162,7 @@ namespace TD6
 
         public void StopOnProperty(Property property)
         {
-            //If No Owner We ask if the current player want to buy the property
+            //If there is no owner, we ask the current player if he wants to buy the property
             if(property.Owner == null )
             {
                 if(money >= property.BuyPrice)
@@ -177,7 +177,7 @@ namespace TD6
                     View.DisplayMessage("You don't have enough money");
                 }
             }
-            //If the property have a Owner who are not the current player The current player Pay a rent
+            //If the property has an owner who is not the current player, the current player has to pay the rent
             else if (property.Owner != this)
             {
                 Pay(property.RentPrice, property.Owner);
