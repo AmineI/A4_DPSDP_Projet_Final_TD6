@@ -79,7 +79,6 @@ namespace TD6
             return this;
         }
 
-        //TODO : All builder functions.
         public IBoardBuilder BuildJail()
         {
             builtBoard.Add(spaceFactory.CreateJailSpace(builtBoard));
@@ -144,7 +143,7 @@ namespace TD6
         public IBoardBuilder BuildGoToJail()
         {
             builtBoard.Add(spaceFactory.CreateGoToJailSpace(builtBoard));
-            throw new NotImplementedException();
+            return this;
         }
 
         public IBoardBuilder BuildGreenSection()
