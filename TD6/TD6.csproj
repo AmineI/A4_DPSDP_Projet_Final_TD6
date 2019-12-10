@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Creators\InteractivePlayerListBuilder.cs" />
     <Compile Include="Creators\IBoardBuilder.cs" />
     <Compile Include="Creators\InternationalBoardBuilder.cs" />
     <Compile Include="Constants.cs" />
