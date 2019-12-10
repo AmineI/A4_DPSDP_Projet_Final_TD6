@@ -17,7 +17,7 @@ namespace TD6
         public IBoard Board { get => board; }
         private List<IPlayer> players;
         public List<IPlayer> Players { get => players; }
-        private int currentTurn;
+        private int currentTurn = 0;
         public int CurrentTurn { get => currentTurn; }
 
 
@@ -102,6 +102,7 @@ namespace TD6
 
             while (players.Count > 1)//The game continues while there's more than one player.
             {
+                currentTurn++;
                 foreach (IPlayer currentPlayer in players)
                 {
                     do
