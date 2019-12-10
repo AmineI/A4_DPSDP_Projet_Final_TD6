@@ -162,15 +162,14 @@ namespace TD6
 
         public void StopOnProperty(Property property)
         {
-            //TODO : Buy or pay rent.
+            //If No Owner We ask if the current player want to buy the property
             if(property.Owner == null )
             {
                 if(money >= property.BuyPrice)
                 {
                     if (View.GetPurchaseConfirmation(property))
                     {
-                        money -= property.BuyPrice;
-                        property.Owner = this;
+                        Pay(property.RentPrice, null);
                     }
                 }
                 else
@@ -178,13 +177,12 @@ namespace TD6
                     View.DisplayMessage("You don't have enough money");
                 }
             }
+            //If the property have a Owner who are not the current player The current player Pay a rent
             else if (property.Owner != this)
             {
-                money -= property.RentPrice;
-                property.Owner.money += property.RentPrice;
+                Pay(property.RentPrice, property.Owner);
             }
 
-            throw new NotImplementedException();
         }
 
         public void StopOnEvent(EventSpace eventSpace)
