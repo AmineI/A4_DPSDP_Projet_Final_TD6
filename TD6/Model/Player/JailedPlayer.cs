@@ -29,6 +29,8 @@ namespace TD6
 
         public List<Property> OwnedProperties => player.OwnedProperties;
 
+        public List<Land> BuildableOwnedLands => player.BuildableOwnedLands;
+
         public void RollDices()
         {
             player.RollDices();
