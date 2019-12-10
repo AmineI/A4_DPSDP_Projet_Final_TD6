@@ -19,6 +19,8 @@ namespace TD6
 
         public int Id => player.Id;
 
+        public char DisplayCharacter => player.DisplayCharacter;
+
         public string PlayerName => player.PlayerName;
 
         public int CurrentPosition => player.CurrentPosition;
@@ -26,6 +28,8 @@ namespace TD6
         public int Money => player.Money;
 
         public List<Property> OwnedProperties => player.OwnedProperties;
+
+        public List<Land> BuildableOwnedLands => player.BuildableOwnedLands;
 
         public void RollDices()
         {
