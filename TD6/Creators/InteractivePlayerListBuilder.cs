@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TD6.Creators
+namespace TD6
 {
     static class InteractivePlayerListBuilder
     {
