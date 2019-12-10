@@ -16,7 +16,7 @@ namespace TD6
         /// <summary>
         /// Display the character associated with the player in order to spot him on the board
         /// </summary>
-        string Character { get; }
+        char DisplayCharacter { get; }
 
         /// <summary>
         /// Display name of the player

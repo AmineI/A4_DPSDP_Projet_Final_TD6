@@ -16,7 +16,7 @@ namespace TD6
         /// </summary>
         public string PlayerName { get; }
 
-        public string Character { get; }
+        public char DisplayCharacter { get; set; }
 
         private int currentPosition = 0;
         private int money;
@@ -34,12 +34,14 @@ namespace TD6
 
 
         /// <param name="gameBoard">Game Board the player is playing on. Defaults to the Game instance's board.</param>
-        public Player(int id, string playerName, int money, IBoard gameBoard = null)
+        public Player(int id, string playerName, int money, char displayCharacter, IBoard gameBoard = null)
         {
             this.Id = id;
             this.PlayerName = playerName;
             this.money = money;
+            this.DisplayCharacter = displayCharacter;
             this.gameBoard = gameBoard ?? Game.Instance.Board;
+
             // The null-coalescing operator ?? returns the value of its left-hand operand if it isn't null; otherwise, it evaluates the right-hand operand and returns its result
         }
 
