@@ -127,6 +127,7 @@ namespace TD6
             }
             //Now that we walked the requested distance, 
             //We stop on the space. If the space has an action occuring on stop, it will happen.
+            View.DisplayMessage($"You are stopping on : {GameBoard[CurrentPosition]}");
             GameBoard[currentPosition].AcceptStopping((ISpaceVisitor)this);
         }
 
@@ -205,11 +206,16 @@ namespace TD6
             Replay = false;
             // We launch the dices with a function 
             RollDices();
+            View.DisplayMessage($"You rolled a {DicesValue}\n");
+            View.Pause();
             if (IsDiceDouble)
             {
                 doubleCount++;
+                View.DisplayMessage($"It's a double ! You made {doubleCount} doubles in a row !");
+
                 if (doubleCount == 3)
                 {
+                    View.DisplayMessage("That means you are going straight to jail !");
                     doubleCount = 0;
                     GoToJail();
                     return;
