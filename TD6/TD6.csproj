@@ -48,7 +48,7 @@
     <Compile Include="Creators\InternationalBoardBuilder.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Creators\ISpaceFactory.cs" />
-    <Compile Include="Creators\FactoryPlayer.cs" />
+    <Compile Include="Creators\PlayerFactory.cs" />
     <Compile Include="Model\Board\IBoard.cs" />
     <Compile Include="Model\Spaces\EventSpace.cs" />
     <Compile Include="Model\Player\IPlayer.cs" />
