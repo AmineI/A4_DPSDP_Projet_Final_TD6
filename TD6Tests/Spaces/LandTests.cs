@@ -19,7 +19,7 @@ namespace TD6.Tests
             board.Add(landTest1);
             Land landTest2 = new Land("id2", "Rue 2", Color.Green, 300, new int[] { 50, 100, 140, 250, 300, 450 }, 200, board);
             board.Add(landTest2);
-            Player player = new Player(0, "player", 500, board);
+            Player player = new Player(0, "player", 500);
             landTest1.Owner = player;
             landTest2.Owner = player;
             Assert.AreEqual(100, landTest1.RentPrice);
@@ -28,10 +28,12 @@ namespace TD6.Tests
         [TestMethod()]
         public void BuildHouseTest()
         {
-            Board board = new Board();
-            Land landTest = new Land("id", "Rue de la paix", Color.Green, 300, new int[] { 50, 100, 140, 250, 300, 450 }, 200, board);
+            Land landTest = new Land("id", "Rue de la paix", Color.Green, 300, new int[] { 50, 100, 140, 250, 300, 450 }, 200);
+            Player p0 = new Player(0, "p0", 500);
+            landTest.Owner = p0;
             landTest.BuildHouse();
-            Assert.IsTrue(landTest.NumberOfHouses == 1);
+            Assert.AreEqual(1, landTest.NumberOfHouses);
+            Assert.AreEqual(500 - 200, p0.Money);
         }
 
         [TestMethod()]
