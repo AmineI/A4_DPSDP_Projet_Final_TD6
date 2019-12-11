@@ -59,10 +59,10 @@
     <Compile Include="Creators\InternationalBoardBuilderTests.cs" />
     <Compile Include="DiceTests.cs" />
     <Compile Include="Model\Spaces\RailroadTests.cs" />
-    <Compile Include="PlayerTests.cs" />
+    <Compile Include="Model\Player\PlayerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Spaces\LandTests.cs" />
-    <Compile Include="Spaces\EventSpaceTests.cs" />
+    <Compile Include="Model\Spaces\LandTests.cs" />
+    <Compile Include="Model\Spaces\EventSpaceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
