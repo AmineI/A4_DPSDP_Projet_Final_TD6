@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TD6.View
+namespace TD6
 {
-    public class View : IView
+    public class ConsoleView : IView
     {
         protected IBoard board;
 
@@ -56,7 +56,7 @@ namespace TD6.View
         /// <returns> The land where the player wants to build his house </returns>
         public Land ChooseLandToBuildOn(IPlayer player)
         {
-            
+
             return UserInteraction.GetObjectChoice<Land>("Where do you want to build your house ?", player.BuildableOwnedLands);
         }
 
@@ -105,6 +105,23 @@ namespace TD6.View
         public bool GetConfirmation(string message = "Do you want to continue ?")
         {
             return UserInteraction.GetConfirmation(message);
+        }
+
+        public string GetEnteredString(string message)
+        {
+            return UserInteraction.GetEnteredString(message);
+        }
+
+        public void Pause()
+        {
+            DisplayMessage("Press any key to continue");
+            Console.ReadKey();
+        }
+
+        public void DisplayBoard(IBoard board)
+        {
+            //TODO
+            throw new NotImplementedException();
         }
     }
 }

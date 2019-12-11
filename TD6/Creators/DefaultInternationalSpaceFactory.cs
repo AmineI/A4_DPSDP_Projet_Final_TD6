@@ -76,8 +76,6 @@ namespace TD6
             ["Coventry Street"] = (id, board) => new Land(id, "Coventry Street", Color.Blue,
                 400, new[] { 50, 200, 600, 1400, 1700, 2000 }, 150, board),
 
-
-            //TODO : create the property creators for each property
         };
 
         //Store the actions we'll make the event spaces do as static delegates in the factory.
@@ -133,6 +131,7 @@ namespace TD6
             //TODO if time remains. For now, a community chest does nothing.
             return new EventSpace(id, "Community Chest (Not Implemented)", onStopAction: null, board);
         }
+
 
         public IVisitableSpace CreateChanceSpace(IBoard board, string id)
         {

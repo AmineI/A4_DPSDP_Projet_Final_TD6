@@ -31,6 +31,12 @@ namespace TD6
 
         public List<Land> BuildableOwnedLands => player.BuildableOwnedLands;
 
+        public bool HasLost => player.HasLost;
+
+        public bool Replay { get => player.Replay; set => player.Replay = value; }
+
+        public IView View => player.View;
+
         public void RollDices()
         {
             player.RollDices();
