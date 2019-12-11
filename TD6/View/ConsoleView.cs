@@ -15,9 +15,10 @@ namespace TD6
         /// </summary>
         /// <param name="property"></param>
         /// <returns> A boolean representing the response of the player</returns>
-        public bool GetPurchaseConfirmation(Property property)
+        public bool GetPurchaseConfirmation(Property propertyToBuy, int PriceToBuyFor, IPlayer playerToBuyFrom)
         {
-            return UserInteraction.GetConfirmation("Do you want to buy " + property.Name + " for " + property.BuyPrice + "$ ?");
+            return UserInteraction.GetConfirmation("Do you want to buy " + propertyToBuy.ToString()
+                + " for " + PriceToBuyFor + "$ ?");
         }
 
         /// <summary>
@@ -25,9 +26,10 @@ namespace TD6
         /// </summary>
         /// <param name="property"></param>
         /// <returns> A boolean representing the response of the player</returns>
-        public bool GetSaleConfirmation(Property property)
+        public bool GetSaleConfirmation(Property propertyToSell, int priceToSellFor, IPlayer playerToSellTo)
         {
-            return UserInteraction.GetConfirmation("Do you want to sell " + property.Name + " ?");
+            return UserInteraction.GetConfirmation("Do you want to sell " + propertyToSell.ToString() + " for " + 
+                + priceToSellFor + "$ to " + playerToSellTo.PlayerName + " ?");
         }
 
         /// <summary>
