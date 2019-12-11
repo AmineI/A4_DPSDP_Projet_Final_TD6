@@ -63,23 +63,23 @@ namespace TD6
                 280, new[] { 24, 120, 360, 850, 1025, 1200 }, 150, board),
 
             ["Regent Street"] = (id, board) => new Land(id, "Regent Street", Color.Green,
-                300, new[] { 26, 130, 390, 900, 1100, 1275 }, 150, board),
+                300, new[] { 26, 130, 390, 900, 1100, 1275 }, 200, board),
             ["Oxford Street"] = (id, board) => new Land(id, "Oxford Street", Color.Green,
-                300, new[] { 26, 130, 390, 900, 1100, 1275 }, 150, board),
+                300, new[] { 26, 130, 390, 900, 1100, 1275 }, 200, board),
             ["Bond Street"] = (id, board) => new Land(id, "Bond Street", Color.Green,
-                320, new[] { 28, 150, 450, 1000, 1200, 1400 }, 150, board),
+                320, new[] { 28, 150, 450, 1000, 1200, 1400 }, 200, board),
             ["Liverpool Street Station"] = (id, board) => new Railroad(id, "Liverpool Street Station",
                 200, new[] { 25, 50, 100, 200 }, board),
 
             ["Park Lane"] = (id, board) => new Land(id, "Park Lane", Color.Blue,
-                350, new[] { 35, 175, 500, 1100, 1300, 1500 }, 150, board),
-            ["Coventry Street"] = (id, board) => new Land(id, "Coventry Street", Color.Blue,
-                400, new[] { 50, 200, 600, 1400, 1700, 2000 }, 150, board),
+                350, new[] { 35, 175, 500, 1100, 1300, 1500 }, 200, board),
+            ["Mayfair"] = (id, board) => new Land(id, "Mayfair", Color.Blue,
+                400, new[] { 50, 200, 600, 1400, 1700, 2000 }, 200, board),
 
         };
 
         //Store the actions we'll make the event spaces do as static delegates in the factory.
-        public static Action<IPlayer> PassGo = delegate (IPlayer player) { player.Earn(1500); };
+        public static Action<IPlayer> PassGo = delegate (IPlayer player) { player.Earn(200); };
         public static Action<IPlayer> PassJail = delegate (IPlayer player) { };//TODO : When a player passes the Jail visit space we can display a message
 
 

@@ -167,8 +167,27 @@ namespace TD6
 
         public void StopOnProperty(Property property)
         {
-            //TODO : Buy or pay rent.
-            throw new NotImplementedException();
+            //If there is no owner, we ask the current player if he wants to buy the property
+            if(property.Owner == null )
+            {
+                if(money >= property.BuyPrice)
+                {
+                    if (View.GetPurchaseConfirmation(property))
+                    {
+                        Pay(property.BuyPrice, null);
+                    }
+                }
+                else
+                {
+                    View.DisplayMessage("You don't have enough money");
+                }
+            }
+            //If the property has an owner who is not the current player, the current player has to pay the rent
+            else if (property.Owner != this)
+            {
+                Pay(property.RentPrice, property.Owner);
+            }
+
         }
 
         public void StopOnEvent(EventSpace eventSpace)
