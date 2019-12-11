@@ -37,6 +37,51 @@ namespace TD6.Tests
         }
 
         [TestMethod()]
+        public void IsHouseBuildable_FalseWhenNotInMonopoly()
+        {
+            Board board = new Board();
+            Land landTest1 = new Land("id1", "Rue de la paix", Color.Green, 300, new int[] { 50, 100, 140, 250, 300, 450 }, 200, board);
+            board.Add(landTest1);
+            Land landTest2 = new Land("id2", "2e Rue de la paix", Color.Green, 300, new int[] { 50, 100, 140, 250, 300, 450 }, 200, board);
+            board.Add(landTest2);
+            Player p0 = new Player(0, "p0", 500);
+            landTest1.Owner = p0;
+
+            Assert.IsFalse(landTest1.IsHouseBuildable());
+        }
+
+        [TestMethod()]
+        public void IsHouseBuildable_TrueWhenInMonopolyAndNoHouses()
+        {
+            Board board = new Board();
+            Land landTest1 = new Land("id1", "Rue de la paix", Color.Green, 300, new int[] { 50, 100, 140, 250, 300, 450 }, 200, board);
+            board.Add(landTest1);
+            Land landTest2 = new Land("id2", "2e Rue de la paix", Color.Green, 300, new int[] { 50, 100, 140, 250, 300, 450 }, 200, board);
+            board.Add(landTest2);
+            Player p0 = new Player(0, "p0", 500);
+            landTest1.Owner = p0;
+            landTest2.Owner = p0;
+
+            Assert.IsTrue(landTest1.IsHouseBuildable() && landTest2.IsHouseBuildable());
+        }
+        [TestMethod()]
+        public void IsHouseBuildable_TrueWhenInMonopolyOnlyForLowestNumberOfHouses()
+        {
+            Board board = new Board();
+            Land landTest1 = new Land("id1", "Rue de la paix", Color.Green, 300, new int[] { 50, 100, 140, 250, 300, 450 }, 200, board);
+            board.Add(landTest1);
+            Land landTest2 = new Land("id2", "2e Rue de la paix", Color.Green, 300, new int[] { 50, 100, 140, 250, 300, 450 }, 200, board);
+            board.Add(landTest2);
+            Player p0 = new Player(0, "p0", 500);
+            landTest1.Owner = p0;
+            landTest2.Owner = p0;
+            landTest1.BuildHouse();
+
+            Assert.IsFalse(landTest1.IsHouseBuildable());
+            Assert.IsTrue(landTest2.IsHouseBuildable());
+        }
+
+        [TestMethod()]
         public void CanBeSoldTest_LandsWithoutHousesCanBeSold()
         {
             Land landTest = new Land("id", "Rue de la paix", Color.Green, 300, new int[] { 50, 100, 140, 250, 300, 450 }, 200);
