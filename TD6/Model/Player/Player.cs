@@ -172,7 +172,7 @@ namespace TD6
             {
                 if(money >= property.BuyPrice)
                 {
-                    if (View.GetPurchaseConfirmation(property))
+                    if (View.GetPurchaseConfirmation(property,property.BuyPrice))
                     {
                         Pay(property.BuyPrice, null);
                     }
