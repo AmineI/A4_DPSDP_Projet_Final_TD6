@@ -28,6 +28,6 @@ namespace TD6
 
         void Pause();
         void ClearView();
-        int GetEnteredInt(String message);
+        int GetEnteredInt(string message);
     }
 }
