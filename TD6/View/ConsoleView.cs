@@ -131,7 +131,7 @@ namespace TD6
             return UserInteraction.GetObjectChoice<T>(message, choicesList, choicesTitlesList);
         }
 
-        public int GetEnteredInt(string message)
+        public int GetEnteredInt(string message = null)
         {
             return Convert.ToInt32(UserInteraction.GetEnteredString(message));
         }
