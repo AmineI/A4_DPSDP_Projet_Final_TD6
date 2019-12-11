@@ -126,8 +126,6 @@ namespace TD6
                 GameBoard[currentPosition].AcceptWalking((ISpaceVisitor)this);
             }
             //Now that we walked the requested distance, 
-            View.DisplayBoard(GameBoard);
-            View.DisplayMessage($"You are stopping on : {GameBoard[CurrentPosition]}");
 
             //We stop on the space. If the space has an action occuring on stop, it will happen.
             GameBoard[currentPosition].AcceptStopping((ISpaceVisitor)this);
@@ -147,6 +145,10 @@ namespace TD6
                 GameBoard[0].AcceptWalking((ISpaceVisitor)this);
             }//Whereas the "Go to Jail" event don't
             currentPosition = destinationIndex;
+            
+            View.DisplayBoard(GameBoard);
+            View.DisplayMessage($"You are stopping on : {GameBoard[CurrentPosition]}");
+            
             //Then we stop on the destination Space
             GameBoard[currentPosition].AcceptStopping((ISpaceVisitor)this);
         }
