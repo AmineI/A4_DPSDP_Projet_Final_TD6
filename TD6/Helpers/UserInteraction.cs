@@ -137,7 +137,7 @@ namespace TD6
         }
 
         /// <summary>
-        /// Asks the user for a duplicate
+        /// Asks the user for a double
         /// </summary>
         /// <param name="message">Message to print to explain the context to the user.</param>
         /// <returns>double corresponding to the user input</returns>
