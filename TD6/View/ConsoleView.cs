@@ -130,5 +130,10 @@ namespace TD6
         {
             return UserInteraction.GetObjectChoice<T>(message, choicesList, choicesTitlesList);
         }
+
+        public int GetEnteredInt()
+        {
+            return Convert.ToInt32(UserInteraction.GetEnteredDouble());
+        }
     }
 }
