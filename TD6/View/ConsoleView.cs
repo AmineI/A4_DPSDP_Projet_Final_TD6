@@ -133,7 +133,7 @@ namespace TD6
 
         public int GetEnteredInt(string message = null)
         {
-            return Convert.ToInt32(UserInteraction.GetEnteredString(message));
+            return Convert.ToInt32(UserInteraction.GetEnteredDouble(message));
         }
     }
 }
