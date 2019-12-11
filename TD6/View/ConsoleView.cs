@@ -17,8 +17,7 @@ namespace TD6
         /// <returns> A boolean representing the response of the player</returns>
         public bool GetPurchaseConfirmation(Property propertyToBuy, int PriceToBuyFor, IPlayer playerToBuyFrom)
         {
-            return UserInteraction.GetConfirmation("Do you want to buy " + propertyToBuy.ToString()
-                + " for " + PriceToBuyFor + "$ ?");
+            return UserInteraction.GetConfirmation($"Do you want to buy {propertyToBuy} for {PriceToBuyFor}$ ?" );
         }
 
         /// <summary>
@@ -28,8 +27,7 @@ namespace TD6
         /// <returns> A boolean representing the response of the player</returns>
         public bool GetSaleConfirmation(Property propertyToSell, int priceToSellFor, IPlayer playerToSellTo)
         {
-            return UserInteraction.GetConfirmation("Do you want to sell " + propertyToSell.ToString() + " for " + 
-                + priceToSellFor + "$ to " + playerToSellTo.PlayerName + " ?");
+            return UserInteraction.GetConfirmation($"Do you want to sell {propertyToSell} for {priceToSellFor}$ to {playerToSellTo} ?");
         }
 
         /// <summary>
@@ -39,7 +37,7 @@ namespace TD6
         /// <returns> A boolean representing the response of the player</returns>
         public bool GetBuildHouseHereConfirmation(Land land)
         {
-            return UserInteraction.GetConfirmation("Do you want to build a house on " + land.Name + " for " + land.HousePrice + "$ ?");
+            return UserInteraction.GetConfirmation($"Do you want to build a house on {land} for {land.HousePrice}$ ?");
         }
 
         /// <summary>
@@ -91,9 +89,9 @@ namespace TD6
 
         public void DisplayEndGame(IPlayer player)
         {
-            Console.WriteLine("Well done, the game is over.");
-            Console.WriteLine("You finished this game with " + player.Money + " $.");
-            Console.WriteLine("You had " + player.OwnedProperties.Count + " properties.");
+            Console.WriteLine("Well done, the game is over.\n" +
+                "You finished this game with " + player.Money + " $.\n" +
+                "You had " + player.OwnedProperties.Count + " properties.");
         }
 
         /// <summary>
