@@ -125,5 +125,10 @@ namespace TD6
             //TODO
             throw new NotImplementedException();
         }
+
+        public T GetObjectChoice<T>(string message, IList<T> choicesList, IList<string> choicesTitlesList = null)
+        {
+            return UserInteraction.GetObjectChoice<T>(message, choicesList, choicesTitlesList);
+        }
     }
 }
