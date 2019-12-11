@@ -50,7 +50,9 @@ namespace TD6
         }
         public IBoardBuilder BuildGoSpace()
         {
-            builtBoard.Add(spaceFactory.CreateGoSpace(builtBoard));
+            IVisitableSpace goSpace = spaceFactory.CreateGoSpace(builtBoard);
+            builtBoard.Add(goSpace);
+            builtBoard.GoSpace = goSpace;
             return this;
         }
         public IBoardBuilder BuildBrownSection()
@@ -81,7 +83,9 @@ namespace TD6
         public IBoardBuilder BuildJail()
         {
 
-            builtBoard.Add(spaceFactory.CreateJailSpace(builtBoard));
+            IVisitableSpace jailSpace = spaceFactory.CreateJailSpace(builtBoard);
+            builtBoard.Add(jailSpace);
+            builtBoard.JailSpace = jailSpace;
             return this;
         }
 
