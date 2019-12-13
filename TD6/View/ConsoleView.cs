@@ -124,9 +124,9 @@ namespace TD6
             for (int line = 0; line < 40; line++)
             {
                 ConsoleColor consoleColor = ColorConverter(game.Board[line].Color);
-                Console.BackgroundColor = consoleColor;
+                Console.ForegroundColor = consoleColor;
                 Console.Write(line);
-                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.White;
                 if (line != 39)
                 {
                     Console.Write("   |");
