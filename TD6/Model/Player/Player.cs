@@ -146,7 +146,7 @@ namespace TD6
             }//Whereas the "Go to Jail" event don't
             currentPosition = destinationIndex;
             
-            View.DisplayBoard(GameBoard);
+            View.DisplayBoard(gameInstance);
             View.DisplayMessage($"You are stopping on : {GameBoard[CurrentPosition]}");
             
             //Then we stop on the destination Space

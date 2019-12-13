@@ -118,9 +118,14 @@ namespace TD6
             Console.ReadKey();
         }
 
-        public void DisplayBoard(IBoard board)
+        public void DisplayBoard(IGame game)
         {
             //TODO
+            for (int line =0; line <40; line++)
+            {
+                Console.WriteLine();
+                Console.Write(line + "   |");
+            }
             throw new NotImplementedException();
         }
 
