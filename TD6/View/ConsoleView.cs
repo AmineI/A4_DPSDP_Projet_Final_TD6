@@ -174,15 +174,15 @@ namespace TD6
                 List<IPlayer> playersOnThisSpace = game.Players.FindAll(player => player.CurrentPosition == line);
                 if (playersOnThisSpace.Count > 4)
                 {
-                    playersOnThisSpace.RemoveRange(0, 4);
-                }
-                foreach (IPlayer player in playersOnThisSpace)
-                {
-                    cmpt++;
-                    Console.Write(player.DisplayCharacter);
-                    if (cmpt == 4)
+                    playersOnThisSpace.RemoveRange(0,4);
+                    foreach (IPlayer player in playersOnThisSpace)
                     {
-                        break;
+                        cmpt++;
+                        Console.Write(player.DisplayCharacter);
+                        if (cmpt == 4)
+                        {
+                            break;
+                        }
                     }
                 }
                 while (cmpt != 4)
