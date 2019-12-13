@@ -126,6 +126,7 @@ namespace TD6
                 GameBoard[currentPosition].AcceptWalking((ISpaceVisitor)this);
             }
             //Now that we walked the requested distance, 
+
             //We stop on the space. If the space has an action occuring on stop, it will happen.
             GameBoard[currentPosition].AcceptStopping((ISpaceVisitor)this);
         }
@@ -144,6 +145,10 @@ namespace TD6
                 GameBoard[0].AcceptWalking((ISpaceVisitor)this);
             }//Whereas the "Go to Jail" event don't
             currentPosition = destinationIndex;
+            
+            View.DisplayBoard(GameBoard);
+            View.DisplayMessage($"You are stopping on : {GameBoard[CurrentPosition]}");
+            
             //Then we stop on the destination Space
             GameBoard[currentPosition].AcceptStopping((ISpaceVisitor)this);
         }
@@ -167,7 +172,7 @@ namespace TD6
             {
                 if(money >= property.BuyPrice)
                 {
-                    if (View.GetPurchaseConfirmation(property))
+                    if (View.GetPurchaseConfirmation(property,property.BuyPrice))
                     {
                         Pay(property.BuyPrice, null);
                     }
@@ -191,6 +196,30 @@ namespace TD6
             eventSpace.OnStopAction((IPlayer)this);
         }
 
+        void SellPropertyInterface()
+        {
+            Property propertyToSell = View.GetObjectChoice<Property>("Choose a property to sell", OwnedProperties);
+            IPlayer playerToSellTo = View.GetObjectChoice<IPlayer>("Choose a player to sell to", gameInstance.Players);
+            int priceToSellFor = View.GetEnteredInt();
+            if (View.GetSaleConfirmation(propertyToSell, priceToSellFor, playerToSellTo))
+            {
+                if (playerToSellTo.Money >= priceToSellFor && playerToSellTo.View.GetPurchaseConfirmation(propertyToSell, priceToSellFor, (IPlayer)this))
+                {
+                    playerToSellTo.Pay(priceToSellFor, (IPlayer)this);
+                    propertyToSell.Owner = playerToSellTo;
+                }
+            }
+
+        }
+
+        void BuildHouseInterface()
+        {
+            Land land = View.ChooseLandToBuildOn(this);
+            if (View.GetBuildHouseHereConfirmation(land))
+            {
+                land.BuildHouse();
+            }
+        }
 
         /// <summary>
         /// Function for a player turn, launch dice, move(DiceValue)
@@ -200,11 +229,16 @@ namespace TD6
             Replay = false;
             // We launch the dices with a function 
             RollDices();
+            View.DisplayMessage($"You rolled a {DicesValue}\n");
+            View.Pause();
             if (IsDiceDouble)
             {
                 doubleCount++;
+                View.DisplayMessage($"It's a double ! You made {doubleCount} doubles in a row !");
+
                 if (doubleCount == 3)
                 {
+                    View.DisplayMessage("That means you are going straight to jail !");
                     doubleCount = 0;
                     GoToJail();
                     return;
@@ -213,8 +247,17 @@ namespace TD6
             }
             Move(DicesValue);
 
+            Action End = () => { };
+            Action choosedAction = End;
             //do player actions : build house etc
 
+            do
+            {
+                choosedAction = View.GetObjectChoice<Action>("\nWhat do you want to do ?",
+                                   new[] { BuildHouseInterface, SellPropertyInterface, End },
+                                   new[] { "Build a House", "Sell a property", "End the turn" });
+                choosedAction();
+            } while (choosedAction != End);
         }
 
     }

@@ -79,16 +79,20 @@ namespace TD6
         /// </summary>
         public void PlayTurn()
         {
+            turnInJail++;
+            View.DisplayMessage($"Let's see if you will roll a double and escape. You were in jail for {turnInJail} turns");
             RollDices();
             //if we get a double or if we are in jail for the 3rd turn we get out of jail and move 
-            if (IsDiceDouble || turnInJail >= 2)
+
+            if (IsDiceDouble || turnInJail >= 3)
             {
+                View.DisplayMessage($"You are going out of jail ! You rolled a {DicesValue}");
                 GetOutOfJail();
                 player.Move(DicesValue);
             }
             else
             {
-                turnInJail++;
+                View.DisplayMessage("Sorry, you didn't get a double.");
             }
         }
 
