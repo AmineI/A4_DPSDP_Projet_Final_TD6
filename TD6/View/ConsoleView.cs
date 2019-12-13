@@ -12,6 +12,7 @@ namespace TD6
         {
             Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
             Console.SetWindowPosition(0, 0);//TODO : Does not work 
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
         }
 
         /// <summary>
