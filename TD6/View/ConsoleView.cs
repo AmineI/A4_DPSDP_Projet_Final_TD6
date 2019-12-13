@@ -192,6 +192,7 @@ namespace TD6
                     Console.Write("|");
                 }
             }
+            Console.WriteLine();
         }
 
         private ConsoleColor ColorConverter(Color colorToConvert)
