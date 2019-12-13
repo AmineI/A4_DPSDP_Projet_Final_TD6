@@ -169,7 +169,7 @@ namespace TD6
             builtBoard.Add(spaceFactory.CreateChanceSpace(builtBoard, "BLUE_1"));
             builtBoard.Add(spaceFactory.CreateProperty(builtBoard, "BLUE_2", "Park Lane"));
             builtBoard.Add(spaceFactory.CreateLuxuryTax(builtBoard, "BLUE_3"));
-            builtBoard.Add(spaceFactory.CreateProperty(builtBoard, "BLUE_4", "Coventry Street"));
+            builtBoard.Add(spaceFactory.CreateProperty(builtBoard, "BLUE_4", "Mayfair"));
             return this;
         }
 
