@@ -16,6 +16,8 @@ namespace TD6
         public override int RentPrice { get => Owner == null ? 0 : rentPrices[GetNumberOfOwnedRailroads(this.Owner, this.board) - 1]; }
         //0 if the owner is null, otherwise we get the actual rent price.
 
+        public override Color Color => Color.Gray;
+
         // A railroad can always be sold
         public override bool CanBeSold { get => true; }
 
