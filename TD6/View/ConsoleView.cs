@@ -137,11 +137,11 @@ namespace TD6
                 Console.ForegroundColor = ConsoleColor.White;
                 if (line < 10)
                 {
-                    Console.Write("   |");
+                    Console.Write("  |");
                 }
                 else if (line != 39)
                 {
-                    Console.Write("  |");
+                    Console.Write(" |");
                 }
             }
             int cmpt = 0;
@@ -153,12 +153,12 @@ namespace TD6
                 {
                     cmpt++;
                     Console.Write(player.DisplayCharacter);
-                    if (cmpt == 4)
+                    if (cmpt == 3)
                     {
                         break;
                     }
                 }
-                while (cmpt != 4)
+                while (cmpt != 3)
                 {
                     Console.Write(" ");
                     cmpt++;
@@ -173,20 +173,20 @@ namespace TD6
             for (int line = 0; line < 40; line++)
             {
                 List<IPlayer> playersOnThisSpace = game.Players.FindAll(player => player.CurrentPosition == line);
-                if (playersOnThisSpace.Count > 4)
+                if (playersOnThisSpace.Count > 3)
                 {
-                    playersOnThisSpace.RemoveRange(0,4);
+                    playersOnThisSpace.RemoveRange(0,3);
                     foreach (IPlayer player in playersOnThisSpace)
                     {
                         cmpt++;
                         Console.Write(player.DisplayCharacter);
-                        if (cmpt == 4)
+                        if (cmpt == 3)
                         {
                             break;
                         }
                     }
                 }
-                while (cmpt != 4)
+                while (cmpt != 3)
                 {
                     Console.Write(" ");
                     cmpt++;
