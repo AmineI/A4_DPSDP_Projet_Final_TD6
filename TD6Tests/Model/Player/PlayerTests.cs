@@ -1,12 +1,62 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TD6;
 using System;
+using TD6.Fakes;
 
 namespace TD6.Tests
 {
     [TestClass()]
     public class PlayerTests
     {
+
+        /// <summary>
+        /// Creates a stub board board with 40 spaces : a Go Space giving 200 $ to any player walking on it, and 39 other spaces that are empty and do nothing.
+        /// </summary>
+        /// <returns></returns>
+        private static StubIBoard CreateStubBoardWithOnlyGoSpaceGiving200OnWalk()
+        {
+            IVisitableSpace goSpace = new EventSpace("GO_SPACE", "Go", onStopAction: null, onWalkAction: (player) => player.Earn(200));
+            IVisitableSpace blankSpace = new EventSpace("BLANK", "Blank", null);
+
+            var stubBoard = new Fakes.StubIBoard()
+            {
+                ItemGetInt32 = (key) =>//Any space besides 0 is a blank useless space.
+                {
+                    if (key >= 40 || key < 0) { throw new ArgumentOutOfRangeException(); }
+                    if (key == 0)
+                    {
+                        return goSpace;
+                    }
+                    else
+                    {
+                        return blankSpace;
+                    }
+                },
+                GoSpaceGet = () => goSpace,
+                CountGet = () => 40,//The Count will always return 40
+                IndexOfSpaceIVisitableSpace = (space) =>
+                {
+                    if (space == goSpace) { return 0; }
+                    else { return 1; };
+                }
+            };
+
+            return stubBoard;
+        }
+
+        /// <summary>
+        /// Creates a stub view that does not wait for user input or pause.
+        /// </summary>
+        /// <returns></returns>
+        private static StubIView CreateStubViewSkippingUserInputAndPauses()
+        {
+            //Create a stub view so that it is not waiting for a user input or pausing, since we are in a test.
+            var stubView = new Fakes.StubIView()
+            {
+                Pause = () => { }//Pause does nothing now. 
+            };
+            return stubView;
+        }
 
         /// <summary>
         /// Tests the constructor of a player
@@ -69,34 +119,82 @@ namespace TD6.Tests
         [TestMethod()]
         public void MoveTest_DestinationReachedWithoutPassingGo()
         {
-            //TODO : Verifier si le joueur est bien arrivé sur la case de destination, dans le cas d'un déplacement ou la case départ n'est pas dépassée
+            StubIBoard stubBoard = CreateStubBoardWithOnlyGoSpaceGiving200OnWalk();
+            Game.Instance.InitializeBoard(stubBoard);
+
+            StubIView stubView = CreateStubViewSkippingUserInputAndPauses();
+            Game.Instance.View = stubView;
+
+
+            Player p0 = new Player(0, "P0", 1500, 'x', Game.Instance);
+            Assert.AreEqual(0, p0.CurrentPosition);
+
+            p0.Move(5);
+
+            Assert.AreEqual(5, p0.CurrentPosition);
+            Assert.AreEqual(1500, p0.Money);
         }
-        [TestMethod()]
-        public void MoveTest_WithoutPassingGo()
-        {
-            //TODO : Verifier si le joueur est bien arrivé sur la case de destination, dans le cas d'un déplacement ou la case départ n'est pas dépassée
-        }
+
         [TestMethod()]
         public void MoveTest_DestinationReachedWhilePassingGo()
         {
-            //TODO : Verifier si le joueur est bien arrivé sur la case de destination, dans la cas d'un déplacement passant par la case départ.
-            //Verifier également si le joueur a gagné l'argent du passage par la case départ.
+            StubIBoard stubBoard = CreateStubBoardWithOnlyGoSpaceGiving200OnWalk();
+            Game.Instance.InitializeBoard(stubBoard);
+
+            StubIView stubView = CreateStubViewSkippingUserInputAndPauses();
+            Game.Instance.View = stubView;
+
+
+            Player p0 = new Player(0, "P0", 1500, 'x', Game.Instance);
+            Assert.AreEqual(0, p0.CurrentPosition);
+
+            p0.Move(Game.Instance.Board.Count + 5);
+
+            Assert.AreEqual(5, p0.CurrentPosition);
+            Assert.AreEqual(1700, p0.Money);
         }
 
         [TestMethod()]
         public void TeleportTest_WithoutPassingGo()
         {
-            //TODO : Verifier si le joueur est bien arrivé sur la case de destination, dans le cas d'un déplacement ou la case départ n'est pas dépassée
+            StubIBoard stubBoard = CreateStubBoardWithOnlyGoSpaceGiving200OnWalk();
+            Game.Instance.InitializeBoard(stubBoard);
+
+            StubIView stubView = CreateStubViewSkippingUserInputAndPauses();
+            Game.Instance.View = stubView;
+
+
+            Player p0 = new Player(0, "P0", 1500, 'x', Game.Instance);
+            Assert.AreEqual(0, p0.CurrentPosition);
+
+            p0.Move(5);
+            Assert.AreEqual(5, p0.CurrentPosition);
+
+            p0.Teleport(stubBoard.GoSpaceGet(), false);
+
+            Assert.AreEqual(0, p0.CurrentPosition);
+            Assert.AreEqual(1500, p0.Money);
         }
         [TestMethod()]
         public void TeleportTest_PassingGo()
         {
-            //TODO : Verifier si le joueur est bien arrivé sur la case de destination, dans la cas d'un déplacement passant par la case départ.
-            //Verifier également si le joueur a gagné l'argent du passage par la case départ.
+            StubIBoard stubBoard = CreateStubBoardWithOnlyGoSpaceGiving200OnWalk();
+            Game.Instance.InitializeBoard(stubBoard);
 
-            //TODO : Verifier si le joueur est bien arrivé sur la case de destination, dans la cas d'un déplacement faisant le tour du plateau mais sans passer par la case départ ( cf argument)
-            //Verifier également si le joueur a gagné l'argent du passage par la case départ.
+            StubIView stubView = CreateStubViewSkippingUserInputAndPauses();
+            Game.Instance.View = stubView;
 
+
+            Player p0 = new Player(0, "P0", 1500, 'x', Game.Instance);
+            Assert.AreEqual(0, p0.CurrentPosition);
+
+            p0.Move(5);
+            Assert.AreEqual(5, p0.CurrentPosition);
+
+            p0.Teleport(stubBoard.GoSpaceGet(), true);
+
+            Assert.AreEqual(0, p0.CurrentPosition);
+            Assert.AreEqual(1700, p0.Money);
         }
 
         /// <summary>
