@@ -127,9 +127,13 @@ namespace TD6
                 Console.ForegroundColor = consoleColor;
                 Console.Write(line);
                 Console.ForegroundColor = ConsoleColor.White;
-                if (line != 39)
+                if (line < 10)
                 {
                     Console.Write("   |");
+                }
+                else if (line != 39)
+                {
+                    Console.Write("  |");
                 }
             }
             int cmpt = 0;
