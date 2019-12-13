@@ -8,7 +8,11 @@ namespace TD6
 {
     public class ConsoleView : IView
     {
-        protected IBoard board;
+        public ConsoleView()
+        {
+            Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
+            Console.SetWindowPosition(0, 0);//TODO : Does not work 
+        }
 
         /// <summary>
         /// Ask the player if he wants to buy the property
