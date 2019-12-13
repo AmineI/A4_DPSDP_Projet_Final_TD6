@@ -11,6 +11,8 @@ namespace TD6
         string Id { get; }
         string Name { get; }
 
+        Color Color { get; }
+
         /// <summary>
         /// Accept a visitor that is walking on the space but not necessarily stopping on it, and act according to the type of space visited (by calling the visitor's WalkOn[TheSpaceType] method.).
         /// </summary>

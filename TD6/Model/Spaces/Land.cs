@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace TD6
 {
-    public enum Color { Brown, Cyan, Purple, Orange, Red, Yellow, Green, Blue };
+    public enum Color { White, Brown, Cyan, Purple, Orange, Red, Yellow, Green, Blue };
 
     public class Land : Property
     {
-        private Color color;
-        public Color Color { get => color; }
+        public override Color Color { get; }
         private int numberOfHouses = 0;
         public int NumberOfHouses { get => numberOfHouses; }
 
@@ -21,7 +20,7 @@ namespace TD6
         public Land(string id, string name, Color color, int buyPrice, int[] rentPrices, int housePrice, IBoard board = null) : base(id, name, buyPrice, rentPrices, board)
         {
             this.HousePrice = housePrice;
-            this.color = color;
+            this.Color = color;
         }
 
         public override int RentPrice

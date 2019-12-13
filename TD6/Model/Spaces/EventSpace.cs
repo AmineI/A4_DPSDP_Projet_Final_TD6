@@ -27,6 +27,7 @@ namespace TD6
         protected Action<IPlayer> onWalkAction = null;
         public Action<IPlayer> OnWalkAction { get => onWalkAction ?? NoAction; }
 
+        public Color Color { get => Color.White; }
 
         public EventSpace(string id, string name, Action<IPlayer> onStopAction, IBoard board = null) : base(id, name, board)
         {
