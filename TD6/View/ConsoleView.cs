@@ -56,7 +56,6 @@ namespace TD6
         /// <returns> The land where the player wants to build his house </returns>
         public Land ChooseLandToBuildOn(IPlayer player)
         {
-
             return UserInteraction.GetObjectChoice<Land>("Where do you want to build your house ?", player.BuildableOwnedLands);
         }
 
@@ -75,7 +74,11 @@ namespace TD6
         /// <param name="player"></param>
         public void DisplayProperties(IPlayer player)
         {
-            UserInteraction.DisplayObjectList<Property>("Here is the list of your properties :", player.OwnedProperties);
+            List<Property> properties = player.OwnedProperties;
+            if (properties != null)
+            {
+                UserInteraction.DisplayObjectList<Property>("Here is the list of your properties :", player.OwnedProperties);
+            }
         }
 
         /// <summary>
@@ -145,7 +148,7 @@ namespace TD6
                 {
                     cmpt++;
                     Console.Write(player.DisplayCharacter);
-                    if (cmpt ==4)
+                    if (cmpt == 4)
                     {
                         break;
                     }
@@ -156,7 +159,7 @@ namespace TD6
                     cmpt++;
                 }
                 cmpt = 0;
-                if (line !=39)
+                if (line != 39)
                 {
                     Console.Write("|");
                 }
@@ -165,9 +168,9 @@ namespace TD6
             for (int line = 0; line < 40; line++)
             {
                 List<IPlayer> playersOnThisSpace = game.Players.FindAll(player => player.CurrentPosition == line);
-                if (playersOnThisSpace.Count >4)
+                if (playersOnThisSpace.Count > 4)
                 {
-                    playersOnThisSpace.RemoveRange(0,4);
+                    playersOnThisSpace.RemoveRange(0, 4);
                 }
                 foreach (IPlayer player in playersOnThisSpace)
                 {
@@ -196,6 +199,9 @@ namespace TD6
             ConsoleColor consoleColor;
             switch (colorToConvert)
             {
+                case Color.Gray:
+                    consoleColor = ConsoleColor.Gray;
+                    break;
                 case Color.Blue:
                     consoleColor = ConsoleColor.Blue;
                     break;

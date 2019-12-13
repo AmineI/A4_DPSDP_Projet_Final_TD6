@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TD6
 {
-    public enum Color { White, Brown, Cyan, Purple, Orange, Red, Yellow, Green, Blue };
+    public enum Color { White, Gray, Brown, Cyan, Purple, Orange, Red, Yellow, Green, Blue };
 
     public class Land : Property
     {
