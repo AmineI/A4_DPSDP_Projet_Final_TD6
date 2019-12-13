@@ -99,17 +99,17 @@ namespace TD6
 
         public IVisitableSpace CreateGoSpace(IBoard board, string id = Constants.GO_SPACE_ID)
         {
-            return new EventSpace(id, "Go", onStopAction: null, onWalkAction: PassGo, board);
+            return new EventSpace(id, "Go", onStopAction: null, onWalkAction: PassGo, board: board);
         }
 
         public IVisitableSpace CreateJailSpace(IBoard board, string id = Constants.JAIL_SPACE_ID)
         {
-            return new EventSpace(id, "Jail (visit only)", onStopAction: PassJail, onWalkAction: PassJail, board);
+            return new EventSpace(id, "Jail (visit only)", onStopAction: PassJail, onWalkAction: PassJail, board: board);
         }
 
         public IVisitableSpace CreateGoToJailSpace(IBoard board, string id = Constants.GO_TO_JAIL_SPACE_ID)
         {
-            return new EventSpace(id, "Go To Jail", onStopAction: GoToJail, board);
+            return new EventSpace(id, "Go To Jail", onStopAction: GoToJail, board: board);
         }
         public IVisitableSpace CreateIncomeTax(IBoard board, string id)
         {
@@ -123,20 +123,20 @@ namespace TD6
         public IVisitableSpace CreateParkingSpace(IBoard board, string id = "PARKING")
         {
             //TODO If time remains. For now, a parking space does nothing
-            return new EventSpace(id, "Parking (Not Implemented)", onStopAction: null, board);
+            return new EventSpace(id, "Parking (Not Implemented)", onStopAction: null, board: board);
         }
 
         public IVisitableSpace CreateCommunityChest(IBoard board, string id)
         {
             //TODO if time remains. For now, a community chest does nothing.
-            return new EventSpace(id, "Community Chest (Not Implemented)", onStopAction: null, board);
+            return new EventSpace(id, "Community Chest (Not Implemented)", onStopAction: null, board: board);
         }
 
 
         public IVisitableSpace CreateChanceSpace(IBoard board, string id)
         {
             //TODO if time remains. For now, a chance space does nothing.
-            return new EventSpace(id, "Chance space (Not Implemented)", onStopAction: null, board);
+            return new EventSpace(id, "Chance space (Not Implemented)", onStopAction: null, board: board);
         }
 
     }
