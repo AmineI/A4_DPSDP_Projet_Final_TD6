@@ -184,6 +184,7 @@ namespace TD6
                     if (View.GetPurchaseConfirmation(property, property.BuyPrice))
                     {
                         Pay(property.BuyPrice, null);
+                        property.Owner = this;
                     }
                 }
                 else
