@@ -168,14 +168,14 @@ namespace TD6
                 if (playersOnThisSpace.Count >4)
                 {
                     playersOnThisSpace.RemoveRange(0,4);
-                }
-                foreach (IPlayer player in playersOnThisSpace)
-                {
-                    cmpt++;
-                    Console.Write(player.DisplayCharacter);
-                    if (cmpt == 4)
+                    foreach (IPlayer player in playersOnThisSpace)
                     {
-                        break;
+                        cmpt++;
+                        Console.Write(player.DisplayCharacter);
+                        if (cmpt == 4)
+                        {
+                            break;
+                        }
                     }
                 }
                 while (cmpt != 4)
@@ -189,6 +189,7 @@ namespace TD6
                     Console.Write("|");
                 }
             }
+            Console.WriteLine();
         }
 
         private ConsoleColor ColorConverter(Color colorToConvert)
