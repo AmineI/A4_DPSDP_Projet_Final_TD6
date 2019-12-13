@@ -17,7 +17,7 @@ namespace TD6
         /// <returns> A boolean representing the response of the player</returns>
         public bool GetPurchaseConfirmation(Property propertyToBuy, int PriceToBuyFor, IPlayer playerToBuyFrom)
         {
-            return UserInteraction.GetConfirmation($"Do you want to buy {propertyToBuy} for {PriceToBuyFor}$ ?" );
+            return UserInteraction.GetConfirmation($"Do you want to buy {propertyToBuy} for {PriceToBuyFor}$ ?");
         }
 
         /// <summary>
@@ -121,12 +121,48 @@ namespace TD6
         public void DisplayBoard(IGame game)
         {
             //TODO
-            for (int line =0; line <40; line++)
+            for (int line = 0; line < 40; line++)
             {
                 Console.WriteLine();
                 Console.Write(line + "   |");
             }
             throw new NotImplementedException();
+        }
+
+        private ConsoleColor ColorConverter(Color colorToConvert)
+        {
+            ConsoleColor consoleColor;
+            switch (colorToConvert)
+            {
+                case Color.Blue:
+                    consoleColor = ConsoleColor.Blue;
+                    break;
+                case Color.Brown:
+                    consoleColor = ConsoleColor.DarkRed;
+                    break;
+                case Color.Cyan:
+                    consoleColor = ConsoleColor.Cyan;
+                    break;
+                case Color.Green:
+                    consoleColor = ConsoleColor.Green;
+                    break;
+                case Color.Orange:
+                    consoleColor = ConsoleColor.DarkYellow;
+                    break;
+                case Color.Purple:
+                    consoleColor = ConsoleColor.Magenta;
+                    break;
+                case Color.Red:
+                    consoleColor = ConsoleColor.Red;
+                    break;
+                case Color.Yellow:
+                    consoleColor = ConsoleColor.Yellow;
+                    break;
+                default:
+                    consoleColor = ConsoleColor.White;
+                    break;
+            }
+            return consoleColor;
         }
 
         public T GetObjectChoice<T>(string message, IList<T> choicesList, IList<string> choicesTitlesList = null)
