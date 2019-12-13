@@ -185,6 +185,7 @@ namespace TD6
                     {
                         Pay(property.BuyPrice, null);
                         property.Owner = this;
+                        View.DisplayMessage(ToString());
                     }
                 }
                 else
@@ -196,6 +197,8 @@ namespace TD6
             else if (property.Owner != this)
             {
                 Pay(property.RentPrice, property.Owner);
+                View.DisplayMessage(ToString());
+                View.DisplayMessage(property.Owner.ToString());
             }
 
         }
