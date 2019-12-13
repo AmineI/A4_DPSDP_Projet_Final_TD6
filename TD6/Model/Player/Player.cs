@@ -268,7 +268,10 @@ namespace TD6
                 choosedAction();
             } while (choosedAction != End);
         }
-
+        public override string ToString()
+        {
+            return $"{PlayerName},{Money}";
+        }
     }
 
 

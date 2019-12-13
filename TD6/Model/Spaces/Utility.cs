@@ -70,5 +70,16 @@ namespace TD6
             base.AcceptStopping(visitor);
         }
 
+        public override string ToString()
+        {
+            if (Owner == null)
+            {
+                return $"{Name},nobody owns this utility, the buy price is {BuyPrice}";
+            }
+            else
+            {
+                return $"{Name},his owner is {Owner},the rent price is {RentPrice}";
+            }
+        }
     }
 }
