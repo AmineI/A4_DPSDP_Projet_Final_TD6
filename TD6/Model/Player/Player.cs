@@ -122,12 +122,18 @@ namespace TD6
                     currentPosition += GameBoard.Count;
                 }
 
+                View.ClearView();
+                View.DisplayBoard(gameInstance);
                 //We "visit" the space we just landed on. If the space has an action occuring on walk, it will happen.
                 GameBoard[currentPosition].AcceptWalking((ISpaceVisitor)this);
             }
-            //Now that we walked the requested distance, 
+            //Now that we walked the requested distance,   
+            View.Pause();
+            View.ClearView();
 
+            View.DisplayBoard(gameInstance);
             //We stop on the space. If the space has an action occuring on stop, it will happen.
+            View.DisplayMessage($"You are stopping on {GameBoard[CurrentPosition]}");
             GameBoard[currentPosition].AcceptStopping((ISpaceVisitor)this);
         }
 
@@ -145,10 +151,12 @@ namespace TD6
                 GameBoard[0].AcceptWalking((ISpaceVisitor)this);
             }//Whereas the "Go to Jail" event don't
             currentPosition = destinationIndex;
-            
+
+            View.ClearView();
+
             View.DisplayBoard(gameInstance);
             View.DisplayMessage($"You are stopping on : {GameBoard[CurrentPosition]}");
-            
+
             //Then we stop on the destination Space
             GameBoard[currentPosition].AcceptStopping((ISpaceVisitor)this);
         }
@@ -163,16 +171,17 @@ namespace TD6
         {
             //We call the walk action delegate of this event space.
             eventSpace.OnWalkAction((IPlayer)this);
+            View.Pause();
         }
 
         public void StopOnProperty(Property property)
         {
             //If there is no owner, we ask the current player if he wants to buy the property
-            if(property.Owner == null )
+            if (property.Owner == null)
             {
-                if(money >= property.BuyPrice)
+                if (money >= property.BuyPrice)
                 {
-                    if (View.GetPurchaseConfirmation(property,property.BuyPrice))
+                    if (View.GetPurchaseConfirmation(property, property.BuyPrice))
                     {
                         Pay(property.BuyPrice, null);
                     }
