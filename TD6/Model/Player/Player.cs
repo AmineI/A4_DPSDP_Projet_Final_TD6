@@ -171,7 +171,7 @@ namespace TD6
         {
             //We call the walk action delegate of this event space.
             eventSpace.OnWalkAction((IPlayer)this);
-            View.Pause();
+            
         }
 
         public void StopOnProperty(Property property)
