@@ -120,13 +120,71 @@ namespace TD6
 
         public void DisplayBoard(IGame game)
         {
-            //TODO
+            Console.WriteLine();
             for (int line = 0; line < 40; line++)
             {
-                Console.WriteLine();
-                Console.Write(line + "   |");
+                ConsoleColor consoleColor = ColorConverter(game.Board[line].Color);
+                Console.BackgroundColor = consoleColor;
+                Console.Write(line);
+                Console.BackgroundColor = ConsoleColor.White;
+                if (line != 39)
+                {
+                    Console.Write("   |");
+                }
             }
-            throw new NotImplementedException();
+            int cmpt = 0;
+            Console.WriteLine();
+            for (int line = 0; line < 40; line++)
+            {
+                List<IPlayer> playersOnThisSpace = game.Players.FindAll(player => player.CurrentPosition == line);
+                foreach (IPlayer player in playersOnThisSpace)
+                {
+                    cmpt++;
+                    Console.Write(player.DisplayCharacter);
+                    if (cmpt ==4)
+                    {
+                        break;
+                    }
+                }
+                while (cmpt != 4)
+                {
+                    Console.Write(" ");
+                    cmpt++;
+                }
+                cmpt = 0;
+                if (line !=39)
+                {
+                    Console.Write("|");
+                }
+            }
+            Console.WriteLine();
+            for (int line = 0; line < 40; line++)
+            {
+                List<IPlayer> playersOnThisSpace = game.Players.FindAll(player => player.CurrentPosition == line);
+                if (playersOnThisSpace.Count >4)
+                {
+                    playersOnThisSpace.RemoveRange(0,4);
+                }
+                foreach (IPlayer player in playersOnThisSpace)
+                {
+                    cmpt++;
+                    Console.Write(player.DisplayCharacter);
+                    if (cmpt == 4)
+                    {
+                        break;
+                    }
+                }
+                while (cmpt != 4)
+                {
+                    Console.Write(" ");
+                    cmpt++;
+                }
+                cmpt = 0;
+                if (line != 39)
+                {
+                    Console.Write("|");
+                }
+            }
         }
 
         private ConsoleColor ColorConverter(Color colorToConvert)
