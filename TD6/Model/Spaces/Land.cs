@@ -35,7 +35,7 @@ namespace TD6
         /// <summary>
         /// A boolean indicating if this land is in a monopoly (ie all lands of that color group are owned by the same player) or not
         /// </summary>
-        public bool IsInMonopoly { get => IsColorMonopolized(this.color, this.board); }
+        public bool IsInMonopoly { get => IsColorMonopolized(this.Color, this.board); }
 
         /// <summary>
         /// This function gives the rent of the land based on the number of houses and land owned by the land owner.
@@ -89,7 +89,7 @@ namespace TD6
             //The maximum number of houses on this land is 5, with 5 being a hostel. 
             if (this.NumberOfHouses >= 5) { return false; }//In this case we immediately return, no need to check all the lands of the color group.
 
-            List<Land> sameColorLands = board.FindAllSpaces<Land>(land => land.Color == color);
+            List<Land> sameColorLands = board.FindAllSpaces<Land>(land => land.Color == this.Color);
 
             return sameColorLands.All<Land>(land => land.Owner == this.Owner //All lands in the color group have to be owned by the same player
                                              && land.NumberOfHouses >= this.NumberOfHouses);//And all lands in the color group must have more houses than this land.
