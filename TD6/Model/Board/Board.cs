@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TD6
 {
-    public class Board : IBoard
+    public class Board : IBoard, IReadOnlyList<IVisitableSpace>
     {
         private List<IVisitableSpace> boardSpaces;
         public int Count { get => boardSpaces.Count; }
@@ -14,9 +15,9 @@ namespace TD6
         public IVisitableSpace GoSpace { get; set; }
         public IVisitableSpace JailSpace { get; set; }
 
-        public IVisitableSpace this[int key]
+        public IVisitableSpace this[int index]
         {
-            get => boardSpaces[key];
+            get => boardSpaces[index];
         }
 
         //TODO : Si on ajoute la cagnotte au centre, la stocker sur le plateau
@@ -67,5 +68,14 @@ namespace TD6
                               .FindAll(match);//And find the elements that match our predicate.
         }
 
+        public IEnumerator<IVisitableSpace> GetEnumerator()
+        {
+            return ((IReadOnlyList<IVisitableSpace>)boardSpaces).GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IReadOnlyList<IVisitableSpace>)boardSpaces).GetEnumerator();
+        }
     }
 }
