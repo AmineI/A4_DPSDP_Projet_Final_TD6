@@ -103,9 +103,10 @@ namespace TD6
             while (players.Count > 1)//The game continues while there's more than one player.
             {
                 currentTurn++;
-
-                foreach (IPlayer currentPlayer in players)
+                IPlayer currentPlayer = null;
+                for (int playerNumber = 0; playerNumber < players.Count; playerNumber++)//++i increments i and use the incremented value
                 {
+                    currentPlayer = players[playerNumber];
                     do
                     {
                         //TODO : Display board and basic information for each player when it's his turn.
