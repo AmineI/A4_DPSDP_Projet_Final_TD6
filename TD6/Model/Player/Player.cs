@@ -250,7 +250,7 @@ namespace TD6
         }
         public override string ToString()
         {
-            return $"{PlayerName},{Money}";
+            return $"{PlayerName},{Money}, {DisplayCharacter}";
         }
     }
 
