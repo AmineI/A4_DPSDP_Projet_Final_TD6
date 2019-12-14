@@ -1,6 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TD6;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace TD6.Tests
 {
@@ -90,5 +92,40 @@ namespace TD6.Tests
             landTest.BuildHouse();
             Assert.IsFalse(landTest.CanBeSold);
         }
+
+
+        [TestMethod()]
+        public void IsInMonopolyTest()
+        {
+            Board board = new Board();
+            List<Land> my3GreenLands = new List<Land>() {
+                new Land("id1", "Rue de la paix", Color.Green, 300, new int[] { 50, 100, 140, 250, 300, 450 }, 200, board),
+                new Land("id2", "2e Rue de la paix", Color.Green, 300, new int[] { 50, 100, 140, 250, 300, 450 }, 200, board),
+                new Land("id3", "3e Rue de la paix", Color.Green, 300, new int[] { 50, 100, 140, 250, 300, 450 }, 200, board)
+            };
+            my3GreenLands.ForEach(land => board.Add(land));
+
+            Land brownLand = new Land("id4", "Une rue marron", Color.Brown, 300, new int[] { 50, 100, 140, 250, 300, 450 }, 200, board);
+            board.Add(brownLand);
+
+            Assert.IsFalse(my3GreenLands.Any(land => land.IsInMonopoly));
+            //These lands have no owner, so none of these should be in monopoly.
+
+            Player p0 = new Player(0, "p0", 500);
+            Player p1 = new Player(1, "p0", 500);
+
+
+            my3GreenLands.ForEach(land => land.Owner = p1);
+
+            Assert.IsTrue(my3GreenLands.All(land => land.IsInMonopoly));//All green lands should be in monopoly.
+            Assert.IsFalse(brownLand.IsInMonopoly);
+
+
+            my3GreenLands[0].Owner = p0;
+
+            Assert.IsFalse(my3GreenLands.Any(land => land.IsInMonopoly));//One green lands does not belong to p0 so they are not in monopoly.
+            Assert.IsFalse(brownLand.IsInMonopoly);
+        }
+
     }
 }
