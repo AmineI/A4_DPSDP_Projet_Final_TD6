@@ -118,9 +118,13 @@ namespace TD6
         public void DisplayProperties(IPlayer player)
         {
             List<Property> properties = player.OwnedProperties;
-            if (properties != null)
+            if (properties != null && properties.Count>0)
             {
                 UserInteraction.DisplayObjectList<Property>("Here is the list of your properties :", player.OwnedProperties);
+            }
+            else
+            {
+                DisplayMessage("You have no properties.");
             }
         }
 
