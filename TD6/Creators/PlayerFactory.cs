@@ -12,7 +12,7 @@ namespace TD6
         public static Player CreatePlayer(string playerName, IGame gameInstance = null)
         {
             id++;
-            return new Player(id, playerName, 1500, (char)(id+9631), gameInstance);//9785 is where the common symbols like ☺ start.
+            return new Player(id, playerName, 1500, (char)(id+13), gameInstance);//9785 is where the common symbols like ☺ start.
         }
     }
 }
