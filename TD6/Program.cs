@@ -12,7 +12,7 @@ namespace TD6
         static void Main(string[] args)
         {
             IView view = new ConsoleView();
-            view.DisplayMessage("Welcome to the Monopoly");
+            view.DisplayMessage("Welcome to the Monopoly - Please put the game in full screen");
             view.Pause();
             do
             {
