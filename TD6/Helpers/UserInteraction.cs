@@ -12,8 +12,7 @@ namespace TD6
         /// <returns>true or false depending on the user's confirmation</returns>
         public static bool GetConfirmation(string message = "Do you want to continue ?")
         {
-            bool confirmation = GetObjectChoice<bool>(message, new bool[] { true, false }, new string[] { "Yes", "No" });
-            return confirmation;
+            return GetObjectChoice<bool>(message, new bool[] { true, false }, new string[] { "Yes", "No" });
         }
 
         /// <summary>

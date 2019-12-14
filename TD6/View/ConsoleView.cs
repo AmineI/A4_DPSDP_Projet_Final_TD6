@@ -44,15 +44,6 @@ namespace TD6
         }
 
         /// <summary>
-        /// Ask the player if he wants to build a house somewhere
-        /// </summary>
-        /// <returns> A boolean representing the response of the player</returns>
-        public bool GetBuildHouseConfirmation()
-        {
-            return UserInteraction.GetConfirmation("Do you want to build a house ?");
-        }
-
-        /// <summary>
         /// Ask the player where he wants to build his house
         /// </summary>
         /// <param name="player"></param>
@@ -68,37 +59,6 @@ namespace TD6
             else
             {
                 return UserInteraction.GetObjectChoice<Land>("Where do you want to build your house ?", buildableOwnedLands);
-            }
-        }
-
-        public void SellPropertyInterface(IGame gameInstance, IPlayer player)
-        {
-            if (player.OwnedProperties.Count == 0)
-            {
-                DisplayMessage("You own no properties that you could sell");
-                return;
-            }
-
-            Property propertyToSell = GetObjectChoice<Property>("Choose a property to sell", player.OwnedProperties);
-            IPlayer playerToSellTo = GetObjectChoice<IPlayer>("Choose a player to sell to", gameInstance.Players);
-            int priceToSellFor = GetEnteredInt();
-            if (propertyToSell != null && GetSaleConfirmation(propertyToSell, priceToSellFor, playerToSellTo))
-            {
-                if (playerToSellTo.Money >= priceToSellFor && playerToSellTo.View.GetPurchaseConfirmation(propertyToSell, priceToSellFor, (IPlayer)player))
-                {
-                    playerToSellTo.Pay(priceToSellFor, (IPlayer)player);
-                    propertyToSell.Owner = playerToSellTo;
-                }
-            }
-
-        }
-
-        public void BuildHouseInterface(IPlayer player)
-        {
-            Land land = ChooseLandToBuildOn(player);
-            if (land != null && GetBuildHouseHereConfirmation(land))
-            {
-                land.BuildHouse();
             }
         }
 
@@ -118,7 +78,7 @@ namespace TD6
         public void DisplayProperties(IPlayer player)
         {
             List<Property> properties = player.OwnedProperties;
-            if (properties != null && properties.Count>0)
+            if (properties != null && properties.Count > 0)
             {
                 UserInteraction.DisplayObjectList<Property>("Here is the list of your properties :", player.OwnedProperties);
             }
@@ -276,6 +236,51 @@ namespace TD6
         public int GetEnteredInt(string message = null)
         {
             return Convert.ToInt32(UserInteraction.GetEnteredDouble(message));
+        }
+
+        public void EndOfTurnInterface(IGame gameInstance, IPlayer player)
+        {
+            Action End = () => { };
+            Action choosedAction = End;
+
+            do
+            {
+                choosedAction = GetObjectChoice<Action>("\nWhat do you want to do ?",
+                                   new[] { () => BuildHouseInterface(player), () => SellPropertyInterface(gameInstance, player), End },
+                                   new[] { "Build a House", "Sell a property", "End the turn" });
+                choosedAction();
+            } while (choosedAction != End);
+        }
+
+        public void SellPropertyInterface(IGame gameInstance, IPlayer player)
+        {
+            if (player.OwnedProperties.Count == 0)
+            {
+                DisplayMessage("You own no properties that you could sell");
+                return;
+            }
+
+            Property propertyToSell = GetObjectChoice<Property>("Choose a property to sell", player.OwnedProperties);
+            IPlayer playerToSellTo = GetObjectChoice<IPlayer>("Choose a player to sell to", gameInstance.Players);
+            int priceToSellFor = GetEnteredInt("How much do you want to sell it for ?");
+            if (propertyToSell != null && GetSaleConfirmation(propertyToSell, priceToSellFor, playerToSellTo))
+            {
+                if (playerToSellTo.Money >= priceToSellFor && playerToSellTo.View.GetPurchaseConfirmation(propertyToSell, priceToSellFor, (IPlayer)player))
+                {
+                    playerToSellTo.Pay(priceToSellFor, (IPlayer)player);
+                    propertyToSell.Owner = playerToSellTo;
+                }
+            }
+
+        }
+
+        public void BuildHouseInterface(IPlayer player)
+        {
+            Land land = ChooseLandToBuildOn(player);
+            if (land != null && GetBuildHouseHereConfirmation(land))
+            {
+                land.BuildHouse();
+            }
         }
     }
 }

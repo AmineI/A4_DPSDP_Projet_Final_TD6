@@ -128,10 +128,10 @@ namespace TD6
                 GameBoard[currentPosition].AcceptWalking((ISpaceVisitor)this);
             }
             //Now that we walked the requested distance,   
-            View.Pause();
             View.ClearView();
 
             View.DisplayBoard(gameInstance, currentPosition);
+            View.Pause();
             //We stop on the space. If the space has an action occuring on stop, it will happen.
             View.DisplayMessage($"You are stopping on {GameBoard[CurrentPosition]}");
             GameBoard[currentPosition].AcceptStopping((ISpaceVisitor)this);
@@ -235,22 +235,12 @@ namespace TD6
                 Replay = true;
             }
             Move(DicesValue);
-
-            Action End = () => { };
-            Action choosedAction = End;
-            //do player actions : build house etc
-
-            do
-            {
-                choosedAction = View.GetObjectChoice<Action>("\nWhat do you want to do ?",
-                                   new[] { () => View.BuildHouseInterface(this), () => View.SellPropertyInterface(gameInstance, this), End },
-                                   new[] { "Build a House", "Sell a property", "End the turn" });
-                choosedAction();
-            } while (choosedAction != End);
+            View.EndOfTurnInterface(gameInstance,this);
         }
+
         public override string ToString()
         {
-            return $"{PlayerName},{Money}, {DisplayCharacter}";
+            return $"player {PlayerName},{Money}$, displayed as {DisplayCharacter} (Owns {OwnedProperties.Count} properties)";
         }
     }
 

@@ -13,14 +13,13 @@ namespace TD6
         bool GetSaleConfirmation(Property propertyToSell, int priceToSellFor, IPlayer playerToSellTo);
         bool GetPurchaseConfirmation(Property propertyToBuy, int PriceToBuyFor, IPlayer playerToBuyFrom = null);
         bool GetBuildHouseHereConfirmation(Land land);
-        bool GetBuildHouseConfirmation();
 
         Land ChooseLandToBuildOn(IPlayer player);
 
         T GetObjectChoice<T>(string message, IList<T> choicesList, IList<string> choicesTitlesList = null);
 
 
-        void DisplayBoard(IGame game, int highlightedSpace=-1);
+        void DisplayBoard(IGame game, int highlightedSpace = -1);
         void DisplayMessage(String message);
         void DisplayProperties(IPlayer player);
         void DisplayMoney(IPlayer player);
@@ -29,6 +28,8 @@ namespace TD6
         void Pause();
         void ClearView();
         int GetEnteredInt(string message = null);
+
+        void EndOfTurnInterface(IGame gameInstance, IPlayer player);
         void SellPropertyInterface(IGame gameInstance, IPlayer player);
         void BuildHouseInterface(IPlayer player);
     }
