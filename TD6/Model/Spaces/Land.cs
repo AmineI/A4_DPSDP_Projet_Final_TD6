@@ -21,21 +21,17 @@ namespace TD6
         {
             this.HousePrice = housePrice;
             this.Color = color;
+
             IsInMonopoly = false;
+            if (board != null)
+            {
+                OwnerChange += board.UpdateColorMonopolyState;
+            }
         }
 
         public override int RentPrice
         {
             get => GetRentPrice();
-        }
-        public override IPlayer Owner
-        {
-            get => base.Owner;
-            set
-            {
-                base.Owner = value;
-                board?.UpdateColorMonopolyState(this.Color);
-            }
         }
 
 

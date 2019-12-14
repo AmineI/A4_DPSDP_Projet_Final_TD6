@@ -55,6 +55,17 @@ namespace TD6
             // The null-coalescing operator ?? returns the value of its left-hand operand if it isn't null; otherwise, it evaluates the right-hand operand and returns its result
         }
 
+        public static void UpdatePlayersOwnershipOnLandOwnerChange(object sender, OwnerChangeEventArgs eventArgs)
+        {
+            Property updatedProperty = sender as Property;
+            if (updatedProperty != null)
+            {
+                eventArgs.PreviousOwner?.OwnedProperties.Remove(updatedProperty);//Remove from the old owner if there was one
+                eventArgs.NewOwner?.OwnedProperties.Add(updatedProperty);//Add to the new owner if there is one
+            }
+        }
+
+
         public void RollDices()
         {
             dice1 = Dice.RollDice();
