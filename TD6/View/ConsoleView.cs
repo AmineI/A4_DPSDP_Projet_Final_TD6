@@ -10,8 +10,6 @@ namespace TD6
         public ConsoleView()
         {
             Console.OutputEncoding = Encoding.Unicode;
-            Console.SetWindowPosition(0, 0);//TODO : Does not work 
-            Console.SetWindowSize(Console.LargestWindowWidth / 2, Console.LargestWindowHeight / 2);
             Console.Title = "Monopoly";
         }
 
