@@ -79,7 +79,7 @@ namespace TD6
         /// <param name="player"></param>
         public void DisplayProperties(IPlayer player)
         {
-            List<Property> properties = player.OwnedProperties;
+            IList<Property> properties = player.OwnedProperties;
             if (properties != null)
             {
                 UserInteraction.DisplayObjectList<Property>("Here is the list of your properties :", player.OwnedProperties);

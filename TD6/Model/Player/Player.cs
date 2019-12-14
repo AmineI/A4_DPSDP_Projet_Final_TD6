@@ -28,15 +28,15 @@ namespace TD6
 
         public bool IsDiceDouble { get => dice1 == dice2; }
 
-        private IGame gameInstance;
+        readonly private IGame gameInstance;
         //The board is not necessarily initialized when we create the player, so we get the board dynamically from the Game.
         private IBoard GameBoard { get => gameInstance.Board; }
         public IView View { get => gameInstance.View; }
-        public List<Property> OwnedProperties { get => GameBoard.FindAllSpaces<Property>(prop => prop.Owner == this); }
+        public IList<Property> OwnedProperties { get; set; }
 
-        public List<Land> BuildableOwnedLands
+        public IList<Land> BuildableOwnedLands
         {
-            get => GameBoard.FindAllSpaces<Land>(land => land.Owner == this && land.IsHouseBuildable());
+            get => OwnedProperties.OfType<Land>().Where(land => land.IsHouseBuildable()).ToList();
         }
 
         public bool HasLost => Money < 0;
@@ -49,8 +49,9 @@ namespace TD6
             this.PlayerName = playerName;
             this.money = money;
             this.DisplayCharacter = displayCharacter;
-            this.gameInstance = gameInstance ?? Game.Instance;
+            OwnedProperties = new List<Property>();
 
+            this.gameInstance = gameInstance ?? Game.Instance;
             // The null-coalescing operator ?? returns the value of its left-hand operand if it isn't null; otherwise, it evaluates the right-hand operand and returns its result
         }
 
