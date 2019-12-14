@@ -67,5 +67,27 @@ namespace TD6
                               .FindAll(match);//And find the elements that match our predicate.
         }
 
+        /// <summary>
+        /// Check if a given color group is monopolized, ie all lands of that color group are owned by the same player, and update this info.
+        /// </summary>
+        /// <param name="color">Color of the group we want to check</param>
+        /// <returns>true if the color group is monopolized (owned by the same player), false otherwise.</returns>
+        public void UpdateColorMonopolyState(Color color)
+        {
+            bool updatedIsInMonopolyValue = false;
+            //We gather the list of lands from that color group.
+            List<Land> sameColorLands = this.FindAllSpaces<Land>(land => land.Color == color);
+
+            //We get the owner of the first land of that color.
+            IPlayer firstLandOwner = sameColorLands?.FirstOrDefault<Land>().Owner;
+            if (firstLandOwner != null)
+            {
+
+                //And then check if he owns all the lands of that color. If he does, the color is in a monopoly.
+                updatedIsInMonopolyValue = sameColorLands.All(land => land.Owner == firstLandOwner);
+            }
+            sameColorLands.ForEach(land => land.IsInMonopoly = updatedIsInMonopolyValue);
+        }
+
     }
 }
