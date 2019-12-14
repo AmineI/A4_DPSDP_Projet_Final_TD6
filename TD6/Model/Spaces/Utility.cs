@@ -78,7 +78,7 @@ namespace TD6
             }
             else
             {
-                return $"{Name}, his owner is {Owner}, the rent price is {RentPrice}$";
+                return $"{Name}, its owner is {Owner}, the rent price is {RentPrice}$";
             }
         }
     }

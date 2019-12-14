@@ -108,7 +108,7 @@ namespace TD6
             }
             else
             {
-                return $"{Color}, {Name}, his owner is {Owner}, the rent price is {RentPrice}$";
+                return $"{Color}, {Name}, its owner is {Owner}, the rent price is {RentPrice}$";
             }
         }
 
