@@ -12,7 +12,12 @@ namespace TD6
         public virtual IPlayer Owner
         {
             get => owner;
-            set => owner = value;
+            set
+            {
+                owner?.OwnedProperties.Remove(this);//Remove from the old owner if there was one
+                owner = value;
+                owner?.OwnedProperties.Add(this);//Add to the new owner if there is one
+            }
         }
 
         /// <summary>
