@@ -96,5 +96,10 @@ namespace TD6
             }
         }
 
+        public override string ToString()
+        {
+            return player.ToString()+", in jail";
+        }
+
     }
 }

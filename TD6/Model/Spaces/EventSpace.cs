@@ -47,5 +47,10 @@ namespace TD6
         {
             visitor.WalkOnEvent(this);
         }
+
+        public override string ToString()
+        {
+            return $"{Name}";
+        }
     }
 }

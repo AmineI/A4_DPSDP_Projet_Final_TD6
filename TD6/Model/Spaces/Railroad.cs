@@ -26,5 +26,16 @@ namespace TD6
             List<Railroad> stationsOwnedByPlayer = board.FindAllSpaces<Railroad>(railroad => railroad.Owner == playerOwner);
             return stationsOwnedByPlayer.Count;
         }
+        public override string ToString()
+        {
+            if (Owner == null)
+            {
+                return $"{Name},nobody owns this railroad, the buy price is {BuyPrice}$";
+            }
+            else
+            {
+                return $"{Name},his owner is {Owner},the rent price is {RentPrice}$";
+            }
+        }
     }
 }

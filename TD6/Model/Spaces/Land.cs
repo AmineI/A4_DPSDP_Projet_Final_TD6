@@ -97,5 +97,17 @@ namespace TD6
             //You can only build a house on the land with the fewest houses of the color group, and you have to own all the lands of the color group.");
         }
 
+        public override string ToString()
+        {
+            if (Owner==null)
+            {
+                return $"{Name},nobody owns this land, the buy price is {BuyPrice}$";
+            }
+            else
+            {
+                return $"{Name},his owner is {Owner},the rent price is {RentPrice}$";
+            }
+        }
+
     }
 }
