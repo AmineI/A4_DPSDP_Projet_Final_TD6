@@ -20,7 +20,7 @@ namespace TD6
         T GetObjectChoice<T>(string message, IList<T> choicesList, IList<string> choicesTitlesList = null);
 
 
-        void DisplayBoard(IGame game);
+        void DisplayBoard(IGame game, int highlightedSpace=-1);
         void DisplayMessage(String message);
         void DisplayProperties(IPlayer player);
         void DisplayMoney(IPlayer player);

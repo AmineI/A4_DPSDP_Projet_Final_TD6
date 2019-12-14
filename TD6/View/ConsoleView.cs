@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace TD6
 {
@@ -10,8 +9,10 @@ namespace TD6
     {
         public ConsoleView()
         {
-            Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
+            Console.OutputEncoding = Encoding.Unicode;
             Console.SetWindowPosition(0, 0);//TODO : Does not work 
+            Console.SetWindowSize(Console.LargestWindowWidth/2, Console.LargestWindowHeight/2);
+            Console.Title = "Monopoly";
         }
 
         /// <summary>
@@ -125,78 +126,65 @@ namespace TD6
             Console.ReadKey();
         }
 
-        public void DisplayBoard(IGame game)
+        public void DisplayBoard(IGame game, int highlightedSpace = -1)
         {
+            ConsoleColor defaultBackgroundColor = Console.BackgroundColor;//Saves the default background color
+
             Console.WriteLine();
-            for (int line = 0; line < 40; line++)
+            //Display the board spaces and numbers.
+            for (int spaceNumber = 0; spaceNumber < game.Board.Count; spaceNumber++)
             {
-                ConsoleColor consoleColor = ColorConverter(game.Board[line].Color);
+                ConsoleColor consoleColor = ColorConverter(game.Board[spaceNumber].Color);
+                if (spaceNumber == highlightedSpace)
+                {
+                    Console.BackgroundColor = ConsoleColor.Green;
+                }
                 Console.ForegroundColor = consoleColor;
-                Console.Write(line);
+                Console.Write(spaceNumber);
                 Console.ForegroundColor = ConsoleColor.White;
-                if (line < 10)
-                {
-                    Console.Write("   |");
-                }
-                else if (line != 39)
-                {
-                    Console.Write("  |");
-                }
-            }
-            int cmpt = 0;
-            Console.WriteLine();
-            for (int line = 0; line < 40; line++)
-            {
-                List<IPlayer> playersOnThisSpace = game.Players.FindAll(player => player.CurrentPosition == line);
-                foreach (IPlayer player in playersOnThisSpace)
-                {
-                    cmpt++;
-                    Console.Write(player.DisplayCharacter);
-                    if (cmpt == 4)
-                    {
-                        break;
-                    }
-                }
-                while (cmpt != 4)
-                {
+                if (spaceNumber < 10)
+                {//If the number we display has less than 2 characters, we add a space so that each displayed "space" has a 3 characters length.
                     Console.Write(" ");
-                    cmpt++;
                 }
-                cmpt = 0;
-                if (line != 39)
+                Console.BackgroundColor = defaultBackgroundColor;
+                if (spaceNumber < game.Board.Count - 1)
                 {
-                    Console.Write("|");
+                    Console.Write(" |");
                 }
             }
             Console.WriteLine();
-            for (int line = 0; line < 40; line++)
+
+            List<IPlayer> playersToDisplay = new List<IPlayer>(game.Players);
+            int displayedCount;
+            //While there are still players, we display an additional line with these players.
+            while (playersToDisplay.Count > 0)
             {
-                List<IPlayer> playersOnThisSpace = game.Players.FindAll(player => player.CurrentPosition == line);
-                if (playersOnThisSpace.Count > 4)
+                for (int spaceNumber = 0; spaceNumber < game.Board.Count; spaceNumber++)
                 {
-                    playersOnThisSpace.RemoveRange(0,4);
+                    displayedCount = 0;
+                    List<IPlayer> playersOnThisSpace = playersToDisplay.FindAll(player => player.CurrentPosition == spaceNumber);
                     foreach (IPlayer player in playersOnThisSpace)
                     {
-                        cmpt++;
+                        displayedCount++;
                         Console.Write(player.DisplayCharacter);
-                        if (cmpt == 4)
+                        playersToDisplay.Remove(player);
+                        if (displayedCount >= 3)
                         {
                             break;
                         }
                     }
+                    while (displayedCount < 3)
+                    {
+                        Console.Write(" ");
+                        displayedCount++;
+                    }
+                    if (spaceNumber < game.Board.Count-1)
+                    {
+                        Console.Write("|");
+                    }
                 }
-                while (cmpt != 4)
-                {
-                    Console.Write(" ");
-                    cmpt++;
-                }
-                cmpt = 0;
-                if (line != 39)
-                {
-                    Console.Write("|");
-                }
+                Console.WriteLine();
             }
-            Console.WriteLine();
         }
 
         private ConsoleColor ColorConverter(Color colorToConvert)

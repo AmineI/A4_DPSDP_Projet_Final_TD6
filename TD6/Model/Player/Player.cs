@@ -131,7 +131,7 @@ namespace TD6
             View.Pause();
             View.ClearView();
 
-            View.DisplayBoard(gameInstance);
+            View.DisplayBoard(gameInstance, currentPosition);
             //We stop on the space. If the space has an action occuring on stop, it will happen.
             View.DisplayMessage($"You are stopping on {GameBoard[CurrentPosition]}");
             GameBoard[currentPosition].AcceptStopping((ISpaceVisitor)this);
@@ -154,7 +154,7 @@ namespace TD6
 
             View.ClearView();
 
-            View.DisplayBoard(gameInstance);
+            View.DisplayBoard(gameInstance, CurrentPosition);
             View.DisplayMessage($"You are stopping on : {GameBoard[CurrentPosition]}");
 
             //Then we stop on the destination Space
@@ -171,7 +171,7 @@ namespace TD6
         {
             //We call the walk action delegate of this event space.
             eventSpace.OnWalkAction((IPlayer)this);
-            
+
         }
 
         public void StopOnProperty(Property property)
