@@ -29,5 +29,7 @@ namespace TD6
         void Pause();
         void ClearView();
         int GetEnteredInt(string message = null);
+        void SellPropertyInterface(IGame gameInstance, IPlayer player);
+        void BuildHouseInterface(IPlayer player);
     }
 }

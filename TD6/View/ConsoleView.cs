@@ -11,7 +11,7 @@ namespace TD6
         {
             Console.OutputEncoding = Encoding.Unicode;
             Console.SetWindowPosition(0, 0);//TODO : Does not work 
-            Console.SetWindowSize(Console.LargestWindowWidth/2, Console.LargestWindowHeight/2);
+            Console.SetWindowSize(Console.LargestWindowWidth / 2, Console.LargestWindowHeight / 2);
             Console.Title = "Monopoly";
         }
 
@@ -61,7 +61,47 @@ namespace TD6
         /// <returns> The land where the player wants to build his house </returns>
         public Land ChooseLandToBuildOn(IPlayer player)
         {
-            return UserInteraction.GetObjectChoice<Land>("Where do you want to build your house ?", player.BuildableOwnedLands);
+            IList<Land> buildableOwnedLands = player.BuildableOwnedLands;
+            if (buildableOwnedLands.Count == 0)
+            {
+                DisplayMessage("There is no land you can build a house on.");
+                return null;
+            }
+            else
+            {
+                return UserInteraction.GetObjectChoice<Land>("Where do you want to build your house ?", buildableOwnedLands);
+            }
+        }
+
+        public void SellPropertyInterface(IGame gameInstance, IPlayer player)
+        {
+            if (player.OwnedProperties.Count == 0)
+            {
+                DisplayMessage("You own no properties that you could sell");
+                return;
+            }
+
+            Property propertyToSell = GetObjectChoice<Property>("Choose a property to sell", player.OwnedProperties);
+            IPlayer playerToSellTo = GetObjectChoice<IPlayer>("Choose a player to sell to", gameInstance.Players);
+            int priceToSellFor = GetEnteredInt();
+            if (propertyToSell != null && GetSaleConfirmation(propertyToSell, priceToSellFor, playerToSellTo))
+            {
+                if (playerToSellTo.Money >= priceToSellFor && playerToSellTo.View.GetPurchaseConfirmation(propertyToSell, priceToSellFor, (IPlayer)player))
+                {
+                    playerToSellTo.Pay(priceToSellFor, (IPlayer)player);
+                    propertyToSell.Owner = playerToSellTo;
+                }
+            }
+
+        }
+
+        public void BuildHouseInterface(IPlayer player)
+        {
+            Land land = ChooseLandToBuildOn(player);
+            if (land != null && GetBuildHouseHereConfirmation(land))
+            {
+                land.BuildHouse();
+            }
         }
 
         /// <summary>
@@ -178,7 +218,7 @@ namespace TD6
                         Console.Write(" ");
                         displayedCount++;
                     }
-                    if (spaceNumber < game.Board.Count-1)
+                    if (spaceNumber < game.Board.Count - 1)
                     {
                         Console.Write("|");
                     }
