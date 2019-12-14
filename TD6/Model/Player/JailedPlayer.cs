@@ -5,7 +5,7 @@ namespace TD6
 {
     public class JailedPlayer : IPlayer
     {
-        private Player player;
+        readonly private Player player;
         private int turnInJail = 0;
 
         public JailedPlayer(Player player)
@@ -27,9 +27,9 @@ namespace TD6
 
         public int Money => player.Money;
 
-        public List<Property> OwnedProperties => player.OwnedProperties;
+        public IList<Property> OwnedProperties => player.OwnedProperties;
 
-        public List<Land> BuildableOwnedLands => player.BuildableOwnedLands;
+        public IList<Land> BuildableOwnedLands => player.BuildableOwnedLands;
 
         public bool HasLost => player.HasLost;
 

@@ -57,7 +57,7 @@ namespace TD6
             List<Utility> utilities = board.FindAllSpaces<Utility>((utility) => true);
 
             //We get the owner of the first utility
-            IPlayer firstUtilityOwner = utilities.First<Utility>().Owner;
+            IPlayer firstUtilityOwner = utilities.FirstOrDefault<Utility>().Owner;
 
             //And then check if he owns all the lands of that color. If he does, the color is in a monopoly.
             return utilities.All(utility => utility.Owner == firstUtilityOwner);

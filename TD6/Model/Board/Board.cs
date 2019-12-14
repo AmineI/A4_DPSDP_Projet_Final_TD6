@@ -68,6 +68,36 @@ namespace TD6
                               .FindAll(match);//And find the elements that match our predicate.
         }
 
+        /// <summary>
+        /// Checks if a given color group is monopolized, ie all lands of that color group are owned by the same player, and update this info on each land of that color group.
+        /// </summary>
+        /// <param name="color">Color of the group we want to check</param>
+        /// <returns>true if the color group is monopolized (owned by the same player), false otherwise.</returns>
+        public void UpdateColorMonopolyState(object sender, OwnerChangeEventArgs eventArgs)
+        {
+            Land updatedLand = sender as Land;
+            if (updatedLand != null)
+            {
+                bool oldIsInMonopolyValue = updatedLand.IsInMonopoly;
+                bool newIsInMonopolyValue = oldIsInMonopolyValue;
+                //We gather the list of lands from that color group.
+                List<Land> sameColorLands = this.FindAllSpaces<Land>(land => land.Color == updatedLand.Color);
+
+                //We get the owner of the first land of that color.
+                IPlayer firstLandOwner = sameColorLands.FirstOrDefault<Land>().Owner;
+
+                if (firstLandOwner != null)
+                {
+                    //And then check if he owns all the lands of that color. If he does, the color is in a monopoly.
+                    newIsInMonopolyValue = sameColorLands.All(land => land.Owner == firstLandOwner);
+                }
+                if (newIsInMonopolyValue != oldIsInMonopolyValue)
+                {//If the IsInMonopoly value changed
+                    sameColorLands.ForEach(land => land.IsInMonopoly = newIsInMonopolyValue);//We then update every land of that color group to reflect that.
+                }
+            }
+        }
+
         public IEnumerator<IVisitableSpace> GetEnumerator()
         {
             return ((IReadOnlyList<IVisitableSpace>)boardSpaces).GetEnumerator();

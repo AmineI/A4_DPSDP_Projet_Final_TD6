@@ -36,11 +36,11 @@ namespace TD6
         /// <summary>
         /// List of properties owned by the player.
         /// </summary>
-        List<Property> OwnedProperties { get; }
+        IList<Property> OwnedProperties { get; }
         /// <summary>
         /// List of lands owned by the player where he can build a house.
         /// </summary>
-        List<Land> BuildableOwnedLands { get; }
+        IList<Land> BuildableOwnedLands { get; }
         /// <summary>
         /// We get the sums of the dice 
         /// </summary>

@@ -21,12 +21,19 @@ namespace TD6
         {
             this.HousePrice = housePrice;
             this.Color = color;
+
+            IsInMonopoly = false;
+            if (board != null)
+            {
+                OwnerChange += board.UpdateColorMonopolyState;
+            }
         }
 
         public override int RentPrice
         {
             get => GetRentPrice();
         }
+
 
         ///A land can be sold only if there is no house on it
         public override bool CanBeSold => numberOfHouses == 0;
@@ -35,7 +42,7 @@ namespace TD6
         /// <summary>
         /// A boolean indicating if this land is in a monopoly (ie all lands of that color group are owned by the same player) or not
         /// </summary>
-        public bool IsInMonopoly { get => IsColorMonopolized(this.Color, this.board); }
+        public bool IsInMonopoly { get; set; }
 
         /// <summary>
         /// This function gives the rent of the land based on the number of houses and land owned by the land owner.
@@ -53,26 +60,6 @@ namespace TD6
             return rentPrice;
         }
 
-        /// <summary>
-        /// Check if a given color group is monopolized, ie all lands of that color group are owned by the same player
-        /// </summary>
-        /// <param name="color">Color of the group we want to check</param>
-        /// <param name="board">Board we are checking against. Default to the game board</param>
-        /// <returns>true if the color group is monopolized (owned by the same player), false otherwise.</returns>
-        public static bool IsColorMonopolized(Color color, IBoard board)
-        {
-            //We gather the list of lands from that color group.
-            List<Land> sameColorLands = board.FindAllSpaces<Land>(land => land.Color == color);
-
-            //We get the owner of the first land of that color.
-            IPlayer firstLandOwner = sameColorLands.First<Land>().Owner;
-            if (firstLandOwner == null)
-            {
-                return false;
-            }
-            //And then check if he owns all the lands of that color. If he does, the color is in a monopoly.
-            return sameColorLands.All(land => land.Owner == firstLandOwner);
-        }
 
         /// <summary>
         /// Builds a house on the land, and make the owner pay for the construction.
