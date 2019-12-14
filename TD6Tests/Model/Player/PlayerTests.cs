@@ -2,6 +2,8 @@
 using TD6;
 using System;
 using TD6.Fakes;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace TD6.Tests
 {
@@ -221,6 +223,36 @@ namespace TD6.Tests
             player1.StopOnEvent(loseMoneyEventSpace);
             Assert.AreEqual(200 - 100, player1.Money);
         }
-        //TODO Tests for properties.
+
+        [TestMethod()]
+        public void OwnedPropertiesTest()
+        {
+
+            Player p0 = new Player(0, "p0", 500);
+
+            Board board = new Board();
+            List<Land> my3GreenLands = new List<Land>() {
+                new Land("id1", "Rue de la paix", Color.Green, 300, new int[] { 50, 100, 140, 250, 300, 450 }, 200, board),
+                new Land("id2", "2e Rue de la paix", Color.Green, 300, new int[] { 50, 100, 140, 250, 300, 450 }, 200, board),
+                new Land("id3", "3e Rue de la paix", Color.Green, 300, new int[] { 50, 100, 140, 250, 300, 450 }, 200, board)
+            };
+            my3GreenLands.ForEach(land => board.Add(land));
+
+            Land brownLand = new Land("id4", "Une rue marron", Color.Brown, 300, new int[] { 50, 100, 140, 250, 300, 450 }, 200, board);
+            board.Add(brownLand);
+            Game.Instance.InitializeBoard(board);
+
+
+            Assert.AreEqual(0, p0.OwnedProperties.Count);
+
+            my3GreenLands.ForEach(land => land.Owner = p0);
+            Assert.AreEqual(3, p0.OwnedProperties.Count);
+
+            brownLand.Owner = p0;
+            Assert.AreEqual(4, p0.OwnedProperties.Count);
+
+            brownLand.Owner = null;
+            Assert.AreEqual(3, p0.OwnedProperties.Count);
+        }
     }
 }
