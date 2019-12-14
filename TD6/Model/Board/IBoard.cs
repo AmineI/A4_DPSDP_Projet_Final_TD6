@@ -4,7 +4,7 @@
     {
         IVisitableSpace GoSpace { get; set; }
         IVisitableSpace JailSpace { get; set; }
-        IVisitableSpace this[int key] { get; }
+        IVisitableSpace this[int index] { get; }
         int Count { get; }
         void Add(IVisitableSpace visitableSpace);
         System.Collections.Generic.List<S> FindAllSpaces<S>(System.Predicate<S> match) where S : Space;

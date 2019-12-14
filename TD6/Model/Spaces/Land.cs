@@ -91,11 +91,11 @@ namespace TD6
         {
             if (Owner == null)
             {
-                return $"{Color}, {Name}, nobody owns this land, the buy price is {BuyPrice}$";
+                return $"{Color} land, {Name}, owned by the bank, buy price of {BuyPrice}$";
             }
             else
             {
-                return $"{Color}, {Name}, his owner is {Owner}, the rent price is {RentPrice}$";
+                return $"{Color} land, {Name}, owned by {Owner}, rent price of {RentPrice}$";
             }
         }
 
