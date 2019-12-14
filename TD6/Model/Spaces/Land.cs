@@ -66,7 +66,10 @@ namespace TD6
 
             //We get the owner of the first land of that color.
             IPlayer firstLandOwner = sameColorLands.First<Land>().Owner;
-
+            if (firstLandOwner == null)
+            {
+                return false;
+            }
             //And then check if he owns all the lands of that color. If he does, the color is in a monopoly.
             return sameColorLands.All(land => land.Owner == firstLandOwner);
         }
