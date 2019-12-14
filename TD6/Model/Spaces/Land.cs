@@ -102,13 +102,13 @@ namespace TD6
 
         public override string ToString()
         {
-            if (Owner==null)
+            if (Owner == null)
             {
-                return $"{Color}, {Name}, nobody owns this land, the buy price is {BuyPrice}$";
+                return $"{Color} land, {Name}, owned by the bank, buy price of {BuyPrice}$";
             }
             else
             {
-                return $"{Color}, {Name}, its owner is {Owner}, the rent price is {RentPrice}$";
+                return $"{Color} land, {Name}, owned by {Owner}, rent price of {RentPrice}$";
             }
         }
 
