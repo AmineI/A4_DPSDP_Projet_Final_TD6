@@ -9,7 +9,7 @@ namespace TD6
     public abstract class Property : Space, IVisitableSpace
     {
         private IPlayer owner;
-        public IPlayer Owner
+        public virtual IPlayer Owner
         {
             get => owner;
             set => owner = value;
