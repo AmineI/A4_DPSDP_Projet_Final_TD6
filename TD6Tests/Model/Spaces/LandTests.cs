@@ -26,9 +26,12 @@ namespace TD6.Tests
         [TestMethod()]
         public void BuildHouseTest()
         {
-            Land landTest = new Land("id", "Rue de la paix", Color.Green, 300, new int[] { 50, 100, 140, 250, 300, 450 }, 200);
+            Board board = new Board();
+            Land landTest = new Land("id", "Rue de la paix", Color.Green, 300, new int[] { 50, 100, 140, 250, 300, 450 }, 200, board);
+            board.Add(landTest);
             Player p0 = new Player(0, "p0", 500);
             landTest.Owner = p0;
+
             landTest.BuildHouse();
             Assert.AreEqual(1, landTest.NumberOfHouses);
             Assert.AreEqual(500 - 200, p0.Money);
