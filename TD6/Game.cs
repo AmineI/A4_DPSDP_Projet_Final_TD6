@@ -81,7 +81,7 @@ namespace TD6
             Game.Instance.Players[playerIndex] = newPlayer;
 
             //Replace the player instance from his owned properties
-            foreach (Property ownedProperty in oldPlayer.OwnedProperties)
+            foreach (Property ownedProperty in new List<Property>(oldPlayer.OwnedProperties))
             {
                 ownedProperty.Owner = newPlayer;
             }
