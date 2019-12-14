@@ -74,11 +74,11 @@ namespace TD6
         {
             if (Owner == null)
             {
-                return $"{Name}, nobody owns this utility, the buy price is {BuyPrice}$";
+                return $"Utility {Name}, owned by the bank, buy price of {BuyPrice}$";
             }
             else
             {
-                return $"{Name}, his owner is {Owner}, the rent price is {RentPrice}$";
+                return $"Utility {Name}, owned by {Owner}, rent price of {RentPrice}$";
             }
         }
     }

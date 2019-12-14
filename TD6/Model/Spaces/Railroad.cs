@@ -30,11 +30,11 @@ namespace TD6
         {
             if (Owner == null)
             {
-                return $"{Name},nobody owns this railroad, the buy price is {BuyPrice}$";
+                return $"Railroad {Name}, owned by the bank, buy price of {BuyPrice}$";
             }
             else
             {
-                return $"{Name},his owner is {Owner},the rent price is {RentPrice}$";
+                return $"Railroad {Name}, owned by {Owner}, rent price of {RentPrice}$";
             }
         }
     }

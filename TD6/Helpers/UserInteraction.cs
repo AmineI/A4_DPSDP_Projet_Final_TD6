@@ -12,8 +12,7 @@ namespace TD6
         /// <returns>true or false depending on the user's confirmation</returns>
         public static bool GetConfirmation(string message = "Do you want to continue ?")
         {
-            bool confirmation = GetObjectChoice<bool>(message, new bool[] { true, false }, new string[] { "Yes", "No" });
-            return confirmation;
+            return GetObjectChoice<bool>(message, new bool[] { true, false }, new string[] { "Yes", "No" });
         }
 
         /// <summary>
@@ -97,10 +96,15 @@ namespace TD6
         /// <param name="message">Message to print to explain the context to the user.</param>
         /// <param name="choicesList">Objects from which the user can choose.</param>
         /// <param name="choicesTitlesList">Optional : List of choice titles. If it is not provided, it uses the ToString of the objects as titles.</param>
-        /// <returns>The chosen object</returns>
+        /// <returns>The chosen object, or null if there is no object in the provided list</returns>
         public static T GetObjectChoice<T>(string message, IList<T> choicesList, IList<string> choicesTitlesList = null)
         {
-            T choosedObject;
+            T choosedObject = default(T);
+            if (choicesList.Count == 0)
+            {
+                choicesList = new[] { default(T) };
+                choicesTitlesList = new[] { "No choice available. Return." };
+            }
             if (choicesTitlesList == null)
             {
                 choicesTitlesList = new string[choicesList.Count];//New list with the same length as the number of choices

@@ -66,7 +66,10 @@ namespace TD6
 
             //We get the owner of the first land of that color.
             IPlayer firstLandOwner = sameColorLands.First<Land>().Owner;
-
+            if (firstLandOwner == null)
+            {
+                return false;
+            }
             //And then check if he owns all the lands of that color. If he does, the color is in a monopoly.
             return sameColorLands.All(land => land.Owner == firstLandOwner);
         }
@@ -99,13 +102,13 @@ namespace TD6
 
         public override string ToString()
         {
-            if (Owner==null)
+            if (Owner == null)
             {
-                return $"{Name},nobody owns this land, the buy price is {BuyPrice}$";
+                return $"{Color} land, {Name}, owned by the bank, buy price of {BuyPrice}$";
             }
             else
             {
-                return $"{Name},his owner is {Owner},the rent price is {RentPrice}$";
+                return $"{Color} land, {Name}, owned by {Owner}, rent price of {RentPrice}$";
             }
         }
 
