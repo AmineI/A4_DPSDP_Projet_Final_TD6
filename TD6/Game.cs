@@ -111,7 +111,7 @@ namespace TD6
                         //TODO : Display board and basic information for each player when it's his turn.
                         View.DisplayMessage($"{currentPlayer}, it is your turn.");
                         View.Pause();
-                        View.DisplayBoard(this);
+                        View.DisplayBoard(this, currentPlayer.CurrentPosition);
                         View.DisplayMoney(currentPlayer);
                         View.DisplayProperties(currentPlayer);
 

@@ -126,12 +126,18 @@ namespace TD6
             Console.ReadKey();
         }
 
-        public void DisplayBoard(IGame game)
+        public void DisplayBoard(IGame game, int highlightedSpace=-1)
         {
+            ConsoleColor defaultBackgroundColor = Console.BackgroundColor;//Saves the default background color
+
             Console.WriteLine();
             for (int line = 0; line < 40; line++)
             {
                 ConsoleColor consoleColor = ColorConverter(game.Board[line].Color);
+                if (line == highlightedSpace)
+                {
+                    Console.BackgroundColor = ConsoleColor.Green;
+                }
                 Console.ForegroundColor = consoleColor;
                 Console.Write(line);
                 Console.ForegroundColor = ConsoleColor.White;
@@ -143,6 +149,7 @@ namespace TD6
                 {
                     Console.Write(" |");
                 }
+                Console.BackgroundColor = defaultBackgroundColor;
             }
             int cmpt = 0;
             Console.WriteLine();
