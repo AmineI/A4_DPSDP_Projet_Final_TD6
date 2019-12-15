@@ -18,24 +18,24 @@ namespace TD6
         /// </code>
         /// </example>
         /// </summary>
-        protected Action<IPlayer> onStopAction = null;
-        public Action<IPlayer> OnStopAction { get => onStopAction ?? NoAction; }
+        protected Action<IPlayer> onStopAction = NoAction;
+        public Action<IPlayer> OnStopAction { get => onStopAction; }
 
         /// <summary>
         /// Event to realize when the user "walks" on the space, regardless of whether he stops on it or not.
         /// </summary>
-        protected Action<IPlayer> onWalkAction = null;
-        public Action<IPlayer> OnWalkAction { get => onWalkAction ?? NoAction; }
+        protected Action<IPlayer> onWalkAction = NoAction;
+        public Action<IPlayer> OnWalkAction { get => onWalkAction; }
 
         public Color Color { get => Color.White; }
 
         public EventSpace(string id, string name, Action<IPlayer> onStopAction, IBoard board = null) : base(id, name, board)
         {
-            this.onStopAction = onStopAction;
+            this.onStopAction = onStopAction ?? NoAction;//If the action is null, we set it as "NoAction" (an empty action delegate)
         }
         public EventSpace(string id, string name, Action<IPlayer> onStopAction, Action<IPlayer> onWalkAction, IBoard board = null) : this(id, name, onStopAction, board)
         {
-            this.onWalkAction = onWalkAction;
+            this.onWalkAction = onWalkAction ?? NoAction;
         }
 
         public void AcceptStopping(ISpaceVisitor visitor)
