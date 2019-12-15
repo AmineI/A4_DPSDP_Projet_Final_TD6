@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace TD6
 {
 
-    public class Utility : Property, IVisitableSpace
+    public class Utility : Property
     {
 
 
