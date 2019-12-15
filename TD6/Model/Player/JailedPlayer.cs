@@ -37,6 +37,8 @@ namespace TD6
 
         public IView View => player.View;
 
+        public IGame GameInstance => player.GameInstance;
+
         public void RollDices()
         {
             player.RollDices();
