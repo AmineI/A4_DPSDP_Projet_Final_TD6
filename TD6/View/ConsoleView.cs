@@ -287,5 +287,18 @@ namespace TD6
                 else { DisplayMessage("Sorry, you don't have enough money."); }
             }
         }
+
+        public void DisplayPlayerLose(IPlayer currentPlayer)
+        {
+            DisplayMessage($"{currentPlayer} : You lost");
+        }
+        public void DisplayPreTurnInformation(IGame gameInstance, IPlayer currentPlayer)
+        {
+            DisplayMessage($"{currentPlayer}, it is your turn.");
+            Pause();
+            DisplayBoard(gameInstance, currentPlayer.CurrentPosition);
+            DisplayMoney(currentPlayer);
+            DisplayProperties(currentPlayer);
+        }
     }
 }

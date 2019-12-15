@@ -105,17 +105,13 @@ namespace TD6
                     currentPlayer = players[playerNumber];
                     do
                     {
-                        View.DisplayMessage($"{currentPlayer}, it is your turn.");
-                        View.Pause();
-                        View.DisplayBoard(this, currentPlayer.CurrentPosition);
-                        View.DisplayMoney(currentPlayer);
-                        View.DisplayProperties(currentPlayer);
+                        View.DisplayPreTurnInformation(this, currentPlayer);
 
                         currentPlayer.Replay = false;
                         currentPlayer.PlayTurn();
                         if (currentPlayer.HasLost)
                         {
-                            View.DisplayMessage($"{currentPlayer} : You lost");
+                            View.DisplayPlayerLose(currentPlayer);
                             //Since we are in a foreach, we can't remove him from the list right now.
                             //We firstly remove its references from the game, so that other players won't have to pay rent to this losing player for example, even though he already lost.
                             ReplaceIPlayerInstances(currentPlayer, null);
@@ -128,5 +124,7 @@ namespace TD6
 
             View.DisplayEndGame(players.Last());
         }
+
+        
     }
 }
