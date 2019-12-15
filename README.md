@@ -1,8 +1,12 @@
 
-[![Build Status](https://dev.azure.com/Projets-ESILV-AA/A4_DPSDP_Projet_Final_TD6/_apis/build/status/AmineI.A4_DPSDP_Projet_Final_TD6?branchName=master)](https://dev.azure.com/Projets-ESILV-AA/A4_DPSDP_Projet_Final_TD6/_build/latest?definitionId=2&branchName=master)
+<[![Build Status](https://dev.azure.com/Projets-ESILV-AA/A4_DPSDP_Projet_Final_TD6/_apis/build/status/AmineI.A4_DPSDP_Projet_Final_TD6?branchName=master)](https://dev.azure.com/Projets-ESILV-AA/A4_DPSDP_Projet_Final_TD6/_build/latest?definitionId=2&branchName=master)
+
+
+Monopoly Game : Final project in **Design Patterns and Software Development Process**
+===================================================================
 
 IPlayer interface, Player behavior and JailedPlayer decorator
-=============================================================
+-------------------------------------------------------------
 
 To declare the behavior of a player, we\'ve created an ``IPlayer`` interface.
 
@@ -17,7 +21,7 @@ Most of a player behavior remains the same no matter what happens during the gam
 To switch between a free player and a jailed player, we replace all instances of the ``Player`` to its ``JailedPlayer`` decorator: in the player list, but also from its owned properties for example.
 
 Spaces classes
-==============
+--------------
 
 We modelled the spaces on the game board with an ``abstract`` Space class.
 A ``Space`` is defined mainly by its id, and name, and the board instance it
@@ -53,8 +57,8 @@ the rolled dice value by the player in order to end up stopping on these spaces.
 Its rent is 4 times the dice value, and if both utilities are owned by the
 same player it's 10 time the dice value.
 
- Event spaces and their Actions delegates:
-=========================================
+Event spaces and their Actions delegates
+-----------------------------------------
 
 There are quite a few special spaces that execute specific actions when
 walked on or stopped on, such as the *Go space*, *Go To Jail* space, *Chance*
@@ -72,7 +76,7 @@ instantiate an event space, instead of defining multiple class for each
 special space.
 
 Visitor pattern
-===============
+---------------
 
 To model the ability of a player to visit a space when moving, (either
 walking or stopping on a space), we implemented a **Visitor Pattern**
@@ -101,18 +105,18 @@ either the purchase of the property if the player wants to, or the
 payment of a rent if it is already owned
 
 Board class
-===========
+-----------
 
 A Board is a collection of ``IVisitableSpaces``. Its ``IBoard`` interface
 inherits of the ``IReadOnlyList<IVisitableSpace>`` interface, and thus
-requires any Board to make a few properties available -- such as an
+requires any Board to make a few properties available - such as an
 index operator to get a space by its index, and a count. We added some
 more, like a FindAllSpaces function to retrieve specific spaces, and an
 IndexOfSpace method to get the position of space on the board. Our ``Board.cs``
 class implements the ``IBoard`` interface.
 
 Game Singleton and Threads
-==========================
+--------------------------
 
 The ``Game`` class was implemented as a singleton, since the program should
 have only one game instance. An ``IGame`` interface defines its required
@@ -140,7 +144,7 @@ implemented differently if we ever created a new type of player,
 following other rules.
 
 View
-====
+----
 
 The Game also stores an instance of an ``IView`` object. We defined an ``IView``
 interface containing all user interface functions we would need.
@@ -151,7 +155,7 @@ interface. That way, we remain open to any extension: We could create a
 fly thanks to its View property.
 
 Board Builder, Abstract Space Factory & Player Factory
-======================================================
+------------------------------------------------------
 
 In order to generate the board spaces with their appropriate names,
 prices, and values, we created an Abstract Factory. Its interface,
@@ -162,7 +166,7 @@ spaces such as the Go Space, Jail space, Taxes, etc.
 
 Given that there are many variants of the Monopoly game, with different
 spaces and street names, we could also have variants of our space
-factory. For our project, we went with the international street names --
+factory. For our project, we went with the international street names -
 as implemented in the ``DefaultInternationalSpaceFactory.cs``. But the
 implementation of the Abstract Factory interface makes us able to extend
 the game if needed, by creating different Space factories implementing
@@ -179,15 +183,19 @@ interface ``IBoardBuilder``, defining methods such as ``BuildOrangeSection()``,
 Since a Board can be quite long (There are usually 8 color sections, and
 quite a few special spaces in between), the Fluent Builder seemed more
 appropriate than the classic Builder, since it allows us to chain calls.
-For example, 
-```
+For example  
+
+```{C#}
 builder.BuildGoSpace();
 builder.BuildJailSpace();
 ```
+
  becomes
-```
+
+```{C#}
 builder.BuildGoSpace().BuildJailSpace()
 ```
+
 since every method of a builder
 returns the builder instance itself.
 
@@ -210,7 +218,7 @@ giving him the required initial amount of money, an auto-incrementing
 id, and a display character.
 
 Dependency injection
-====================
+--------------------
 
 With our initial implementation, we quickly noticed that the components
 were too tightly coupled. The ``Game`` singleton was often called, even
@@ -232,7 +240,7 @@ information, as a substitute of a real ``IBoard`` implementation like our
 the ``IBoard`` implementation, and stay as generic as possible.
 
 Event observation and regression tests
-======================================
+--------------------------------------
 
 Our players have a ``OwnedProperties`` property, to list all the owned
 properties of a specific player.
