@@ -36,7 +36,7 @@ namespace TD6
         public bool Replay { get => player.Replay; set => player.Replay = value; }
 
         public IView View => player.View;
-
+        
         public void RollDices()
         {
             player.RollDices();
@@ -71,7 +71,7 @@ namespace TD6
         /// </summary>
         public void GetOutOfJail()
         {
-            Game.ReplaceIPlayerInstances(this, player);
+            player.GameInstance.ReplaceIPlayerInstances(this, player);
         }
 
         /// <summary>

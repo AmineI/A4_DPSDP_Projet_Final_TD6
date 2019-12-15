@@ -1,13 +1,13 @@
-﻿namespace TD6
+﻿using System.Collections.Generic;
+
+namespace TD6
 {
-    public interface IBoard
+    public interface IBoard : IReadOnlyList<IVisitableSpace>
     {
         IVisitableSpace GoSpace { get; set; }
         IVisitableSpace JailSpace { get; set; }
-        IVisitableSpace this[int index] { get; }
-        int Count { get; }
         void Add(IVisitableSpace visitableSpace);
-        System.Collections.Generic.List<S> FindAllSpaces<S>(System.Predicate<S> match) where S : Space;
+        List<S> FindAllSpaces<S>(System.Predicate<S> match) where S : Space;
         int IndexOfSpace(IVisitableSpace searchedSpace);
         void UpdateColorMonopolyState(object sender, OwnerChangeEventArgs eventArgs);
     }

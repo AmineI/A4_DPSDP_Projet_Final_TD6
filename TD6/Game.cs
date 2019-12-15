@@ -71,14 +71,14 @@ namespace TD6
         /// </summary>
         /// <param name="oldPlayer">old IPlayer instance to replace</param>
         /// <param name="newPlayer">new IPlayer instance to put in place of the old one</param>
-        public static void ReplaceIPlayerInstances(IPlayer oldPlayer, IPlayer newPlayer)
+        public void ReplaceIPlayerInstances(IPlayer oldPlayer, IPlayer newPlayer)
         {
             //Replace the player from the player list
-            int playerIndex = Game.Instance.Players.IndexOf(oldPlayer);
-            Game.Instance.Players[playerIndex] = newPlayer;
+            int playerIndex = Players.IndexOf(oldPlayer);
+            Players[playerIndex] = newPlayer;
 
             //Replace the player instance from his owned properties
-            foreach (Property ownedProperty in new List<Property>(oldPlayer.OwnedProperties))
+            foreach (Property ownedProperty in new List<Property>(oldPlayer.OwnedProperties))//Clones the list to avoid list edition during the foreach
             {
                 ownedProperty.Owner = newPlayer;
             }
@@ -99,10 +99,8 @@ namespace TD6
             while (players.Count > 1)//The game continues while there's more than one player.
             {
                 currentTurn++;
-                IPlayer currentPlayer = null;
-                for (int playerNumber = 0; playerNumber < players.Count; playerNumber++)//++i increments i and use the incremented value
+                foreach (Player currentPlayer in new List<IPlayer>(players))// We clone the list beforehand to be able to delete a loser from the main list without breaking our foreach.
                 {
-                    currentPlayer = players[playerNumber];
                     do
                     {
                         View.DisplayPreTurnInformation(this, currentPlayer);
@@ -112,19 +110,18 @@ namespace TD6
                         if (currentPlayer.HasLost)
                         {
                             View.DisplayPlayerLose(currentPlayer);
-                            //Since we are in a foreach, we can't remove him from the list right now.
                             //We firstly remove its references from the game, so that other players won't have to pay rent to this losing player for example, even though he already lost.
                             ReplaceIPlayerInstances(currentPlayer, null);
+                            players.Remove(null);//We remove the player that lost and was thus replaced by a null ref.
                             break;
                         }
                     } while (currentPlayer.Replay);
                 }
-                players.RemoveAll(player => player == null);//We remove all the players that lost and thus were replaced by a null ref.
             }
 
             View.DisplayEndGame(players.Last());
         }
 
-        
+
     }
 }

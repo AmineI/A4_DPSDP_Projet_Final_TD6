@@ -25,7 +25,9 @@ namespace TD6
 
         public bool IsDiceDouble { get => dice1 == dice2; }
 
-        readonly private IGame gameInstance;
+        private IGame gameInstance;
+
+        public IGame GameInstance { get => gameInstance; }
         //The board is not necessarily initialized when we create the player, so we get the board dynamically from the Game.
         private IBoard GameBoard { get => gameInstance.Board; }
         public IView View { get => gameInstance.View; }
@@ -89,7 +91,7 @@ namespace TD6
         private void GetJailed()
         {
             JailedPlayer jailedPlayer = new JailedPlayer(this);
-            Game.ReplaceIPlayerInstances(this, jailedPlayer);
+            gameInstance.ReplaceIPlayerInstances(this, jailedPlayer);
         }
         public void GoToJail()
         {

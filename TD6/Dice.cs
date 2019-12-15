@@ -9,7 +9,7 @@ namespace TD6
     public static class Dice
     {
         // We initialize the random generator
-        private static Random rnd = new Random();
+        private static Random randomGenerator = new Random();
 
 
         /// <summary>
@@ -19,7 +19,7 @@ namespace TD6
         public static int RollDice()
         {
             // When we want to roll the dice we call random.Next(1,7) which return an interger between 1 and 7-1 
-            return rnd.Next(1,7);
+            return randomGenerator.Next(1,7);
         }
     }
 }

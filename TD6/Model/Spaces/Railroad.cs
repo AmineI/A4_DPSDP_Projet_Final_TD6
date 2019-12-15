@@ -23,9 +23,9 @@ namespace TD6
 
         public static int GetNumberOfOwnedRailroads(IPlayer playerOwner, IBoard board)
         {
-            List<Railroad> stationsOwnedByPlayer = board.FindAllSpaces<Railroad>(railroad => railroad.Owner == playerOwner);
-            return stationsOwnedByPlayer.Count;
+            return playerOwner.OwnedProperties.OfType<Railroad>().Count();
         }
+
         public override string ToString()
         {
             if (Owner == null)

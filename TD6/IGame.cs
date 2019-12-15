@@ -9,8 +9,9 @@ namespace TD6
         int CurrentTurn { get; }
         IView View { get; set; }
         void InitializeBoard(IBoard board);
-        void InitializeGame(IView view, IBoardCreator boardCreator, IPlayerListCreator playerListCreator);
         void InitializePlayerList(IList<IPlayer> players);
+        void InitializeGame(IView view, IBoardCreator boardCreator, IPlayerListCreator playerListCreator);
         void LaunchGame();
+        void ReplaceIPlayerInstances(IPlayer oldPlayer, IPlayer newPlayer);
     }
 }
