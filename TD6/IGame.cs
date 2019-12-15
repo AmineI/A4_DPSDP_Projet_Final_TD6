@@ -12,5 +12,6 @@ namespace TD6
         void InitializeGame(IView view, IBoardCreator boardCreator, IPlayerListCreator playerListCreator);
         void InitializePlayerList(IList<IPlayer> players);
         void LaunchGame();
+        void ReplaceIPlayerInstances(IPlayer oldPlayer, IPlayer newPlayer);
     }
 }

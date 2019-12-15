@@ -71,14 +71,14 @@ namespace TD6
         /// </summary>
         /// <param name="oldPlayer">old IPlayer instance to replace</param>
         /// <param name="newPlayer">new IPlayer instance to put in place of the old one</param>
-        public static void ReplaceIPlayerInstances(IPlayer oldPlayer, IPlayer newPlayer)
+        public void ReplaceIPlayerInstances(IPlayer oldPlayer, IPlayer newPlayer)
         {
             //Replace the player from the player list
-            int playerIndex = Game.Instance.Players.IndexOf(oldPlayer);
-            Game.Instance.Players[playerIndex] = newPlayer;
+            int playerIndex = Players.IndexOf(oldPlayer);
+            Players[playerIndex] = newPlayer;
 
             //Replace the player instance from his owned properties
-            foreach (Property ownedProperty in new List<Property>(oldPlayer.OwnedProperties))
+            foreach (Property ownedProperty in new List<Property>(oldPlayer.OwnedProperties))//Clones the list to avoid list edition during the foreach
             {
                 ownedProperty.Owner = newPlayer;
             }
