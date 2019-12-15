@@ -20,7 +20,7 @@ namespace TD6
             get => boardSpaces[index];
         }
 
-        //TODO : Si on ajoute la cagnotte au centre, la stocker sur le plateau
+        //TODO : If we add the prizepool in the center, store it on the board
 
         public Board()
         {

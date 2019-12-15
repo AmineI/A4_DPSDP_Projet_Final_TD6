@@ -10,9 +10,6 @@ namespace TD6
     {
         //Auto-properties : Can be publicly accessed but can only be set in the constructor. Id and name never changes so it is fine to use them as auto-properties.
         public int Id { get; }
-        /// <summary>
-        /// TODO : Find a way to ensure Id uniqueness. Maybe with a sorted collection of players ? 
-        /// </summary>
         public string PlayerName { get; }
 
         public char DisplayCharacter { get; set; }
@@ -176,7 +173,6 @@ namespace TD6
         public void WalkOnProperty(Property property)
         {
             //When you walk on a property, nothing actually happens in the real Monopoly.
-            //TODO : We could display the space we walked on, maybe ?
         }
 
         public void WalkOnEvent(EventSpace eventSpace)

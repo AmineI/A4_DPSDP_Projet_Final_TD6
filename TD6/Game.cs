@@ -7,9 +7,6 @@ using System.Threading.Tasks;
 
 namespace TD6
 {
-    //TODO : Move these methods to the board builder and player factory/builder when it will be done
-    public delegate IBoard IBoardCreator();
-    public delegate IList<IPlayer> IPlayerListCreator();
     public class Game : IGame
     {
         private IBoard board = new Board();
@@ -85,7 +82,6 @@ namespace TD6
             {
                 ownedProperty.Owner = newPlayer;
             }
-            //TODO : Replace the instance in any other field it may be added on later.
         }
 
         /// <summary>
@@ -109,7 +105,6 @@ namespace TD6
                     currentPlayer = players[playerNumber];
                     do
                     {
-                        //TODO : Display board and basic information for each player when it's his turn.
                         View.DisplayMessage($"{currentPlayer}, it is your turn.");
                         View.Pause();
                         View.DisplayBoard(this, currentPlayer.CurrentPosition);
@@ -131,7 +126,6 @@ namespace TD6
                 players.RemoveAll(player => player == null);//We remove all the players that lost and thus were replaced by a null ref.
             }
 
-            //TODO : Il ne reste qu'un joueur : Afficher message de fin de jeu
             View.DisplayEndGame(players.Last());
         }
     }

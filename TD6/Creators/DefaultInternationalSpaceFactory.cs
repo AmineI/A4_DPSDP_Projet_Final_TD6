@@ -8,7 +8,6 @@ namespace TD6
     /// </summary>
     public class DefaultInternationalSpaceFactory : ISpaceFactory
     {
-        //TODO Factory methods for the other spaces, to write in the Interface
 
         private static Dictionary<string, SpaceFactoryFunction> PropertyCreators = new Dictionary<string, SpaceFactoryFunction>
         {
@@ -80,8 +79,7 @@ namespace TD6
 
         //Store the actions we'll make the event spaces do as static delegates in the factory.
         public static Action<IPlayer> PassGo = delegate (IPlayer player) { player.Earn(200); };
-        public static Action<IPlayer> PassJail = delegate (IPlayer player) { };//TODO : When a player passes the Jail visit space we can display a message
-
+        public static Action<IPlayer> PassJail = delegate (IPlayer player) { player.View.DisplayMessage("You just visited the jail on your way."); };
 
         public static Action<IPlayer> GoToJail = delegate (IPlayer player) { player.GoToJail(); };
         public static Action<IPlayer> PayIncomeTax = delegate (IPlayer player) { player.Pay(200); };
