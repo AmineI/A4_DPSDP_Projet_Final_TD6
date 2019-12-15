@@ -223,7 +223,9 @@ namespace TD6.Tests
             player1.StopOnEvent(loseMoneyEventSpace);
             Assert.AreEqual(200 - 100, player1.Money);
         }
-
+        /// <summary>
+        /// Checks if the player's OwnedProperties is correctly updated on owner change.
+        /// </summary>
         [TestMethod()]
         public void OwnedPropertiesTest()
         {
