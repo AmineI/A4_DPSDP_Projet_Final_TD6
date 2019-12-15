@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TD6
 {
-    public class Board : IBoard, IReadOnlyList<IVisitableSpace>
+    public class Board : IBoard
     {
         private List<IVisitableSpace> boardSpaces;
         public int Count { get => boardSpaces.Count; }
