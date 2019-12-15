@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="TD6.DefaultInternationalSpaceFactory" BaseTypeListCollapsed="true">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAgAAAgAAQEAYQAAgAAACAAQAIAEIAAQ=</HashCode>
+      <FileName>Creators\DefaultInternationalSpaceFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TD6.InteractivePlayerListBuilder">
+    <Position X="12.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Creators\InteractivePlayerListBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TD6.InternationalBoardBuilder" BaseTypeListCollapsed="true">
+    <Position X="10.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAACAAAMAAABCAACAABAAAAgBIBAAgDgAAEAgAACgA=</HashCode>
+      <FileName>Creators\InternationalBoardBuilder.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="1.093" Collapsed="true" />
+  </Class>
+  <Class Name="TD6.PlayerFactory">
+    <Position X="12.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Creators\PlayerFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TD6.UserInteraction">
+    <Position X="15" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAQAAIIAAEAAAAAAAAQAIAAA=</HashCode>
+      <FileName>Helpers\UserInteraction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TD6.Board" BaseTypeListCollapsed="true">
+    <Position X="6.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAIAAAAAQAAAABAACAAAAAQAAAAAAAAEQAAEAAAAEAA=</HashCode>
+      <FileName>Model\Board\Board.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TD6.JailedPlayer" BaseTypeListCollapsed="true">
+    <Position X="15" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIESAAAAAIAAAgIEAACACAAQAoABAgABCQBABAUAAAA=</HashCode>
+      <FileName>Model\Player\JailedPlayer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TD6.Player" BaseTypeListCollapsed="true">
+    <Position X="12.75" Y="7.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAESgAAAAIBABgIEAACACAASApABAgAByQBgBAUAEEA=</HashCode>
+      <FileName>Model\Player\Player.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TD6.EventSpace">
+    <Position X="1.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAACAQAAAAAEAAAAAAAIAAAAAABEAAAAwAAAAAA=</HashCode>
+      <FileName>Model\Spaces\EventSpace.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TD6.Land">
+    <Position X="4.5" Y="7.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AgAAAMAIUAAACgAMAAAAAAAAAAAgAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Model\Spaces\Land.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TD6.Property">
+    <Position X="4.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACBEQAAgoAAAAAAAAAIAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Model\Spaces\Property.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TD6.Railroad">
+    <Position X="6.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAgAEAAAAAAAEAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Model\Spaces\Railroad.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TD6.Space">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Model\Spaces\Space.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TD6.Utility">
+    <Position X="2.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAEAAAAgAMAACAAAAIAAACAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Spaces\Utility.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TD6.ConsoleView" BaseTypeListCollapsed="true">
+    <Position X="18.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAggAAQAAAAAAAAgAAGIBAAIAAIUAQKAQCAEAAgAAA=</HashCode>
+      <FileName>View\ConsoleView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TD6.Constants">
+    <Position X="6.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABBAAAAAAAAAAAAAAQAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Constants.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TD6.Dice">
+    <Position X="12.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Dice.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TD6.Game" BaseTypeListCollapsed="true">
+    <Position X="16.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAgAACAAAAEgAAAApAAAIYAIAACAAAAA=</HashCode>
+      <FileName>Game.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TD6.Program">
+    <Position X="20.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="TD6.IBoardBuilder">
+    <Position X="8.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAACAAAIAAABCAACAABAAAAgBIAAAgBgAAEAAAACgA=</HashCode>
+      <FileName>Creators\IBoardBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TD6.ISpaceFactory">
+    <Position X="10.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAgAAAEAYQAAAAAAAAAQAIAAAAAQ=</HashCode>
+      <FileName>Creators\ISpaceFactory.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TD6.IBoard">
+    <Position X="6.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAIAAAAAQAAAAAAACAAAAAQAAAAAAAAAQAAEAAAAAAA=</HashCode>
+      <FileName>Model\Board\IBoard.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TD6.IPlayer">
+    <Position X="15" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAESAAAAAIAAAgIAAACACAAQAoABAgAACQBABAUAAAA=</HashCode>
+      <FileName>Model\Player\IPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TD6.ISpaceVisitor">
+    <Position X="8.75" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAABAAAAAAAAAAAAAAIAAAAAAgAAAAAAAAEA=</HashCode>
+      <FileName>Model\Spaces\ISpaceVisitor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TD6.IVisitableSpace">
+    <Position X="8.75" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAQAAAAAAAAAAAAQIAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Model\Spaces\IVisitableSpace.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TD6.IView">
+    <Position X="18.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAggAAAAAAAAAAAgAAGIBAAIAAIUAQKAQCAEAAgAAA=</HashCode>
+      <FileName>View\IView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TD6.IGame">
+    <Position X="16.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAgAAAAAAAAgAAAApAAAAAAIAACAAAAA=</HashCode>
+      <FileName>IGame.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="TD6.Color">
+    <Position X="4.5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAABAAAAAIhAAABAAAAAABAAAAAAAAAAAADAAAAA=</HashCode>
+      <FileName>Model\Spaces\Land.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Delegate Name="TD6.SpaceFactoryFunction">
+    <Position X="10.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Creators\ISpaceFactory.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="TD6.IBoardCreator">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>Game.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="TD6.IPlayerListCreator">
+    <Position X="12.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Game.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
