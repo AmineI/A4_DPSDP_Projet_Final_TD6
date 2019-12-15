@@ -29,8 +29,8 @@ namespace TD6
 
         public IGame GameInstance { get => gameInstance; }
         //The board is not necessarily initialized when we create the player, so we get the board dynamically from the Game.
-        private IBoard GameBoard { get => GameInstance.Board; }
-        public IView View { get => GameInstance.View; }
+        private IBoard GameBoard { get => gameInstance.Board; }
+        public IView View { get => gameInstance.View; }
         public IList<Property> OwnedProperties { get; set; }
 
         public IList<Land> BuildableOwnedLands
@@ -91,7 +91,7 @@ namespace TD6
         private void GetJailed()
         {
             JailedPlayer jailedPlayer = new JailedPlayer(this);
-            GameInstance.ReplaceIPlayerInstances(this, jailedPlayer);
+            gameInstance.ReplaceIPlayerInstances(this, jailedPlayer);
         }
         public void GoToJail()
         {
@@ -134,14 +134,14 @@ namespace TD6
                 }
 
                 View.ClearView();
-                View.DisplayBoard(GameInstance);
+                View.DisplayBoard(gameInstance);
                 //We "visit" the space we just landed on. If the space has an action occuring on walk, it will happen.
                 GameBoard[currentPosition].AcceptWalking((ISpaceVisitor)this);
             }
             //Now that we walked the requested distance,   
             View.ClearView();
 
-            View.DisplayBoard(GameInstance, currentPosition);
+            View.DisplayBoard(gameInstance, currentPosition);
             View.Pause();
             //We stop on the space. If the space has an action occuring on stop, it will happen.
             View.DisplayMessage($"You are stopping on the {GameBoard[CurrentPosition]}");
@@ -165,7 +165,7 @@ namespace TD6
 
             View.ClearView();
 
-            View.DisplayBoard(GameInstance, CurrentPosition);
+            View.DisplayBoard(gameInstance, CurrentPosition);
             View.DisplayMessage($"You are stopping on : {GameBoard[CurrentPosition]}");
 
             //Then we stop on the destination Space
@@ -250,7 +250,7 @@ namespace TD6
             }
 
             Move(DicesValue);
-            View.EndOfTurnInterface(GameInstance, this);
+            View.EndOfTurnInterface(gameInstance, this);
         }
 
         public override string ToString()
