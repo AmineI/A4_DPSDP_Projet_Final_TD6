@@ -71,7 +71,7 @@ namespace TD6
         /// </summary>
         public void GetOutOfJail()
         {
-            Game.ReplaceIPlayerInstances(this, player);
+            GameInstance.ReplaceIPlayerInstances(this, player);
         }
 
         /// <summary>

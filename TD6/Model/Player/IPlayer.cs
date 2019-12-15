@@ -54,6 +54,7 @@ namespace TD6
         bool Replay { get; set; }
 
         IView View { get; }
+        IGame GameInstance { get; }
 
         /// <summary>
         /// Roll our two dices.
