@@ -21,10 +21,9 @@ namespace TD6
         // A railroad can always be sold
         public override bool CanBeSold { get => true; }
 
-        public static int GetNumberOfOwnedRailroads(IPlayer playerOwner, IBoard board)
+        private static int GetNumberOfOwnedRailroads(IPlayer playerOwner, IBoard board)
         {
-            List<Railroad> stationsOwnedByPlayer = board.FindAllSpaces<Railroad>(railroad => railroad.Owner == playerOwner);
-            return stationsOwnedByPlayer.Count;
+            return playerOwner.OwnedProperties.OfType<Railroad>().Count();
         }
         public override string ToString()
         {
