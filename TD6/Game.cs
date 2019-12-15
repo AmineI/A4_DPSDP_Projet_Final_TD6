@@ -112,8 +112,8 @@ namespace TD6
                         if (currentPlayer.HasLost)
                         {
                             View.DisplayPlayerLose(currentPlayer);
-                            //Since we are in a foreach, we can't remove him from the list right now.
-                            //We firstly remove its references from the game, so that other players won't have to pay rent to this losing player for example, even though he already lost.
+                            //Since we are in a for loop, removing a player from the list right now would lead to unexpected results.
+                            //So we firstly remove its references from the game, so that other players won't have to pay rent to this losing player for example, even though he already lost.
                             ReplaceIPlayerInstances(currentPlayer, null);
                             break;
                         }
