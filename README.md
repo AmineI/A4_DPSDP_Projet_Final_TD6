@@ -8,6 +8,8 @@ Monopoly Game : Final project in **Design Patterns and Software Development Proc
 IPlayer interface, Player behavior and JailedPlayer decorator
 -------------------------------------------------------------
 
+![Class Diagram of our Player implementation](screenshot/Player.png)
+
 To declare the behavior of a player, we\'ve created an ``IPlayer`` interface.
 
 A player is defined by an id, a name, a character we use to display his position on the board, his current position, and the amount of money he has. We also store the values of the dices rolled and the number of consecutives double made with the dice.
@@ -22,6 +24,7 @@ To switch between a free player and a jailed player, we replace all instances of
 
 Spaces classes
 --------------
+![Class Diagram of our Spaces implementation](screenshot/Space.png)
 
 We modelled the spaces on the game board with an ``abstract`` Space class.
 A ``Space`` is defined mainly by its id, and name, and the board instance it
@@ -106,6 +109,7 @@ payment of a rent if it is already owned
 
 Board class
 -----------
+![Class Diagram of our Board implementation](screenshot/Board.png)
 
 A Board is a collection of ``IVisitableSpaces``. Its ``IBoard`` interface
 inherits of the ``IReadOnlyList<IVisitableSpace>`` interface, and thus
@@ -117,6 +121,7 @@ class implements the ``IBoard`` interface.
 
 Game Singleton and Threads
 --------------------------
+![Class Diagram of our Game implementation](screenshot/Game.png)
 
 The ``Game`` class was implemented as a singleton, since the program should
 have only one game instance. An ``IGame`` interface defines its required
@@ -145,6 +150,7 @@ following other rules.
 
 View
 ----
+![Class Diagram of our View implementation](screenshot/View.png)
 
 The Game also stores an instance of an ``IView`` object. We defined an ``IView``
 interface containing all user interface functions we would need.
@@ -156,6 +162,7 @@ fly thanks to its View property.
 
 Board Builder, Abstract Space Factory & Player Factory
 ------------------------------------------------------
+![Class Diagram of our Builder and Factories implementation](screenshot/BuilderAndFactory.png)
 
 In order to generate the board spaces with their appropriate names,
 prices, and values, we created an Abstract Factory. Its interface,
