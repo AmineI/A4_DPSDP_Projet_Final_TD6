@@ -99,10 +99,8 @@ namespace TD6
             while (players.Count > 1)//The game continues while there's more than one player.
             {
                 currentTurn++;
-                IPlayer currentPlayer = null;
-                for (int playerNumber = 0; playerNumber < players.Count; playerNumber++)//++i increments i and use the incremented value
+                foreach (Player currentPlayer in new List<IPlayer>(players))// We clone the list beforehand to be able to delete a loser from the main list without breaking our foreach.
                 {
-                    currentPlayer = players[playerNumber];
                     do
                     {
                         View.DisplayPreTurnInformation(this, currentPlayer);
@@ -112,19 +110,18 @@ namespace TD6
                         if (currentPlayer.HasLost)
                         {
                             View.DisplayPlayerLose(currentPlayer);
-                            //Since we are in a for loop, removing a player from the list right now would lead to unexpected results.
-                            //So we firstly remove its references from the game, so that other players won't have to pay rent to this losing player for example, even though he already lost.
+                            //We firstly remove its references from the game, so that other players won't have to pay rent to this losing player for example, even though he already lost.
                             ReplaceIPlayerInstances(currentPlayer, null);
+                            players.Remove(null);//We remove the player that lost and was thus replaced by a null ref.
                             break;
                         }
                     } while (currentPlayer.Replay);
                 }
-                players.RemoveAll(player => player == null);//We remove all the players that lost and thus were replaced by a null ref.
             }
 
             View.DisplayEndGame(players.Last());
         }
 
-        
+
     }
 }
