@@ -6,15 +6,14 @@ using System.Threading.Tasks;
 
 namespace TD6
 {
+
+    public class OwnerChangeEventArgs : EventArgs
+    {
+        public IPlayer PreviousOwner { get; set; }
+        public IPlayer NewOwner { get; set; }
+    }
     public abstract class Property : Space, IVisitableSpace
     {
-        private IPlayer owner;
-        public IPlayer Owner
-        {
-            get => owner;
-            set => owner = value;
-        }
-
         /// <summary>
         /// Price at which a player can buy the house from the bank
         /// </summary>
@@ -41,6 +40,28 @@ namespace TD6
         {
             this.BuyPrice = buyPrice;
             this.rentPrices = rentPrices;
+
+            OwnerChange += Player.UpdatePlayersOwnershipOnLandOwnerChange;
+        }
+
+
+        private IPlayer owner;
+        public IPlayer Owner
+        {
+            get => owner;
+            set
+            {
+                IPlayer previousOwner = owner;
+                IPlayer newOwner = value;
+                owner = newOwner;
+                OnOwnerChange(new OwnerChangeEventArgs { NewOwner = newOwner,PreviousOwner=previousOwner });
+            }
+        }
+
+        public event EventHandler<OwnerChangeEventArgs> OwnerChange;
+        protected virtual void OnOwnerChange(OwnerChangeEventArgs e)
+        {
+            OwnerChange?.Invoke(this, e);//Calls the subscribed methods, if there are any.
         }
 
         public virtual void AcceptWalking(ISpaceVisitor visitor)

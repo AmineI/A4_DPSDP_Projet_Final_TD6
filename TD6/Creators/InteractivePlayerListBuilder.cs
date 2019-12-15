@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace TD6
 {
+    public delegate IList<IPlayer> IPlayerListCreator();
     static class InteractivePlayerListBuilder
     {
         public static IList<IPlayer> AskForPlayerList(IGame game, IView view)

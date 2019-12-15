@@ -9,6 +9,6 @@
         void Add(IVisitableSpace visitableSpace);
         System.Collections.Generic.List<S> FindAllSpaces<S>(System.Predicate<S> match) where S : Space;
         int IndexOfSpace(IVisitableSpace searchedSpace);
-
+        void UpdateColorMonopolyState(object sender, OwnerChangeEventArgs eventArgs);
     }
 }

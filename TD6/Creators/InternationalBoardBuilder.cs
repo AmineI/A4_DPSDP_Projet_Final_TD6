@@ -7,7 +7,8 @@ namespace TD6
         public static IBoard BuildDefaultBoard()
         {
             ISpaceFactory defaultFactory = new DefaultInternationalSpaceFactory();
-            return new InternationalBoardBuilder(defaultFactory).BuildGoSpace()
+            return new InternationalBoardBuilder(defaultFactory)
+                                                   .BuildGoSpace()
                                                    .BuildBrownSection().BuildFirstStation().BuildCyanSection()
                                                    .BuildJail()
                                                    .BuildPurpleSection().BuildSecondStation().BuildOrangeSection()

@@ -77,7 +77,7 @@ namespace TD6
         /// <param name="player"></param>
         public void DisplayProperties(IPlayer player)
         {
-            List<Property> properties = player.OwnedProperties;
+            IList<Property> properties = player.OwnedProperties;
             if (properties != null && properties.Count > 0)
             {
                 UserInteraction.DisplayObjectList<Property>("Here is the list of your properties :", player.OwnedProperties);
@@ -99,7 +99,8 @@ namespace TD6
 
         public void DisplayEndGame(IPlayer player)
         {
-            Console.WriteLine("Well done, the game is over.\n" +
+            Console.WriteLine();
+            Console.WriteLine($"Well done {player.PlayerName}, you won ! The game is over.\n" +
                 "You finished this game with " + player.Money + " $.\n" +
                 "You had " + player.OwnedProperties.Count + " properties.");
         }
@@ -279,8 +280,25 @@ namespace TD6
             Land land = ChooseLandToBuildOn(player);
             if (land != null && GetBuildHouseHereConfirmation(land))
             {
-                land.BuildHouse();
+                if (player.Money >= land.HousePrice)
+                {
+                    land.BuildHouse();
+                }
+                else { DisplayMessage("Sorry, you don't have enough money."); }
             }
+        }
+
+        public void DisplayPlayerLose(IPlayer currentPlayer)
+        {
+            DisplayMessage($"{currentPlayer} : You lost");
+        }
+        public void DisplayPreTurnInformation(IGame gameInstance, IPlayer currentPlayer)
+        {
+            DisplayMessage($"{currentPlayer}, it is your turn.");
+            Pause();
+            DisplayBoard(gameInstance, currentPlayer.CurrentPosition);
+            DisplayMoney(currentPlayer);
+            DisplayProperties(currentPlayer);
         }
     }
 }

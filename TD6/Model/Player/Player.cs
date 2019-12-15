@@ -10,9 +10,6 @@ namespace TD6
     {
         //Auto-properties : Can be publicly accessed but can only be set in the constructor. Id and name never changes so it is fine to use them as auto-properties.
         public int Id { get; }
-        /// <summary>
-        /// TODO : Find a way to ensure Id uniqueness. Maybe with a sorted collection of players ? 
-        /// </summary>
         public string PlayerName { get; }
 
         public char DisplayCharacter { get; set; }
@@ -28,15 +25,15 @@ namespace TD6
 
         public bool IsDiceDouble { get => dice1 == dice2; }
 
-        private IGame gameInstance;
+        readonly private IGame gameInstance;
         //The board is not necessarily initialized when we create the player, so we get the board dynamically from the Game.
         private IBoard GameBoard { get => gameInstance.Board; }
         public IView View { get => gameInstance.View; }
-        public List<Property> OwnedProperties { get => GameBoard.FindAllSpaces<Property>(prop => prop.Owner == this); }
+        public IList<Property> OwnedProperties { get; set; }
 
-        public List<Land> BuildableOwnedLands
+        public IList<Land> BuildableOwnedLands
         {
-            get => GameBoard.FindAllSpaces<Land>(land => land.Owner == this && land.IsHouseBuildable());
+            get => OwnedProperties.OfType<Land>().Where(land => land.IsHouseBuildable()).ToList();
         }
 
         public bool HasLost => Money < 0;
@@ -49,10 +46,22 @@ namespace TD6
             this.PlayerName = playerName;
             this.money = money;
             this.DisplayCharacter = displayCharacter;
-            this.gameInstance = gameInstance ?? Game.Instance;
+            OwnedProperties = new List<Property>();
 
+            this.gameInstance = gameInstance ?? Game.Instance;
             // The null-coalescing operator ?? returns the value of its left-hand operand if it isn't null; otherwise, it evaluates the right-hand operand and returns its result
         }
+
+        public static void UpdatePlayersOwnershipOnLandOwnerChange(object sender, OwnerChangeEventArgs eventArgs)
+        {
+            Property updatedProperty = sender as Property;
+            if (updatedProperty != null)
+            {
+                eventArgs.PreviousOwner?.OwnedProperties.Remove(updatedProperty);//Remove from the old owner if there was one
+                eventArgs.NewOwner?.OwnedProperties.Add(updatedProperty);//Add to the new owner if there is one
+            }
+        }
+
 
         public void RollDices()
         {
@@ -133,7 +142,7 @@ namespace TD6
             View.DisplayBoard(gameInstance, currentPosition);
             View.Pause();
             //We stop on the space. If the space has an action occuring on stop, it will happen.
-            View.DisplayMessage($"You are stopping on {GameBoard[CurrentPosition]}");
+            View.DisplayMessage($"You are stopping on the {GameBoard[CurrentPosition]}");
             GameBoard[currentPosition].AcceptStopping((ISpaceVisitor)this);
         }
 
@@ -164,14 +173,12 @@ namespace TD6
         public void WalkOnProperty(Property property)
         {
             //When you walk on a property, nothing actually happens in the real Monopoly.
-            //TODO : We could display the space we walked on, maybe ?
         }
 
         public void WalkOnEvent(EventSpace eventSpace)
         {
             //We call the walk action delegate of this event space.
             eventSpace.OnWalkAction((IPlayer)this);
-
         }
 
         public void StopOnProperty(Property property)
@@ -197,6 +204,7 @@ namespace TD6
             else if (property.Owner != this)
             {
                 Pay(property.RentPrice, property.Owner);
+                View.DisplayMessage($"You had to pay the {property.RentPrice} rent");
                 View.DisplayMessage(ToString());
                 View.DisplayMessage(property.Owner.ToString());
             }
@@ -218,7 +226,7 @@ namespace TD6
             Replay = false;
             // We launch the dices with a function 
             RollDices();
-            View.DisplayMessage($"You rolled a {DicesValue}\n");
+            View.DisplayMessage($"You rolled a {dice1} and {dice2}, for a total of {DicesValue}\n");
             View.Pause();
             if (IsDiceDouble)
             {
@@ -232,10 +240,15 @@ namespace TD6
                     GoToJail();
                     return;
                 }
-                Replay = true;
+                else
+                {
+                    View.DisplayMessage("That means you will replay after this turn !");
+                    Replay = true;
+                }
             }
+
             Move(DicesValue);
-            View.EndOfTurnInterface(gameInstance,this);
+            View.EndOfTurnInterface(gameInstance, this);
         }
 
         public override string ToString()

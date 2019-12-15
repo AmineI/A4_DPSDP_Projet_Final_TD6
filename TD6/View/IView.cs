@@ -32,5 +32,7 @@ namespace TD6
         void EndOfTurnInterface(IGame gameInstance, IPlayer player);
         void SellPropertyInterface(IGame gameInstance, IPlayer player);
         void BuildHouseInterface(IPlayer player);
+        void DisplayPlayerLose(IPlayer currentPlayer);
+        void DisplayPreTurnInformation(IGame gameInstance, IPlayer currentPlayer);
     }
 }

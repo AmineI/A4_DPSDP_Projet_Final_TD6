@@ -1,5 +1,6 @@
 ﻿namespace TD6
 {
+    public delegate IBoard IBoardCreator();
     public interface IBoardBuilder
     {
         /// <summary>
