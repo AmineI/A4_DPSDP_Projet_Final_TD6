@@ -99,7 +99,8 @@ namespace TD6
 
         public void DisplayEndGame(IPlayer player)
         {
-            Console.WriteLine("Well done, the game is over.\n" +
+            Console.WriteLine();
+            Console.WriteLine($"Well done {player.PlayerName}, you won ! The game is over.\n" +
                 "You finished this game with " + player.Money + " $.\n" +
                 "You had " + player.OwnedProperties.Count + " properties.");
         }
@@ -279,7 +280,11 @@ namespace TD6
             Land land = ChooseLandToBuildOn(player);
             if (land != null && GetBuildHouseHereConfirmation(land))
             {
-                land.BuildHouse();
+                if (player.Money >= land.HousePrice)
+                {
+                    land.BuildHouse();
+                }
+                else { DisplayMessage("Sorry, you don't have enough money."); }
             }
         }
     }

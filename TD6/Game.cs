@@ -126,7 +126,6 @@ namespace TD6
                             ReplaceIPlayerInstances(currentPlayer, null);
                             break;
                         }
-                        View.Pause();
                     } while (currentPlayer.Replay);
                 }
                 players.RemoveAll(player => player == null);//We remove all the players that lost and thus were replaced by a null ref.

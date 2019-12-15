@@ -145,7 +145,7 @@ namespace TD6
             View.DisplayBoard(gameInstance, currentPosition);
             View.Pause();
             //We stop on the space. If the space has an action occuring on stop, it will happen.
-            View.DisplayMessage($"You are stopping on {GameBoard[CurrentPosition]}");
+            View.DisplayMessage($"You are stopping on the {GameBoard[CurrentPosition]}");
             GameBoard[currentPosition].AcceptStopping((ISpaceVisitor)this);
         }
 
@@ -183,7 +183,6 @@ namespace TD6
         {
             //We call the walk action delegate of this event space.
             eventSpace.OnWalkAction((IPlayer)this);
-
         }
 
         public void StopOnProperty(Property property)
@@ -209,6 +208,7 @@ namespace TD6
             else if (property.Owner != this)
             {
                 Pay(property.RentPrice, property.Owner);
+                View.DisplayMessage($"You had to pay the {property.RentPrice} rent");
                 View.DisplayMessage(ToString());
                 View.DisplayMessage(property.Owner.ToString());
             }
@@ -230,7 +230,7 @@ namespace TD6
             Replay = false;
             // We launch the dices with a function 
             RollDices();
-            View.DisplayMessage($"You rolled a {DicesValue}\n");
+            View.DisplayMessage($"You rolled a {dice1} and {dice2}, for a total of {DicesValue}\n");
             View.Pause();
             if (IsDiceDouble)
             {
@@ -244,10 +244,15 @@ namespace TD6
                     GoToJail();
                     return;
                 }
-                Replay = true;
+                else
+                {
+                    View.DisplayMessage("That means you will replay after this turn !");
+                    Replay = true;
+                }
             }
+
             Move(DicesValue);
-            View.EndOfTurnInterface(gameInstance,this);
+            View.EndOfTurnInterface(gameInstance, this);
         }
 
         public override string ToString()

@@ -83,7 +83,6 @@ namespace TD6
             View.DisplayMessage($"Let's see if you will roll a double and escape. You were in jail for {turnInJail} turns");
             RollDices();
             //if we get a double or if we are in jail for the 3rd turn we get out of jail and move 
-
             if (IsDiceDouble || turnInJail >= 3)
             {
                 View.DisplayMessage($"You are going out of jail ! You rolled a {DicesValue}");
@@ -98,7 +97,7 @@ namespace TD6
 
         public override string ToString()
         {
-            return player.ToString()+", in jail";
+            return player.ToString() + ", in jail";
         }
 
     }
