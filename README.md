@@ -4,6 +4,19 @@
 
 Monopoly Game : Final project in **Design Patterns and Software Development Process**
 ===================================================================
+Achieved maximum grade for this project, made as a team of 3 students !
+
+# Table of Contents
+1. [IPlayer interface, Player behavior and JailedPlayer decorator](#iplayer-interface-player-behavior-and-jailedplayer-decorator)
+2. [Spaces classes](#spaces-classes)
+3. [Event spaces and their Actions delegates](#event-spaces-and-their-actions-delegates)
+4. [Visitor pattern](#visitor-pattern)
+5. [Board class](#board-class)
+6. [Game Singleton and Threads](#game-singleton-and-threads)
+7. [View and IView interface](#view)
+8. [Board Builder, Abstract Space Factory & Player Factory](#board-builder-abstract-space-factory--player-factory)
+9. [Dependency injection](#dependency-injection)
+10. [Event observation and regression tests](#event-observation-and-regression-tests)
 
 IPlayer interface, Player behavior and JailedPlayer decorator
 -------------------------------------------------------------
